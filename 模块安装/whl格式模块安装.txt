@@ -1,0 +1,5 @@
+先安装wheel模块
+pip install wheel
+
+再安装目标模块
+pip install XXXXX.whl

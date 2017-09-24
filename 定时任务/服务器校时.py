@@ -1,0 +1,41 @@
+# -*- coding: UTF-8 -*-
+from urllib import request   #导入request库中的urllib函数
+import urllib
+import re          #导入正则表达式库
+import time        #导入延时函数库
+import http.client
+import datetime
+import os
+
+
+
+
+
+def GetJDServerTime():
+    """获取jd服务器时间
+    NOTE: 原理是通过服务器头文件响应获取服务器时间
+    """
+    
+    conn = http.client.HTTPConnection( 'miaosha.jd.com' )
+    conn.request( 'GET', '/' )
+    response = conn.getresponse()
+    ts =  response.getheader('Date')
+    ltime = time.strptime( ts[5:25], '%d %b %Y %H:%M:%S' )
+    ttime=time.localtime(time.mktime(ltime)+8*60*60)    
+    dat="date %u-%02u-%02u"%(ttime.tm_year,ttime.tm_mon,ttime.tm_mday)
+    tm="time %02u:%02u:%02u"%(ttime.tm_hour,ttime.tm_min,ttime.tm_sec)
+    os.system(dat)
+    os.system(tm)
+    time_now=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
+    print("修正完了，当前系统时间:"+time_now)
+        #按照特定时间格式将字符串转换为时间类型
+    
+    return time_now
+
+GetJDServerTime()
+
+
+      
+    
+
+

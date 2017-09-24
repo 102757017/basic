@@ -1,0 +1,27 @@
+pip镜像源
+在国内如果不使用 VPN 是没办法好好使用 pip 命令安装任何 Python 包的。所以另一个选择就是使用国内各大厂的开源镜像源。
+目前国内靠谱的 pip 镜像源有：
+清华: https://pypi.tuna.tsinghua.edu.cn/simple
+豆瓣: http://pypi.douban.com/simple/
+阿里: http://mirrors.aliyun.com/pypi/simple/
+在 pip 命令中使用镜像源很简单，在执行 install 命令时，使用 -i 参数加上源地址就可以了，例如:
+pip install django -i http://pypi.douban.com/simple/
+上面的命令就会使用豆瓣的源来安装 django。
+如果经常要安装各类程序包，这样使用起来还是有点不方便的。把镜像地址放到 pip 的全局配置文件中也许是个不错的选择。编辑 ~/.pip/pip.conf 文件（如果不存在可以按路径新建），添加或修改以下配置：
+临时使用
+pip install pythonModuleName -i http://pypi.douban.com --trusted-host=pypi.douban.com
+在命令行中添加以上参数，可以让pip从制定的镜像源安装软件。
+配置
+[global]
+index-url = http://pypi.douban.com/simple/
+
+上面的配置就是把豆瓣的源应用到全局环境。之后使用 pip 命令就不需要再指定镜像源参数。
+在最新的 pip 版本(>=7)中，使用镜像源时，会提示源地址不受信任或不安全。所以需要在 pip 的配置文件指定一下镜像源是受信任的。配置示例如下：
+[install]
+trusted-host = http://pypi.douban.com/simple/
+当然也可以不用添加，在每次执行 pip 命令时，附加上 --trusted-host 参数，后面再把镜像源地址加上就好。
+问题
+http://pypi.douban.com不提供HTTPS连接，关心安全问题的话，请三思后再决定是否使用。这个问题也导致在配置时，需要添加--trusted-host参数，假设软件源是安全的。
+虽然修改了软件源，但是pip search命令还是不能使用的，因为搜索软件使用的协议与安装软件不同。pip search基于xmlrpclib实现，pip install基于urllib2实现。同样地，对pip search设置代理，也是不起作用的。
+
+C:\Users\sunny\AppData\Local\Programs\Python\Python36-32\python.exe -m pip install pypinyin -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host=mirrors.aliyun.com

@@ -1,0 +1,9 @@
+open('aaa.txt')  '打开当前文件夹里的aaa.txt
+open('/data/bbb.txt')  '打开当前文件夹下级目录data里的aaa.txt，常用’/‘来表示相对路径，’\‘来表示绝对路径
+open('D:\\user\\ccc.txt') ‘绝对路径
+
+
+
+import os  
+path1=os.path.abspath('.')   #表示当前所处的文件夹的绝对路径  
+path2=os.path.abspath('..')  #表示当前所处的文件夹上一级文件夹的绝对路径  

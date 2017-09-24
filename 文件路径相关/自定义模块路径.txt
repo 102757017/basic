@@ -1,0 +1,5 @@
+import sys
+sys.path.append("XXXXX") 内部添加自定义py文件所在文件夹的路径
+
+多级文件夹内模块的引用
+import 一级文件夹名.二级文件夹名.XX

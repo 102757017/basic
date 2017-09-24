@@ -1,0 +1,7 @@
+requests模块获取的html文档和urllib获取的html有差异
+urllib捕获的html中换行符是LR
+requests捕获的html中换行符是LRCR
+匹配正则表达式会产生区别
+
+中文版官方文档
+http://cn.python-requests.org/zh_CN/latest/

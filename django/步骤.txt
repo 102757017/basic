@@ -1,0 +1,21 @@
+1.创建一个项目
+2.新建views.py视图文件，修改urls.py对url和视图进行映射
+3.在项目的settings.py中设置模板文件夹路径
+4.创建一个app
+5.在项目的settings.py中设置数据库路径，数据库路径一定要用绝对路径，斜杠一定要用正斜杠，然后设置app名称
+	（数据库不能放在中文路径下面）
+	（如果在windows上使用sqlite需要将sqlite3.exe文件放入（C:\Windwos\System32）中 ）
+
+6-1.如果是新建数据库，那么在app的models.py里面设置数据库结构，model内需要定义主键，否则系统会自动生成id主键，添加__str__(self)函数，然后
+将model层转为迁移文件migration：      python manage.py makemigrations
+将新版本的迁移文件执行，更新数据库：  python manage.py migrate
+
+6-2.如果是沿用旧的数据库，那么执行python manage.py inspectdb > models.py，
+探测数据库结构，自动生成model.py。
+注意：自动生成的model.py内表格名字会变成大写，django会自动对没有AutoField的表建立一个id字段当做逻辑主键
+
+
+7.测试数据库：
+python manage.py shell
+from app_name.models import table_name
+table_name.objects.all()
