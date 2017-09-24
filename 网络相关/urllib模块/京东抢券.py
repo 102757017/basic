@@ -83,15 +83,17 @@ a=GetJDServerTime()
 dt = list(time.localtime())
 hour = dt[3]
 minute = dt[4]
-while hour == 00 and minute == 03: #上午0点00分的时候开始提示
-    for x in i:
-        a=search(x,j)
-        result = re.findall(r'<h1 class="ctxt02"><s class="icon-redbag"></s>(.+?)\n', a)
-        print(result[0])
+z=0
+while z==0:
+    while hour==10 and minute==00: #上午10点00分的时候开始提示
+        for x in i:
+            a=search(x,j)
+            result = re.findall(r'<h1 class="ctxt02"><s class="icon-redbag"></s>(.+?)\n', a)
+            print(result[0])
           
-        dt=list(time.localtime())
-        hour = dt[3]
-        minute = dt[4]
+            dt=list(time.localtime())
+            hour = dt[3]
+            minute = dt[4]
       
     
 
