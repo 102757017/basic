@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
-
 from selenium import webdriver
+import pprint
 
 browser = webdriver.Chrome()
 
@@ -29,6 +29,7 @@ coupon=browser.find_element_by_xpath("//*[@id='quanlist']/div[7]/div[1]/div[4]/d
 coupon.click()
 
 a=browser.get_cookies() #获取当前页面的cookies
+pprint.pprint(a)
 
 a=browser.page_source #获取网页渲染后的源代码
 
