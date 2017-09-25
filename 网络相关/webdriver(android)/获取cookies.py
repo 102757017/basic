@@ -44,3 +44,5 @@ def getcookie():
         cookies=cookies+x['name'] + "=" + x['value'] + ";"
     print(cookies)
     #browser.close() #关闭浏览器
+    
+getcookie()
