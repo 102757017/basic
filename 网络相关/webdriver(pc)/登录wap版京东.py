@@ -15,11 +15,11 @@ def getcookie():
     在元素html代码上点右键，选择copy-copy xpath。复制代码内的双引号要改成单引号
     '''
     user.clear()#清除文本框内数据
-    user.send_keys("102757017")#写数据
+    user.send_keys("10275")#写数据
 
     password = browser.find_element_by_xpath("//*[@id='password']")
     password.clear()#清除文本框内数据
-    password.send_keys("h37174141")#写数据
+    password.send_keys("h3717")#写数据
 
     login = browser.find_element_by_xpath("//*[@id='loginBtn']")
     login.click()#点击按钮

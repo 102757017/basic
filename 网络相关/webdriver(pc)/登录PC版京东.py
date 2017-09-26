@@ -12,12 +12,12 @@ ulogin.click()
 user = browser.find_element_by_id("loginname")#按id定位搜索文本框
 user=browser.find_element_by_xpath("//*[@id='loginname']")#另一种方法是使用xpath定位
 user.clear()#清除文本框内数据
-user.send_keys("102757017")#写数据
+user.send_keys("102757")#写数据
 
 password = browser.find_element_by_id("nloginpwd")#按id定位搜索文本框
 password = browser.find_element_by_xpath("//*[@id='nloginpwd']")#另一种方法是使用xpath定位
 password.clear()#清除文本框内数据
-password.send_keys("h37174141")#写数据
+password.send_keys("h37174")#写数据
 
 login = browser.find_element_by_xpath("//*[@id='loginsubmit']")
 login.click()#点击按钮
