@@ -1,7 +1,6 @@
 # -*- coding: UTF-8 -*-
 from urllib import request   #导入request库中的urllib函数
 import urllib
-import re          #导入正则表达式库
 import time        #导入延时函数库
 import http.client
 import datetime
