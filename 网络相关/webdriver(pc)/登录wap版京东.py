@@ -41,3 +41,5 @@ def getcookie():
     return cookies
     #browser.close() #关闭浏览器
 
+getcookie()
+getcookie()

@@ -7,7 +7,10 @@ from urllib import request   #导入request库中的urllib函数
 import urllib
 import http.client
 import os
+import sys
 
+sys.path.append(os.path.dirname(__file__))
+from jd import getcookie
 
 def GetJDServerTime():
     """获取jd服务器时间
@@ -30,7 +33,6 @@ def GetJDServerTime():
     
     return time_now
 
-
 def GetDelayTime():
     """获取jd服务器时间
     NOTE: 原理是通过服务器头文件响应获取服务器时间
@@ -41,15 +43,31 @@ def GetDelayTime():
     response = conn.getresponse()
     ts =  response.getheader('Date')
     time2 = datetime.datetime.now()
-    
-    return time2-time1
+    t=time2-time1
+    t=t/2
+    return t
 
 
-def mission():
-        print('开始执行代码')
-
-
-#时间格式转换函数，参数time的类型为字符串，格式为"09:59:00:000000"
+def pre():
+    print('预先打开目标网页并读取cookie')
+    browser=getcookie()
+    browser.get('https://coupon.m.jd.com/coupons/show.action?key=9058012ba710454dbf0c44f021b1b881&roleId=7972852')
+    return browser
+def grab(browser):
+    print('开始抢卷')
+    button=browser.find_element_by_xpath("//*[@id='btnSubmit']")
+    button.click()#点击按钮
+    i=1
+    while i<5:
+        i=i+1
+        try:
+            browser.get('https://coupon.m.jd.com/coupons/show.action?key=9058012ba710454dbf0c44f021b1b881&roleId=7972852')
+            button=browser.find_element_by_xpath("//*[@id='btnSubmit']")
+            button.click()
+        except BaseException as e:
+            print('抢卷出错:', e)
+            
+#时间格式转换函数，输出datetime.datetime，参数time的类型为字符串，格式为"09:59:00:000000"，
 def timech(time):
         if time=="00:00:00:000000":
                 now=datetime.datetime.now()+timedelta(days=1)
@@ -66,34 +84,42 @@ def timech(time):
         
         
 
-#定时器函数，到点执行代码，参数time的类型为字符串，格式为"09:59:00:000000"
-def timer(time):
-        clock=timech(time)
+#定时器函数，到点执行代码，参数time的类型为datetime.datetime
+def timer(clock):
         now = datetime.datetime.now()
-        while now<clock:
-                now = datetime.datetime.now()           
-        print("到达指定时间，开始执行代码")
-        mission()
-        print("执行完毕")
+        while now+GetDelayTime()<clock:
+                now = datetime.datetime.now()
+                #print(now)
 
 
-def neartime(luck_time):
+
+def neartime(luck_times):
         m=[]
-        for time in luck_time:
+        for time in luck_times:
                 if timech(time)>datetime.datetime.now():
                         m.append(timech(time)-datetime.datetime.now())
                 else:
                         b=timedelta(days=1)
                         m.append(b)
-        return m.index(min(m))
+        i=m.index(min(m))
+        luck_time=timech(luck_times[i])
+        pretime=luck_time-timedelta(minutes=1)
+        return pretime,luck_time
 
 
 
 #同步服务器时间
 #GetJDServerTime()
 #抢券时间
-luck_time=("10:00:00:000000","14:00:00:000000","17:00:00:000000","00:00:00:000000")
+luck_time=("10:00:00:000000","14:00:00:000000","20:00:00:000000","00:00:00:000000")
 i=neartime(luck_time)
-timer(luck_time[i])
+print(i[0],i[1])
+timer(i[0])
+print("到达准备时间，开始执行代码")
+browser=pre()
+print("执行完毕")
+timer(i[1])
+print("到达抢卷时间，开始执行代码")
+grab(browser)
+print("执行完毕")
 
-           
