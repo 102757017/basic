@@ -46,7 +46,7 @@ while 2>1:
 
         time.sleep(3)          #每60s循环一次
     except BaseException as e:
-        #print('产生了错误,跳过错误:', e)
+        print('产生了错误,跳过错误:', e)
         time.sleep(3)
         pass
 
