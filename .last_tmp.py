@@ -30,8 +30,6 @@ while 2>1:
     try:
         r=requests.get(url,headers=headers)
         a=r.text
-        print(a)
-        break
         result = re.findall(r'<a href="(.+?)"  class="s xst" target="_blank">(.+?)[\n\r]{2} - \[阅读权限 <span class="xw1">([0-9]+)',a)
         for x in result:
             cursor.execute('select * from table1 where 线报=?', (x[1],))
@@ -48,7 +46,7 @@ while 2>1:
 
         time.sleep(3)          #每60s循环一次
     except BaseException as e:
-        #print('产生了错误,跳过错误:', e)
+        print('产生了错误,跳过错误:', e)
         time.sleep(3)
         pass
 
