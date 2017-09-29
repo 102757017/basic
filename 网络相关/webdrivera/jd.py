@@ -18,9 +18,9 @@ def getcookie():
     desired_caps['noReset'] = 'true'
 
     #browser  = webdriver.Remote(desired_capabilities=webdriver.DesiredCapabilities.ANDROID)
-
+    
     browser = webdriver.Android(host='localhost', port=8080, desired_capabilities={'browserName': 'android', 'version': '', 'platform': 'ANDROID'})
-
+    #browser = webdriver.Chrome()
 
 
     browser.get('https://plogin.m.jd.com/user/login.action?appid=100')

@@ -90,7 +90,7 @@ def timech(time):
 #定时器函数，到点执行代码，参数time的类型为datetime.datetime
 def timer(clock):
         now = datetime.datetime.now()
-        a=0
+        a=timedelta(minutes=0)
         while now+a<clock:
                 try:
                     a=GetDelayTime()
@@ -127,7 +127,7 @@ GetJDServerTime()
 luck_time=("10:00:00:000000","14:00:00:000000","20:00:00:000000","00:00:00:000000")
 i=neartime(luck_time)
 print(i[0],i[1])
-timer2(i[0])
+timer(i[0])
 print("到达准备时间，开始执行代码")
 browser=pre()
 print("执行完毕")
