@@ -5,7 +5,9 @@ import time        #导入延时函数库
 import chardet
 import requests
 import sqlite3
+import os
 
+os.chdir(os.path.dirname(__file__))
 
 conn = sqlite3.connect('test.db')
 # 创建一个Cursor:
@@ -46,7 +48,7 @@ while 2>1:
 
         time.sleep(3)          #每60s循环一次
     except BaseException as e:
-        #print('产生了错误,跳过错误:', e)
+        print('产生了错误,跳过错误:', e)
         time.sleep(3)
         pass
 
