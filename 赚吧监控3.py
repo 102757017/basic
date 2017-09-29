@@ -5,7 +5,9 @@ import time        #导入延时函数库
 import chardet
 import requests
 import sqlite3
+import os
 
+os.chdir(os.path.dirname(__file__))
 
 conn = sqlite3.connect('test.db')
 # 创建一个Cursor:
