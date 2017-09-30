@@ -16,7 +16,8 @@ def GetDelayTime():
     NOTE: 原理是通过服务器头文件响应获取服务器时间
     """
     time1 = datetime.datetime.now()
-    conn = http.client.HTTPConnection( 'miaosha.jd.com' )
+    #conn = http.client.HTTPConnection( 'miaosha.jd.com' )
+    conn = http.client.HTTPConnection( 'api.m.jd.com' )
     conn.request( 'GET', '/' )
     response = conn.getresponse()
     ts =  response.getheader('Date')
@@ -24,8 +25,9 @@ def GetDelayTime():
     
     return time2-time1
 
-a=GetDelayTime()
-print(a)
+while True:
+    a=GetDelayTime()
+    print(a)
 
       
     

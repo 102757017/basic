@@ -15,7 +15,8 @@ def GetJDServerTime():
     NOTE: 原理是通过服务器头文件响应获取服务器时间
     """
     
-    conn = http.client.HTTPConnection( 'miaosha.jd.com' )
+    #conn = http.client.HTTPConnection( 'miaosha.jd.com' )
+    conn = http.client.HTTPConnection( 'api.m.jd.com' )
     conn.request( 'GET', '/' )
     response = conn.getresponse()
     ts =  response.getheader('Date')
