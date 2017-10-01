@@ -14,12 +14,22 @@ def GetJDServerTime():
     """获取jd服务器时间
     NOTE: 原理是通过服务器头文件响应获取服务器时间
     """
-    
-    #conn = http.client.HTTPConnection( 'miaosha.jd.com' )
+    flag=1
+    i=0
     conn = http.client.HTTPConnection( 'api.m.jd.com' )
     conn.request( 'GET', '/' )
     response = conn.getresponse()
-    ts =  response.getheader('Date')
+    ts2 =  response.getheader('Date')
+    while flag:
+        #conn = http.client.HTTPConnection( 'miaosha.jd.com' )
+        conn = http.client.HTTPConnection( 'api.m.jd.com' )
+        conn.request( 'GET', '/' )
+        response = conn.getresponse()
+        ts =  response.getheader('Date')
+        i=i+1
+        if ts!=ts2:
+            flag=0      
+        #按照特定时间格式将字符串转换为时间类型
     ltime = time.strptime( ts[5:25], '%d %b %Y %H:%M:%S' )
     ttime=time.localtime(time.mktime(ltime)+8*60*60)    
     dat="date %u-%02u-%02u"%(ttime.tm_year,ttime.tm_mon,ttime.tm_mday)
@@ -31,6 +41,7 @@ def GetJDServerTime():
         #按照特定时间格式将字符串转换为时间类型
     
     return time_now
+
 
 GetJDServerTime()
 
