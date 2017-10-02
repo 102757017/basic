@@ -12,6 +12,10 @@ print("字符串内包含\\")
 print(r"\\\\")
 print("\n")
 
+print("字符串内换行或引号时，也可以用三引号把字符串包含起来")
+print('''我是a'
+我是b"''')
+print("\n")
 
 a="abcdef"
 print("字符串abcdef的长度为：")
