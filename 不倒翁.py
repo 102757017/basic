@@ -7,6 +7,7 @@ import requests
 import sqlite3
 import json
 import pprint
+import os
 
 os.chdir(os.path.dirname(__file__))
 conn = sqlite3.connect('bat.db')
@@ -32,7 +33,10 @@ url2="http://www.yv55.com/uc/GetAllBet?0.4610653719152149"
 flag=1
 while 1:
     r=requests.post(url,headers=headers)
-    result = r.json()
+    try:
+        result = r.json()
+    except BaseException as e:
+        print(r.text)
     #pprint.pprint(result)
     a=result['list']
     a1=a['CreateTime']
@@ -55,7 +59,7 @@ while 1:
         cursor.execute("insert into table2 values (?,?,?,?,?,?,?,?,?,?,?,?)",(a1,a2,a3,a4,a5,a6,a7,a8,a9,b,c1,c2))
         conn.commit()
         print(a4)
-    time.sleep(1)
+    time.sleep(2)
     if b>50000:
         flag=1
     
