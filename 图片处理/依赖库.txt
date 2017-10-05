@@ -1,0 +1,2 @@
+1.numpy
+2.opencv(官方opencv3.0以后的版本内没有包含sift算法，需要安装包含opencv_contrib的版本)
