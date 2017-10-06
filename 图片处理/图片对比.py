@@ -4,7 +4,6 @@ import sys
 import cv2
 import numpy as np
 import os
-from find_obj import filter_matches,explore_match
 import matplotlib.pyplot as plt
 
 os.chdir(os.path.dirname(__file__))
@@ -24,18 +23,44 @@ sift= cv2.xfeatures2d.SIFT_create()
 keypoints1 = sift.detect(gray1, None)
 keypoints2 = sift.detect(gray2, None)
 
+
 #kp是关键点的列表，des是形状数组
 kp1,des1 = sift.compute(gray1,keypoints1)
-
 kp2,des2 = sift.compute(gray2,keypoints2)
+print("关键点kp1类型为",type(kp1))
+print("形状数组des1类型为",type(des1))
+print("关键点kp1数量为",len(kp1))
+print('\n')
+print("关键点kp2类型为",type(kp2))
+print("形状数组des2类型为",type(des2))
+print("关键点kp2数量为",len(kp2))
+print('\n')
 
 bf = cv2.BFMatcher()
 #返回k个最佳匹配  
 matches = bf.knnMatch(des1, des2, k=2)
-#p1, p2, kp_pairs = filter_matches(kp1, kp2, matches)
-#explore_match('find_obj', img1, img2, kp_pairs)
+print("matches类型为",type(matches))
+print("matches数量为",len(matches))
+print('\n')
 
+print("基于第一张图的特征点构造匹配矩阵，初始化矩阵为0")
 matchesMask = [[0,0] for i in range(len(matches))]
+print("matchesMask类型为",type(matchesMask))
+print("matchesMask数量为",len(matchesMask))
+#print("matchesMask矩阵如下:",matchesMask)
+print('\n')
+
+
+#如果对一个列表，既要遍历索引又要遍历元素时可以使用enumerate()
+for i,(m,n) in enumerate(matches):
+    if m.distance < 0.7*n.distance:
+        matchesMask[i]=[1,0]
+ppn=matchesMask.count([1,0])
+rato=ppn/len(matchesMask)
+print("匹配的特征点数量为",ppn,"，img1特征点的匹配比率为",rato)
+#print("匹配后的matchesMask矩阵如下:",matchesMask)
+print('\n')
+
 draw_params = dict(matchColor = (0,255,0), singlePointColor = (255,0,0), matchesMask = matchesMask, flags = 0)
 img3= cv2.drawMatchesKnn(img1,kp1,img2,kp2,matches,None,**draw_params)
 
