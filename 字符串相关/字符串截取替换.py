@@ -50,15 +50,3 @@ print(b)
 print("\n")
 
 
-print("小写字符转换为大写字符")
-print(a.upper())
-print("\n")
-
-print("用/连接字符串")
-a='/'.join(["hello","world","are you"])
-print(a)
-print("\n")
-
-print("用/分割字符串")
-b=a.split('/')
-print(b)
