@@ -10,8 +10,10 @@ os.chdir(os.path.dirname(__file__))
 
 
 #cv2.IMREAD_COLOR表示以彩色模式读入图片
-img1 = cv2.imread('test.png', cv2.IMREAD_COLOR)
-img2 = cv2.imread('sift_keypoints.jpg', cv2.IMREAD_COLOR)
+img1 = cv2.imread('捕获1.PNG', cv2.IMREAD_COLOR)
+img1 = cv2.imdecode(np.fromfile('捕获1.PNG', dtype=np.uint8), 1)
+img2 = cv2.imread('捕获2.PNG', cv2.IMREAD_COLOR)
+img2 = cv2.imdecode(np.fromfile('捕获2.PNG', dtype=np.uint8), 1)
 #颜色转换函数，BGR->Gray 就可以设置为 cv2.COLOR_BGR2GRAY
 gray1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
 gray2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)

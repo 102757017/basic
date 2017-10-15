@@ -91,11 +91,10 @@ post_body="issueNum="+IssueNum+"&hongtl=100&DFW=0&huitl=0&myy=0"
 while 1:
     if b[0]>39000:
         dt=(b[0]-39000)/1000
-        IssueNum=str(int(b[1])+1)
-        post_body="issueNum="+IssueNum+"&hongtl=100&DFW=0&huitl=0&myy=0"        
+      
     else:
         dt=(b[0]+21000)/1000
-        post_body="issueNum="+b[1]+"&hongtl=100&DFW=0&huitl=0&myy=0"
+
     print("wait:",dt)
     time.sleep(dt)
     try:
@@ -104,6 +103,8 @@ while 1:
         if c>-130000000 and c<-75000000:
             bat()
         b=checktime()
+        IssueNum=str(int(b[1])+1)
+        post_body="issueNum="+IssueNum+"&hongtl=100&DFW=0&huitl=0&myy=0"   
     except BaseException as e:
         print("产生了错误",e)
         pass

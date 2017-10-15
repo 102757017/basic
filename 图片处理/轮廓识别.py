@@ -8,6 +8,8 @@ os.chdir(os.path.dirname(__file__))
 
  
 img = cv2.imread('contour.png')
+#由于opencv不支持读取中文路径，用以下方法代替cv2.imread
+img = cv2.imdecode(np.fromfile('contour.png', dtype=np.uint8), 1)
 
 #图片先转成灰度的
 gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
