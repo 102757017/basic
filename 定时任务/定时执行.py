@@ -1,6 +1,8 @@
 # -*- coding: UTF-8 -*-
 import datetime
 import time
+from time import sleep
+from datetime import timedelta
 import sched #定时任务模块
 from urllib import request   #导入request库中的urllib函数
 import urllib
@@ -31,36 +33,42 @@ def timech(time):
         
         
 
-#定时器函数，到点执行代码，参数time的类型为字符串，格式为"09:59:00:000000"
+#定时器函数，到点执行代码，参数time的类型为datetime.datetime
 def timer(time):
-        clock=timech(time)
         now = datetime.datetime.now()
-        while now<clock:
-                now = datetime.datetime.now()           
+        delta=time-now
+        delta=delta.seconds
+        print('延时',delta,'秒')
+        sleep(delta)         
         print("到达指定时间，开始执行代码")
         mission()
         print("执行完毕")
 
 
-def neartime(luck_time):
+def neartime(luck_times):
         m=[]
-        for time in luck_time:
+        for time in luck_times:
                 if timech(time)>datetime.datetime.now():
                         m.append(timech(time)-datetime.datetime.now())
                 else:
                         b=timedelta(days=1)
                         m.append(b)
-        return m.index(min(m))
+        i=m.index(min(m))
+        luck_time=timech(luck_times[i])
+        pretime=luck_time-timedelta(minutes=2)
+        print('抢卷时间',type(luck_time),luck_time)
+        print('准备时间',type(pretime),pretime)
+        return pretime,luck_time
 
 
 
 #抢券时间
-luck_time=("10:00:00:000000","14:00:00:000000","17:00:00:000000","00:00:00:000000")
+luck_time=("10:00:00:000000","14:00:00:000000","22:00:00:000000","00:00:00:000000")
 
 #获取luck_time中最接近抢券时间的一个
 i=neartime(luck_time)
 
 #执行定时任务
-timer(luck_time[i])
+timer(i[0])
 
            

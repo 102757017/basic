@@ -13,6 +13,15 @@ print('\n')
 now = time.localtime()
 print('time.localtime()',type(now))
 print(now)
+print(now.tm_year)
+print(now.tm_mon)
+print(now.tm_mday)
+print(now.tm_hour)
+print(now.tm_min)
+print(now.tm_sec)
+print(now.tm_wday)
+print(now.tm_yday)
+print(now.tm_isdst)
 print('\n')
 
 
@@ -43,6 +52,12 @@ print('时间戳转换为datetime.datetime',type(datetime_struct))
 print(datetime_struct)
 print('\n')
 
+timestamp = datetime.datetime.timestamp(datetime_struct)
+print('datetime.datetime转换为时间戳',type(timestamp))
+print(timestamp)
+print('\n')
+
+
 
 
 
@@ -63,3 +78,10 @@ dt = "2016-05-05 20:28:54"
 timeArray = time.strptime(dt, "%Y-%m-%d %H:%M:%S")
 print('strptime()将字符串"2016-05-05 20:28:54"转换成时间数组\n',timeArray)
 print('\n')
+
+#时间数组转换成时间戳,时间戳的单位是秒
+timeStamp=int(time.mktime(timeArray))
+print('time.mktime()将时间数组转换为时间戳\n',timeStamp)
+print('\n')
+
+

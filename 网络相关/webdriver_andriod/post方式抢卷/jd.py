@@ -5,6 +5,7 @@ import pprint
 from selenium import webdriver
 import requests
 import re
+import chardet
 
 def getcookie(Referer):
     c1='sh & '
@@ -40,6 +41,7 @@ def getcookie(Referer):
 
     login = browser.find_element_by_xpath("//*[@id='loginBtn']")
     login.click()#点击按钮
+    time.sleep(3)
     
     browser.get(Referer)
     a=browser.get_cookies() #获取当前页面的cookies
@@ -73,6 +75,7 @@ def grab(cookie,Referer,url):
     print(r.text)
     return(r.text)
 
+#获取页面上所有的领卷链接
 def makeurl(Referer):
     host=Referer.split("/")[2]
     headers={'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36',
@@ -109,7 +112,7 @@ def makeurl(Referer):
 
 
 #Referer为领卷页面
-Referer="https://pro.m.jd.com/mall/active/2swvgWopcM4Xy6hyxuE8toBnSkzV/index.html"
+Referer="https://pro.m.jd.com/mall/active/o1SAPkr8McqBZ8N1N9LhevAGKQg/index.html"
 #url为领卷链接
 url="http://api.m.jd.com/client.action?functionId=newBabelAwardCollection&body=%7B%22activityId%22%3A%222swvgWopcM4Xy6hyxuE8toBnSkzV%22%2C%22scene%22%3A%221%22%2C%22args%22%3A%22key%3D1b86ce9ab931422ea7379e2574bbc33c%2CroleId%3D8245464%2Cto%3Dpro.m.jd.com%2Fmall%2Factive%2F2vmBPknBMoauhsFm2Lc7nD5ARg45%2Findex.html%22%2C%22mitemAddrId%22%3A%22%22%2C%22geo%22%3A%7B%22lng%22%3A%22%22%2C%22lat%22%3A%22%22%7D%7D&client=wh5&clientVersion=1.0.0&sid=99bd1b2f69031dafbaf5cacc4b5a4ad7&uuid=1504359002749618854944&area=&_=1506784781082&callback=jsonp3"
 makeurl(Referer)
