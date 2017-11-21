@@ -4,11 +4,15 @@ from django.template import Template, Context
 from django.template.loader import get_template
 from django.shortcuts import render_to_response
 import sys
+import os
 import datetime
-sys.path.append(r'F:\学习资料\编程学习\pathon\django\mysite')
+a=os.path.dirname(__file__)
+a=os.path.dirname(a)
+sys.path.append(a)
 
-def static(request):
-    return render_to_response('static.html')
+
+def apicouple(request):
+    return render_to_response('apicouple.html')
 
 def hello(request):
     html = "<html><body>Hello world</body></html>"

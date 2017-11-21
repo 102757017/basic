@@ -21,10 +21,10 @@ print(path1)
 #载入django设定后启动shell
 c1='sh & '
 #c2="python manage.py shell"
-c2=sys.executable+" "+"manage.py shell"
+#c2=sys.executable+" "+"manage.py shell"
 
-#运行mysite目录下的开发服务器
-#c2=sys.executable+" "+"manage.py runserver"
+#运行mysite目录下的开发服务器,设定端口和能够访问的ip,0.0.0.0表示允许所有ip，同时需要setting.py 文件中ALLOWED_HOSTS = ['*']
+c2='"'+sys.executable+'"'+" "+"manage.py runserver"
 '''
 现在用网页浏览器访问 http://127.0.0.1:8000/ 。
 应该可以看到一个令人赏心悦目的淡蓝色Django欢迎页面。 它开始工作了。
@@ -51,10 +51,11 @@ c2=sys.executable+" "+"manage.py shell"
 #c2=sys.executable+" "+"manage.py migrate"
 
 #检查django项目完整性
-#c2=sys.executable+" "+"manage.py check"
+#c2='"'+sys.executable+'"'+" "+"manage.py check"
 
 #清空数据库
 #c2=sys.executable+" "+"manage.py flush"
 c=c1+c2
+print(c)
 os.system(c)
 

@@ -16,8 +16,11 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 import sys
-sys.path.append(r'F:\学习资料\编程学习\pathon\django\mysite')
-from mysite.views import static
+import os
+a=os.path.dirname(__file__)
+a=os.path.dirname(a)
+sys.path.append(a)
+from mysite.views import apicouple
 from mysite.views import hello
 from mysite.views import current_datetime
 from mysite.views import current_datetime2
@@ -26,7 +29,7 @@ from mysite.views import current_datetime3
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url('^hello/$', hello),
-    url('^static/$', static),
+    url('^apicouple/$', apicouple),
     url('^current_datetime/$', current_datetime),
     url('^current_datetime2/$', current_datetime2),
     url('^current_datetime3/$', current_datetime3),

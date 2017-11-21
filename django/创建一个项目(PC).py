@@ -22,7 +22,7 @@ c1='cmd & '
 #c2=r'cd /sdcard/qpython/scripts3/基础操作/django/&'
 #项目路径
 #c3="ptthon django-admin startproject mysite"
-c3=sys.executable+" "+"\""+sys.prefix+os.path.sep+"Scripts"+os.path.sep+"django-admin.py"+"\""+' startproject mysite'
+c3='"'+sys.executable+'"'+" "+"\""+sys.prefix+os.path.sep+"Scripts"+os.path.sep+"django-admin.py"+"\""+' startproject mysite'
 c=c1+c3
 print(c)
 
