@@ -25,6 +25,7 @@ print(b)
 print(chardet.detect(b))
 print("\n")
 
+
 print("将utf-8码的'中文'再转换为unicode码：")
 b=b.decode('utf-8')
 print(b)
@@ -37,6 +38,7 @@ b=b.encode('gbk')
 print(b)
 print(chardet.detect(b))
 print("\n")
+
 
 print("将GBK编码的'中文'再转换为unicode码：")
 b=b.decode('gbk')

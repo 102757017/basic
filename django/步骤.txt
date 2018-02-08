@@ -2,13 +2,17 @@
 2.新建views.py视图文件，修改urls.py对url和视图进行映射
 3.在项目的settings.py中设置模板文件夹路径
 4.创建一个app
-5.在项目的settings.py中设置数据库路径，数据库路径一定要用绝对路径，斜杠一定要用正斜杠，然后设置app名称
+  在项目的settings.py中设置app名称,新版本django不需要app完整路径，只需填写要上一步的app名称就可以了
+5.在项目的settings.py中设置数据库路径，数据库路径一定要用绝对路径，斜杠一定要用正斜杠.  
 	（数据库不能放在中文路径下面）
 	（如果在windows上使用sqlite需要将sqlite3.exe文件放入（C:\Windwos\System32）中 ）
 
 6-1.如果是新建数据库，那么在app的models.py里面设置数据库结构，model内需要定义主键，否则系统会自动生成id主键，添加__str__(self)函数，然后
 将model层转为迁移文件migration：      python manage.py makemigrations
 将新版本的迁移文件执行，更新数据库：  python manage.py migrate
+
+查看当前项目所有的app及对应的已经生效的migration   python manage.py showmigrations 
+重置的数据库，这里的 myapp就是你要重置的app     python manage.py migrate –fake myapp zero 
 
 6-2.如果是沿用旧的数据库，那么执行python manage.py inspectdb > models.py，
 探测数据库结构，自动生成model.py。
@@ -18,4 +22,12 @@
 7.测试数据库：
 python manage.py shell
 from app_name.models import table_name
+例：from myapp.models import Table1
+
 table_name.objects.all()
+例：Table1.objects.all()
+Table1.objects.filter(权限=10) 
+Table1.objects.filter(时间__gt='02/04/2018 13:03')   #gt：表示大于某个时间,django里面不能使用<和>来进行运算
+JDcoupon.objects.all().order_by('-折扣率') #折扣率前面加“-”表示逆向排序
+
+8.在项目的settings.py中设置模板路径，需要用完整路径

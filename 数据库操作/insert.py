@@ -14,9 +14,10 @@ conn = sqlite3.connect('test.db')
 cursor = conn.cursor()
 
 
-
-#cursor.execute(r"insert into table1 (question, ans,result,time) values ('1', 'Michael','1','1')")
-cursor.execute("insert into table1 values (?,?,?,?)",('a','a','a',time.strftime("%m/%d/%Y %H:%M")))
+#自增字段必须插入空值，以下两种方式插入空值的方法是不一样的。
+dt=time.strftime("%m/%d/%Y %H:%M")
+cursor.execute(r"insert into table1 (链接, 线报,权限,时间) values (NULL, 'Michael','1',dt)")
+#cursor.execute("insert into table1 values (?,?,?,?)",(None,'a','a',time.strftime("%m/%d/%Y %H:%M")))
 
 # 关闭Cursor:
 cursor.close()

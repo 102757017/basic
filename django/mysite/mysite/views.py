@@ -6,6 +6,7 @@ from django.shortcuts import render_to_response
 import sys
 import os
 import datetime
+from datetime import timedelta
 a=os.path.dirname(__file__)
 a=os.path.dirname(a)
 sys.path.append(a)
@@ -13,6 +14,12 @@ sys.path.append(a)
 
 def apicouple(request):
     return render_to_response('apicouple.html')
+
+def worthygoods(request):
+    return render_to_response('WorthyGoods.html')
+
+def redpackage(request):
+    return render_to_response('RedPackage.html')
 
 def hello(request):
     html = "<html><body>Hello world</body></html>"
@@ -42,3 +49,19 @@ def current_datetime2(request):
 def current_datetime3(request):
     now = datetime.datetime.now()
     return render_to_response('current_datetime.html', {'current_date': now})
+
+def zhuankeba(request):
+    from myapp.models import Table1
+    now = datetime.datetime.now()
+    start=now-timedelta(days=1)
+    start=start.strftime("%m/%d/%Y %H:%M")
+    postings = Table1.objects.filter(时间__gt=start).order_by('-时间')
+    return render_to_response('zkb.html', {'postings': postings})
+
+def jd(request):
+    from myapp.models import JDcoupon
+    now = datetime.datetime.now()
+    start=now-timedelta(days=3)
+    start=start.strftime("%m/%d/%Y %H:%M")
+    coupons = JDcoupon.objects.filter(时间__gt=start).order_by('-折扣率')
+    return render_to_response('jd.html', {'coupons': coupons,'current_date': now})

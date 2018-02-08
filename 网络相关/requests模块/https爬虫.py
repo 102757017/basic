@@ -16,6 +16,8 @@ headers={'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/
 
 
 #访问https页面时，将verify设置为false将不会验证网站的CA证书，隐患是可能访问到假网站，钓鱼网站
-r=requests.get(url,headers=headers,verify=False)
+#allow_redirects是否允许重定向（页面跳转）
+#timeout 3s钟没有响应就不重新尝试了
+r=requests.get(url,headers=headers,verify=False,allow_redirects=False,timeout=3)
 a=r.text
 print(a)

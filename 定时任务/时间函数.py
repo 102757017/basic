@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
 import datetime
 import time
+from datetime import timedelta
 import sched #定时任务模块
 
 
@@ -85,3 +86,7 @@ print('time.mktime()将时间数组转换为时间戳\n',timeStamp)
 print('\n')
 
 
+d=timedelta(minutes=2)
+print(d,type(d))
+
+print(datetime.datetime.now()-timedelta(days=2))
