@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 import chardet
-
+import urllib.parse
 
 b='test str'
 b=b.encode('ascii')
@@ -42,6 +42,17 @@ print("\n")
 
 print("将GBK编码的'中文'再转换为unicode码：")
 b=b.decode('gbk')
+print(b)
+print("\n")
+
+
+print("屏蔽特殊的字符、比如如果url里面的空格或中文！url里面是不允许出现空格的")
+b=urllib.parse.quote(b)
+print(b)
+print("\n")
+
+print("url反向转换")
+b=urllib.parse.unquote(b)
 print(b)
 print("\n")
 

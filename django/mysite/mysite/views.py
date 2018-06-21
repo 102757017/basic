@@ -12,6 +12,9 @@ a=os.path.dirname(a)
 sys.path.append(a)
 
 
+def main(request):
+    return render_to_response('main.html')
+
 def apicouple(request):
     return render_to_response('apicouple.html')
 
@@ -62,6 +65,14 @@ def jd(request):
     from myapp.models import JDcoupon
     now = datetime.datetime.now()
     start=now-timedelta(days=3)
+    start=start.strftime("%m/%d/%Y %H:%M")
+    coupons = JDcoupon.objects.filter(时间__gt=start).order_by('-折扣率')
+    return render_to_response('jd.html', {'coupons': coupons,'current_date': now})
+
+def jd24(request):
+    from myapp.models import JDcoupon
+    now = datetime.datetime.now()
+    start=now-timedelta(days=1)
     start=start.strftime("%m/%d/%Y %H:%M")
     coupons = JDcoupon.objects.filter(时间__gt=start).order_by('-折扣率')
     return render_to_response('jd.html', {'coupons': coupons,'current_date': now})

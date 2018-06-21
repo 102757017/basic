@@ -1,0 +1,15 @@
+﻿<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <title>京东优惠卷</title>
+    </head>
+    <body>
+	更新时间:{{ current_date }}<br>
+        {% for coupon in coupons %}
+		<a href="{{coupon.页面链接}}">{{coupon.序号}}  </a>满 {{coupon.限制}} 可用 {{coupon.价值}} ,{{coupon.品类}}
+		<br>
+		<a href="{{coupon.领取链接}}"><img src={{coupon.图片链接}}></a>
+        <br>
+        {% endfor %}
+    </body>
+</html>

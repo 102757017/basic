@@ -1,0 +1,13 @@
+﻿<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <title>赚客吧权限贴</title>
+    </head>
+    <body>
+        {% for posting in postings %}
+        <a href="{{posting.链接}}" class="s xst" target="_blank">{{posting.线报}}</a>
+<span class="xi1">{{posting.时间}}</span>
+        <br>
+        {% endfor %}
+    </body>
+</html>

@@ -20,6 +20,7 @@ import os
 a=os.path.dirname(__file__)
 a=os.path.dirname(a)
 sys.path.append(a)
+from mysite.views import main
 from mysite.views import apicouple
 from mysite.views import worthygoods
 from mysite.views import redpackage
@@ -29,8 +30,10 @@ from mysite.views import current_datetime2
 from mysite.views import current_datetime3
 from mysite.views import zhuankeba
 from mysite.views import jd
+from mysite.views import jd24
 
 urlpatterns = [
+    url(r'^main/', main),
     url(r'^admin/', admin.site.urls),
     url('^hello/$', hello),
     url('^apicouple/$', apicouple),
@@ -41,4 +44,5 @@ urlpatterns = [
     url('^current_datetime3/$', current_datetime3),
     url('^zkb/$', zhuankeba),
     url('^jd/$', jd),
+    url('^jd24/$', jd24),
 ]
