@@ -1,0 +1,1 @@
+"G:\Program Files\WinPython-64bit-3.6.1.0Qt5\python-3.6.1.amd64\Scripts\pyuic5.bat" -o form2.py form2.ui

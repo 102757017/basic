@@ -1,0 +1,856 @@
+(['H:\\学习资料\\编程学习\\pathon\\基础操作\\basic\\pyqt加法器\\main.py'],
+ ['H:\\学习资料\\编程学习\\pathon\\基础操作\\basic\\pyqt加法器',
+  'H:\\学习资料\\编程学习\\pathon\\基础操作\\basic\\pyqt加法器'],
+ ['codecs'],
+ [],
+ [],
+ [],
+ False,
+ False,
+ '3.6.1 (v3.6.1:69c0db5, Mar 21 2017, 18:41:36) [MSC v.1900 64 bit (AMD64)]',
+ [('pyi_rth_qt5',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\site-packages\\PyInstaller\\loader\\rthooks\\pyi_rth_qt5.py',
+   'PYSOURCE'),
+  ('main',
+   'H:\\学习资料\\编程学习\\pathon\\基础操作\\basic\\pyqt加法器\\main.py',
+   'PYSOURCE')],
+ [('_strptime',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\_strptime.py',
+   'PYMODULE'),
+  ('datetime',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\datetime.py',
+   'PYMODULE'),
+  ('ntpath',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\ntpath.py',
+   'PYMODULE'),
+  ('stringprep',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\stringprep.py',
+   'PYMODULE'),
+  ('stat',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\stat.py',
+   'PYMODULE'),
+  ('genericpath',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\genericpath.py',
+   'PYMODULE'),
+  ('posixpath',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\posixpath.py',
+   'PYMODULE'),
+  ('fnmatch',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\fnmatch.py',
+   'PYMODULE'),
+  ('struct',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\struct.py',
+   'PYMODULE'),
+  ('_compat_pickle',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\_compat_pickle.py',
+   'PYMODULE'),
+  ('__future__',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\__future__.py',
+   'PYMODULE'),
+  ('difflib',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\difflib.py',
+   'PYMODULE'),
+  ('ast',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\ast.py',
+   'PYMODULE'),
+  ('inspect',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\inspect.py',
+   'PYMODULE'),
+  ('cmd',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\cmd.py',
+   'PYMODULE'),
+  ('bdb',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\bdb.py',
+   'PYMODULE'),
+  ('opcode',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\opcode.py',
+   'PYMODULE'),
+  ('dis',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\dis.py',
+   'PYMODULE'),
+  ('codeop',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\codeop.py',
+   'PYMODULE'),
+  ('code',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\code.py',
+   'PYMODULE'),
+  ('glob',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\glob.py',
+   'PYMODULE'),
+  ('shlex',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\shlex.py',
+   'PYMODULE'),
+  ('importlib._bootstrap',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\importlib\\_bootstrap.py',
+   'PYMODULE'),
+  ('importlib._bootstrap_external',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\importlib\\_bootstrap_external.py',
+   'PYMODULE'),
+  ('importlib.machinery',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\importlib\\machinery.py',
+   'PYMODULE'),
+  ('importlib.util',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\importlib\\util.py',
+   'PYMODULE'),
+  ('importlib.abc',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\importlib\\abc.py',
+   'PYMODULE'),
+  ('importlib',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\importlib\\__init__.py',
+   'PYMODULE'),
+  ('pkgutil',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\pkgutil.py',
+   'PYMODULE'),
+  ('xml',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\xml\\__init__.py',
+   'PYMODULE'),
+  ('xml.sax.expatreader',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\xml\\sax\\expatreader.py',
+   'PYMODULE'),
+  ('xml.sax.saxutils',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\xml\\sax\\saxutils.py',
+   'PYMODULE'),
+  ('urllib.request',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\urllib\\request.py',
+   'PYMODULE'),
+  ('getpass',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\getpass.py',
+   'PYMODULE'),
+  ('nturl2path',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\nturl2path.py',
+   'PYMODULE'),
+  ('ftplib',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\ftplib.py',
+   'PYMODULE'),
+  ('netrc',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\netrc.py',
+   'PYMODULE'),
+  ('http.cookiejar',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\http\\cookiejar.py',
+   'PYMODULE'),
+  ('urllib.response',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\urllib\\response.py',
+   'PYMODULE'),
+  ('urllib.error',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\urllib\\error.py',
+   'PYMODULE'),
+  ('xml.sax',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\xml\\sax\\__init__.py',
+   'PYMODULE'),
+  ('xml.sax.handler',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\xml\\sax\\handler.py',
+   'PYMODULE'),
+  ('xml.sax._exceptions',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\xml\\sax\\_exceptions.py',
+   'PYMODULE'),
+  ('xml.sax.xmlreader',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\xml\\sax\\xmlreader.py',
+   'PYMODULE'),
+  ('xml.parsers',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\xml\\parsers\\__init__.py',
+   'PYMODULE'),
+  ('xml.parsers.expat',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\xml\\parsers\\expat.py',
+   'PYMODULE'),
+  ('plistlib',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\plistlib.py',
+   'PYMODULE'),
+  ('platform',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\platform.py',
+   'PYMODULE'),
+  ('token',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\token.py',
+   'PYMODULE'),
+  ('tokenize',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\tokenize.py',
+   'PYMODULE'),
+  ('urllib.parse',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\urllib\\parse.py',
+   'PYMODULE'),
+  ('tempfile',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\tempfile.py',
+   'PYMODULE'),
+  ('tty',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\tty.py',
+   'PYMODULE'),
+  ('pydoc_data',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\pydoc_data\\__init__.py',
+   'PYMODULE'),
+  ('pydoc_data.topics',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\pydoc_data\\topics.py',
+   'PYMODULE'),
+  ('html.entities',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\html\\entities.py',
+   'PYMODULE'),
+  ('html',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\html\\__init__.py',
+   'PYMODULE'),
+  ('ipaddress',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\ipaddress.py',
+   'PYMODULE'),
+  ('ssl',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\ssl.py',
+   'PYMODULE'),
+  ('http.client',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\http\\client.py',
+   'PYMODULE'),
+  ('mimetypes',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\mimetypes.py',
+   'PYMODULE'),
+  ('socketserver',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\socketserver.py',
+   'PYMODULE'),
+  ('http',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\http\\__init__.py',
+   'PYMODULE'),
+  ('http.server',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\http\\server.py',
+   'PYMODULE'),
+  ('optparse',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\optparse.py',
+   'PYMODULE'),
+  ('uu',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\uu.py',
+   'PYMODULE'),
+  ('quopri',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\quopri.py',
+   'PYMODULE'),
+  ('email.feedparser',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\email\\feedparser.py',
+   'PYMODULE'),
+  ('email.parser',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\email\\parser.py',
+   'PYMODULE'),
+  ('email',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\email\\__init__.py',
+   'PYMODULE'),
+  ('calendar',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\calendar.py',
+   'PYMODULE'),
+  ('email._parseaddr',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\email\\_parseaddr.py',
+   'PYMODULE'),
+  ('email.utils',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\email\\utils.py',
+   'PYMODULE'),
+  ('email.errors',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\email\\errors.py',
+   'PYMODULE'),
+  ('email.header',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\email\\header.py',
+   'PYMODULE'),
+  ('email._policybase',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\email\\_policybase.py',
+   'PYMODULE'),
+  ('email.base64mime',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\email\\base64mime.py',
+   'PYMODULE'),
+  ('email.encoders',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\email\\encoders.py',
+   'PYMODULE'),
+  ('email.charset',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\email\\charset.py',
+   'PYMODULE'),
+  ('base64',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\base64.py',
+   'PYMODULE'),
+  ('email._encoded_words',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\email\\_encoded_words.py',
+   'PYMODULE'),
+  ('hashlib',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\hashlib.py',
+   'PYMODULE'),
+  ('bisect',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\bisect.py',
+   'PYMODULE'),
+  ('random',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\random.py',
+   'PYMODULE'),
+  ('email.generator',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\email\\generator.py',
+   'PYMODULE'),
+  ('email.iterators',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\email\\iterators.py',
+   'PYMODULE'),
+  ('urllib',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\urllib\\__init__.py',
+   'PYMODULE'),
+  ('email._header_value_parser',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\email\\_header_value_parser.py',
+   'PYMODULE'),
+  ('email.headerregistry',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\email\\headerregistry.py',
+   'PYMODULE'),
+  ('email.quoprimime',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\email\\quoprimime.py',
+   'PYMODULE'),
+  ('email.contentmanager',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\email\\contentmanager.py',
+   'PYMODULE'),
+  ('email.policy',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\email\\policy.py',
+   'PYMODULE'),
+  ('email.message',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\email\\message.py',
+   'PYMODULE'),
+  ('bz2',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\bz2.py',
+   'PYMODULE'),
+  ('lzma',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\lzma.py',
+   'PYMODULE'),
+  ('_compression',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\_compression.py',
+   'PYMODULE'),
+  ('gzip',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\gzip.py',
+   'PYMODULE'),
+  ('tarfile',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\tarfile.py',
+   'PYMODULE'),
+  ('py_compile',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\py_compile.py',
+   'PYMODULE'),
+  ('zipfile',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\zipfile.py',
+   'PYMODULE'),
+  ('shutil',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\shutil.py',
+   'PYMODULE'),
+  ('socket',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\socket.py',
+   'PYMODULE'),
+  ('webbrowser',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\webbrowser.py',
+   'PYMODULE'),
+  ('pydoc',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\pydoc.py',
+   'PYMODULE'),
+  ('getopt',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\getopt.py',
+   'PYMODULE'),
+  ('pdb',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\pdb.py',
+   'PYMODULE'),
+  ('unittest.util',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\unittest\\util.py',
+   'PYMODULE'),
+  ('unittest.result',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\unittest\\result.py',
+   'PYMODULE'),
+  ('string',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\string.py',
+   'PYMODULE'),
+  ('logging',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\logging\\__init__.py',
+   'PYMODULE'),
+  ('unittest.case',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\unittest\\case.py',
+   'PYMODULE'),
+  ('unittest.suite',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\unittest\\suite.py',
+   'PYMODULE'),
+  ('unittest.loader',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\unittest\\loader.py',
+   'PYMODULE'),
+  ('unittest.runner',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\unittest\\runner.py',
+   'PYMODULE'),
+  ('unittest.main',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\unittest\\main.py',
+   'PYMODULE'),
+  ('unittest.signals',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\unittest\\signals.py',
+   'PYMODULE'),
+  ('unittest',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\unittest\\__init__.py',
+   'PYMODULE'),
+  ('doctest',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\doctest.py',
+   'PYMODULE'),
+  ('copy',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\copy.py',
+   'PYMODULE'),
+  ('textwrap',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\textwrap.py',
+   'PYMODULE'),
+  ('gettext',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\gettext.py',
+   'PYMODULE'),
+  ('argparse',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\argparse.py',
+   'PYMODULE'),
+  ('pprint',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\pprint.py',
+   'PYMODULE'),
+  ('pickle',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\pickle.py',
+   'PYMODULE'),
+  ('tracemalloc',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\tracemalloc.py',
+   'PYMODULE'),
+  ('warnings',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\warnings.py',
+   'PYMODULE'),
+  ('enum',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\enum.py',
+   'PYMODULE'),
+  ('signal',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\signal.py',
+   'PYMODULE'),
+  ('contextlib',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\contextlib.py',
+   'PYMODULE'),
+  ('_threading_local',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\_threading_local.py',
+   'PYMODULE'),
+  ('threading',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\threading.py',
+   'PYMODULE'),
+  ('selectors',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\selectors.py',
+   'PYMODULE'),
+  ('_dummy_thread',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\_dummy_thread.py',
+   'PYMODULE'),
+  ('dummy_threading',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\dummy_threading.py',
+   'PYMODULE'),
+  ('subprocess',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\subprocess.py',
+   'PYMODULE'),
+  ('os',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\os.py',
+   'PYMODULE'),
+  ('form2',
+   'H:\\学习资料\\编程学习\\pathon\\基础操作\\basic\\pyqt加法器\\form2.py',
+   'PYMODULE'),
+  ('form1',
+   'H:\\学习资料\\编程学习\\pathon\\基础操作\\basic\\pyqt加法器\\form1.py',
+   'PYMODULE'),
+  ('PyQt5',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\site-packages\\PyQt5\\__init__.py',
+   'PYMODULE')],
+ [('api-ms-win-crt-math-l1-1-0.dll',
+   'C:\\Program Files\\TortoiseGit\\bin\\api-ms-win-crt-math-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-heap-l1-1-0.dll',
+   'C:\\Program Files\\TortoiseGit\\bin\\api-ms-win-crt-heap-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-locale-l1-1-0.dll',
+   'C:\\Program Files\\TortoiseGit\\bin\\api-ms-win-crt-locale-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-runtime-l1-1-0.dll',
+   'C:\\Program Files\\TortoiseGit\\bin\\api-ms-win-crt-runtime-l1-1-0.dll',
+   'BINARY'),
+  ('VCRUNTIME140.dll',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\VCRUNTIME140.dll',
+   'BINARY'),
+  ('api-ms-win-crt-stdio-l1-1-0.dll',
+   'C:\\Program Files\\TortoiseGit\\bin\\api-ms-win-crt-stdio-l1-1-0.dll',
+   'BINARY'),
+  ('python36.dll',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\python36.dll',
+   'BINARY'),
+  ('ucrtbase.dll',
+   'C:\\Program Files\\TortoiseGit\\bin\\ucrtbase.dll',
+   'BINARY'),
+  ('api-ms-win-crt-convert-l1-1-0.dll',
+   'C:\\Program Files\\TortoiseGit\\bin\\api-ms-win-crt-convert-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-string-l1-1-0.dll',
+   'C:\\Program Files\\TortoiseGit\\bin\\api-ms-win-crt-string-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-environment-l1-1-0.dll',
+   'C:\\Program Files\\TortoiseGit\\bin\\api-ms-win-crt-environment-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-process-l1-1-0.dll',
+   'C:\\Program Files\\TortoiseGit\\bin\\api-ms-win-crt-process-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-time-l1-1-0.dll',
+   'C:\\Program Files\\TortoiseGit\\bin\\api-ms-win-crt-time-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-filesystem-l1-1-0.dll',
+   'C:\\Program Files\\TortoiseGit\\bin\\api-ms-win-crt-filesystem-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-conio-l1-1-0.dll',
+   'C:\\Program Files\\TortoiseGit\\bin\\api-ms-win-crt-conio-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-console-l1-1-0.dll',
+   'C:\\Program Files\\TortoiseGit\\bin\\api-ms-win-core-console-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-libraryloader-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\TortoiseGit\\bin\\api-ms-win-core-libraryloader-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-namedpipe-l1-1-0.dll',
+   'C:\\Program Files\\TortoiseGit\\bin\\api-ms-win-core-namedpipe-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-processenvironment-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\TortoiseGit\\bin\\api-ms-win-core-processenvironment-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-processthreads-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\TortoiseGit\\bin\\api-ms-win-core-processthreads-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-timezone-l1-1-0.dll',
+   'C:\\Program Files\\TortoiseGit\\bin\\api-ms-win-core-timezone-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-synch-l1-2-0.dll',
+   'C:\\Program Files\\TortoiseGit\\bin\\api-ms-win-core-synch-l1-2-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-synch-l1-1-0.dll',
+   'C:\\Program Files\\TortoiseGit\\bin\\api-ms-win-core-synch-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-localization-l1-2-0.dll',
+   'C:\\Program '
+   'Files\\TortoiseGit\\bin\\api-ms-win-core-localization-l1-2-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-file-l1-1-0.dll',
+   'C:\\Program Files\\TortoiseGit\\bin\\api-ms-win-core-file-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-errorhandling-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\TortoiseGit\\bin\\api-ms-win-core-errorhandling-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-handle-l1-1-0.dll',
+   'C:\\Program Files\\TortoiseGit\\bin\\api-ms-win-core-handle-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-sysinfo-l1-1-0.dll',
+   'C:\\Program Files\\TortoiseGit\\bin\\api-ms-win-core-sysinfo-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-memory-l1-1-0.dll',
+   'C:\\Program Files\\TortoiseGit\\bin\\api-ms-win-core-memory-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-file-l1-2-0.dll',
+   'C:\\Program Files\\TortoiseGit\\bin\\api-ms-win-core-file-l1-2-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-datetime-l1-1-0.dll',
+   'C:\\Program Files\\TortoiseGit\\bin\\api-ms-win-core-datetime-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-interlocked-l1-1-0.dll',
+   'C:\\Program '
+   'Files\\TortoiseGit\\bin\\api-ms-win-core-interlocked-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-heap-l1-1-0.dll',
+   'C:\\Program Files\\TortoiseGit\\bin\\api-ms-win-core-heap-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-file-l2-1-0.dll',
+   'C:\\Program Files\\TortoiseGit\\bin\\api-ms-win-core-file-l2-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-string-l1-1-0.dll',
+   'C:\\Program Files\\TortoiseGit\\bin\\api-ms-win-core-string-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-rtlsupport-l1-1-0.dll',
+   'C:\\Program Files\\TortoiseGit\\bin\\api-ms-win-core-rtlsupport-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-util-l1-1-0.dll',
+   'C:\\Program Files\\TortoiseGit\\bin\\api-ms-win-core-util-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-profile-l1-1-0.dll',
+   'C:\\Program Files\\TortoiseGit\\bin\\api-ms-win-core-profile-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-processthreads-l1-1-1.dll',
+   'C:\\Program '
+   'Files\\TortoiseGit\\bin\\api-ms-win-core-processthreads-l1-1-1.dll',
+   'BINARY'),
+  ('api-ms-win-core-debug-l1-1-0.dll',
+   'C:\\Program Files\\TortoiseGit\\bin\\api-ms-win-core-debug-l1-1-0.dll',
+   'BINARY'),
+  ('PyQt5\\Qt\\plugins\\platforms\\qoffscreen.dll',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\site-packages\\PyQt5\\Qt\\plugins\\platforms\\qoffscreen.dll',
+   'BINARY'),
+  ('PyQt5\\Qt\\plugins\\platforms\\qminimal.dll',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\site-packages\\PyQt5\\Qt\\plugins\\platforms\\qminimal.dll',
+   'BINARY'),
+  ('PyQt5\\Qt\\plugins\\imageformats\\qwbmp.dll',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\site-packages\\PyQt5\\Qt\\plugins\\imageformats\\qwbmp.dll',
+   'BINARY'),
+  ('PyQt5\\Qt\\plugins\\imageformats\\qjpeg.dll',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\site-packages\\PyQt5\\Qt\\plugins\\imageformats\\qjpeg.dll',
+   'BINARY'),
+  ('PyQt5\\Qt\\plugins\\imageformats\\qsvg.dll',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\site-packages\\PyQt5\\Qt\\plugins\\imageformats\\qsvg.dll',
+   'BINARY'),
+  ('PyQt5\\Qt\\plugins\\imageformats\\qtiff.dll',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\site-packages\\PyQt5\\Qt\\plugins\\imageformats\\qtiff.dll',
+   'BINARY'),
+  ('PyQt5\\Qt\\plugins\\imageformats\\qwebp.dll',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\site-packages\\PyQt5\\Qt\\plugins\\imageformats\\qwebp.dll',
+   'BINARY'),
+  ('PyQt5\\Qt\\plugins\\imageformats\\qico.dll',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\site-packages\\PyQt5\\Qt\\plugins\\imageformats\\qico.dll',
+   'BINARY'),
+  ('PyQt5\\Qt\\plugins\\iconengines\\qsvgicon.dll',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\site-packages\\PyQt5\\Qt\\plugins\\iconengines\\qsvgicon.dll',
+   'BINARY'),
+  ('PyQt5\\Qt\\plugins\\imageformats\\qgif.dll',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\site-packages\\PyQt5\\Qt\\plugins\\imageformats\\qgif.dll',
+   'BINARY'),
+  ('PyQt5\\Qt\\plugins\\imageformats\\qicns.dll',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\site-packages\\PyQt5\\Qt\\plugins\\imageformats\\qicns.dll',
+   'BINARY'),
+  ('PyQt5\\Qt\\plugins\\printsupport\\windowsprintersupport.dll',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\site-packages\\PyQt5\\Qt\\plugins\\printsupport\\windowsprintersupport.dll',
+   'BINARY'),
+  ('PyQt5\\Qt\\plugins\\platforms\\qwindows.dll',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\site-packages\\PyQt5\\Qt\\plugins\\platforms\\qwindows.dll',
+   'BINARY'),
+  ('PyQt5\\Qt\\plugins\\imageformats\\qtga.dll',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\site-packages\\PyQt5\\Qt\\plugins\\imageformats\\qtga.dll',
+   'BINARY'),
+  ('_ssl',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\DLLs\\_ssl.pyd',
+   'EXTENSION'),
+  ('unicodedata',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\DLLs\\unicodedata.pyd',
+   'EXTENSION'),
+  ('pyexpat',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\DLLs\\pyexpat.pyd',
+   'EXTENSION'),
+  ('_hashlib',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\DLLs\\_hashlib.pyd',
+   'EXTENSION'),
+  ('_bz2',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\DLLs\\_bz2.pyd',
+   'EXTENSION'),
+  ('_lzma',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\DLLs\\_lzma.pyd',
+   'EXTENSION'),
+  ('_socket',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\DLLs\\_socket.pyd',
+   'EXTENSION'),
+  ('select',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\DLLs\\select.pyd',
+   'EXTENSION'),
+  ('PyQt5.QtWidgets',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\site-packages\\PyQt5\\QtWidgets.pyd',
+   'EXTENSION'),
+  ('sip',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\site-packages\\sip.pyd',
+   'EXTENSION'),
+  ('PyQt5.QtGui',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\site-packages\\PyQt5\\QtGui.pyd',
+   'EXTENSION'),
+  ('PyQt5.QtCore',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\site-packages\\PyQt5\\QtCore.pyd',
+   'EXTENSION'),
+  ('PyQt5.Qt',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\site-packages\\PyQt5\\Qt.pyd',
+   'EXTENSION'),
+  ('PyQt5.QtPrintSupport',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\site-packages\\PyQt5\\QtPrintSupport.pyd',
+   'EXTENSION'),
+  ('api-ms-win-crt-utility-l1-1-0.dll',
+   'C:\\Program Files\\TortoiseGit\\bin\\api-ms-win-crt-utility-l1-1-0.dll',
+   'BINARY'),
+  ('Qt5Core.dll',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\site-packages\\PyQt5\\Qt\\bin\\qt5core.dll',
+   'BINARY'),
+  ('Qt5Gui.dll',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\site-packages\\PyQt5\\Qt\\bin\\qt5gui.dll',
+   'BINARY'),
+  ('Qt5Svg.dll',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\site-packages\\PyQt5\\Qt\\bin\\qt5svg.dll',
+   'BINARY'),
+  ('Qt5PrintSupport.dll',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\site-packages\\PyQt5\\Qt\\bin\\qt5printsupport.dll',
+   'BINARY'),
+  ('MSVCP140.dll',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\msvcp140.dll',
+   'BINARY'),
+  ('python3.dll',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\python3.dll',
+   'BINARY'),
+  ('Qt5Widgets.dll',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\site-packages\\PyQt5\\Qt\\bin\\qt5widgets.dll',
+   'BINARY'),
+  ('api-ms-win-crt-multibyte-l1-1-0.dll',
+   'C:\\Program Files\\TortoiseGit\\bin\\api-ms-win-crt-multibyte-l1-1-0.dll',
+   'BINARY')],
+ [],
+ [],
+ [('base_library.zip',
+   'H:\\学习资料\\编程学习\\pathon\\基础操作\\basic\\pyqt加法器\\build\\main\\base_library.zip',
+   'DATA'),
+  ('PyQt5\\Qt\\bin\\qt.conf',
+   'G:\\Program '
+   'Files\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\site-packages\\PyQt5\\Qt\\bin\\qt.conf',
+   'DATA')],
+ [])

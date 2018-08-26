@@ -59,7 +59,7 @@ print(b)
 print('\n')
 
 #resize()为深层复制，创建的数组和原数组共享内存，改变一个数组，另一个会同时改变
-a.resize(6,5)
+a.resize(6, 5)
 print(a)
 print('\n')
 

@@ -17,7 +17,7 @@ headers={'Accept-Encoding': 'gzip',
  'User-agent': 'smzdm_android_V8.7.7 rv:455 (ONEPLUS '
                'A3000;Android7.1.1;zh)smzdmapp'}
 
-key="音箱"
+key="蚊香液"
 key=urllib.parse.unquote(key)
 
 goods=[]
