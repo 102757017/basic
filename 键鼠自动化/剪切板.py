@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 from PyQt5.QtWidgets import QApplication
-from PyQt5.QtGui import QPixmap
+from PIL import Image, ImageGrab
 
 #设置剪切板内的文本
 def setText(txt):
@@ -15,23 +15,20 @@ def getText():
     return clipboard.text()
 
 
-#设置剪切板内的图片
-def setImage(img):
-    app = QApplication([])
-    clipboard = app.clipboard()
-    clipboard.setPixmap(QPixmap(img))
+#保存剪切板中的图片
+def save_clipboard_img(path):
+    # 如果剪贴板不包括图像数据，这个函数返回空
+    im = ImageGrab.grabclipboard()
+    # 如果im是Image.Image的实例
+    if isinstance(im, Image.Image):
+        im.save(path)
+    else:
+        print("剪切板中没有图片")
 
-def getImage():
-    app = QApplication([])
-    clipboard = app.clipboard()
-    img=clipboard.pixmap()
-    return img
+
+save_clipboard_img("剪切板.png")
 
 
 setText("将此文本复制到剪切板")
 #获取剪切板内的文本
 print(getText())
-
-
-setImage("截图.jpg")
-print(type(getImage()))

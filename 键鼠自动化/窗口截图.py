@@ -37,7 +37,7 @@ def getno():
     saveDC.SelectObject(saveBitMap)
     # 截取从左上角（0，0）长宽为（w，h）的图片
     saveDC.BitBlt((0, 0), (w, h), mfcDC, (0, b_h), win32con.SRCCOPY)
-    saveBitMap.SaveBitmapFile(saveDC, "截图.jpg")
+    saveBitMap.SaveBitmapFile(saveDC, "截图.png")
 
 
 
