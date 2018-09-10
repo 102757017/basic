@@ -1,0 +1,1 @@
+regsvr32 %~sdp0lw.dll
