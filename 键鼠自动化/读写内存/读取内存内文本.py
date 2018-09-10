@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
-
 from memorpy import *
 import psutil
 
-
+#根据进程名获取进程pid，如果没有该进程，则返回None
 def processinfo(processName):
     pids = psutil.pids()
     for pid in pids:
@@ -16,8 +15,10 @@ def processinfo(processName):
             return pid
 
 
+#预先打开记事本
 #要查询的内存地址
 base_addr=0x7FFBCA1CE6E0
+
 
 p=processinfo("notepad.exe")
 #转换pid

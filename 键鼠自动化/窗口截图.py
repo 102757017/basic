@@ -4,17 +4,13 @@ import subprocess
 import time
 
 
-def getno():
-    #查询句柄
-    #第一个参数为父窗口类名，不知道类名时取None,在不同的系统环境下，r12可能变化
-    #第二个参数为窗口标题名，不知道标题时取None，FindWindow函数不能模糊查找
-    hwnd = win32gui.FindWindow( "#32770", "ArturDents CrackMe #2")
-
+#获取指定句柄窗口的截图
+def getno(hwnd):
+    #返回参数所指定的窗口的设备环境
     hwndDC = win32gui.GetWindowDC(hwnd)
-    # 根据窗口的DC获取mfcDC
-
+    # 根据窗口的DC获取设备描述表
     mfcDC = win32ui.CreateDCFromHandle(hwndDC)
-    # mfcDC创建可兼容的DC
+    # 通过设备描述表创建创建一个与应用程序的当前显示器兼容的内存设备上下文环境，如果成功，则返回内存设备上下文环境的句柄
     saveDC = mfcDC.CreateCompatibleDC()
     # 创建bigmap准备保存图片
     saveBitMap = win32ui.CreateBitmap()
@@ -44,4 +40,9 @@ def getno():
 if __name__=="__main__":
     pipe = subprocess.Popen("test.exe", shell=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE, universal_newlines=True).stdout
     time.sleep(2)
-    getno()
+    
+    #查询句柄
+    #第一个参数为父窗口类名，不知道类名时取None,在不同的系统环境下，r12可能变化
+    #第二个参数为窗口标题名，不知道标题时取None，FindWindow函数不能模糊查找
+    hwnd = win32gui.FindWindow( "#32770", "ArturDents CrackMe #2")
+    getno(hwnd)
