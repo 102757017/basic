@@ -2,6 +2,15 @@
 # -*- coding: UTF-8 -*-
 import chardet
 import urllib.parse
+import sys
+import locale
+
+print("当前系统shell标准输出的编码",sys.stdout.encoding)
+
+
+print ("文件系统的编码",sys.getfilesystemencoding())
+
+
 
 b='test str'
 b=b.encode('ascii')
