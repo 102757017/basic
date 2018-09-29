@@ -19,6 +19,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.pushButton.clicked.connect(self.file)
         #显示自定义树
         self.pushButton_2.clicked.connect(self.my_tree)
+        self.treeView.clicked.connect(self.tree_cilcked)
 
         #创建右键菜单
         self.createContextMenu()
@@ -31,29 +32,42 @@ class MainWindow(QtWidgets.QMainWindow):
         self.model.setRootPath('')
         self.treeView.setModel(self.model)
 
+
+
+    
+
     def my_tree(self):
-        self.model = QStandardItemModel()
-        #获取顶级节点的地址
-        root_node = self.model.invisibleRootItem()
+        items={'父节点1':None,'父节点2':{"子节点1":None,"子节点2":None},'父节点3':None}
 
-        #设置根节点1
-        self.model.branch1 = QStandardItem("root1")
-        self.model.branch1.setEditable(False)
-        #添加根节点1
-        root_node.appendRow(self.model.branch1)
+        #构造tree模型
+        def CreatTreeModel(items):
+            #创建空模型
+            model1 = QStandardItemModel()
+            # 获取模型顶级节点的地址
+            root_node = model1.invisibleRootItem()
+            #采用递归函数构造tree模型
+            def recursion(items=items, model=model1, node=root_node):
+                for (x, y) in items.items():
+                    # 设置子节点
+                    model.branch = QStandardItem(x)
+                    # 子节点不可修改
+                    model.branch.setEditable(False)
+                    # 添加子节点
+                    node.appendRow(model.branch)
+                    # 如果有孙节点，继续添加孙节点
+                    if y != None:
+                        recursion(y, model.branch, model.branch)
+            recursion(items)
+            return model1
+
+        model2=CreatTreeModel(items)
+        #绑定模型到控件
+        self.treeView.setModel(model2)
 
 
-        #设置根节点2
-        self.model.branch2 = QStandardItem("root2")
-        self.model.branch2.setEditable(False)
-        #添加根节点2
-        root_node.appendRow(self.model.branch2)
+    def tree_cilcked(self, Qmodelidx):
+        print(Qmodelidx.internalPointer)
 
-        #在根节点2下添加子节点3
-        self.model.branch2.appendRow(QStandardItem("child3"))
-
-        #绑定到控件
-        self.treeView.setModel(self.model)
 
     #在treeview内创建右键菜单
     def createContextMenu(self):
