@@ -9,6 +9,7 @@ from PIL import Image
 #创建一维数组
 a=np.random.random(5)#创建随机数构成的数组，元素是5个
 print("创建随机数构成的数组，元素是5个",a,'\n')
+print(a.shape)
 
 a=np.array([1,2,3,4,5,6])
 print("创建制定元素的数组",a,'\n')
@@ -71,6 +72,11 @@ print('数组元素相除，返回值取整\n',a//a,'\n')
 print('x>3生成布尔数组\n',a>3,'\n')
 print('x==0.5生成布尔数组\n',a==0.5,'\n')
 print('数组转置\n',a.T,'\n')
+
+print('获取x<3的数据的坐标，如果是n维矩阵，则返回n个数组')
+print(np.where(a<3),'\n')
+print('获取x<3的数据')
+print(a[np.where(a<3)],'\n')
 
 b=np.concatenate((a,a,a), axis=0)
 print('水平连接数组',b,'\n')#水平连接数组
