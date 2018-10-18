@@ -3,6 +3,10 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+#解决中文乱码问题
+from matplotlib.font_manager import FontProperties 
+font_set = FontProperties(fname=r"c:\windows\fonts\simsun.ttc", size=10)
+
 # 生成画布
 fig=plt.figure()
 
@@ -23,7 +27,7 @@ ax2.set_title("sample2")
 #生成子图
 ax3=fig.add_subplot(313)
 ax3.plot([0,2,3,4], [1,6,9,16], 'ro')
-ax3.set_title("sample3")
+ax3.set_title(u"例子3",fontproperties=font_set)
 
 
 plt.show()
