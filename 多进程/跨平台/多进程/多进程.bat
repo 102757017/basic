@@ -1,2 +1,2 @@
 echo "欢迎来到非常BAT!"
-"C:\Users\sunny\AppData\Local\Programs\Python\Python36-32\python.exe"  "%~dp0\多进程.py"
+"G:\Program Files\WinPython-64bit-3.6.1.0Qt5\python-3.6.1.amd64\python.exe"  "%~dp0\多进程.py"
