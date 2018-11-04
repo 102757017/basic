@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import scipy.signal as signal
 
 
-#64个采样点
+#64个采样点，因为x范围为0~7π，导致y波形不是整数个周期，因此会产生频谱泄漏
 x=np.linspace(0,np.pi*7,64)
 
 #设置需要采样的信号，波形内有直流分量
