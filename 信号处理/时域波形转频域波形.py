@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import seaborn
 
 
-#64个采样点
+#64个采样点，采样点的个数要取2的n次方，不足时用0补足
 x=np.linspace(0,np.pi*6,64)      
 
 #设置需要采样的信号
