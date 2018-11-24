@@ -62,5 +62,5 @@ space= {
 #fmin指定需要最小化的函数
 #tpe表示tree of Parzen estimators，是一种算法
 #max_evals 执行的最大评估次数，越大越容易找到最优解
-best=fmin(f,space,algo=tpe.suggest,max_evals=1000)
+best=fmin(f,space,algo=tpe.suggest,max_evals=100)
 print(best)
