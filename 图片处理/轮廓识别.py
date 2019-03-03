@@ -30,6 +30,7 @@ ret, binary = cv2.threshold(gray,127,255,cv2.THRESH_BINARY)
 第一个，它返回了你所处理的图像
 第二个，返回我们要找的轮廓集list，list元素为轮廓点集坐标构成的矩阵
 第三个，各层轮廓的索引'''
+#如果需要寻找外轮廓，将第二个参数设置为cv2.RETR_EXTERNAL
 binary,contours,hierarchy= cv2.findContours(binary,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)  
 print(type(contours),len(contours))#共几个轮廓
 print(type(contours[0]),len(contours[0]))#第一个轮廓的点集个数
