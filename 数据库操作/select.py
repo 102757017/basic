@@ -15,10 +15,11 @@ cursor = conn.cursor()
 
 
 #where后面的多个条件用AND和OR连接运算，where前面的字段用逗号连接 
-cursor.execute('select * from table1 where 线报=? and 权限=?', ('a','b'))
+cursor.execute('select * from table1 where [线报]=? and 权限=?', ('a','b'))
 
 #如果参数只有一个元素，'a'后面一定需要加逗号，否则会报错(a会被转换为list)
-cursor.execute('select * from table1 where 线报=?, ('a',))
+#如果字段名内有空格，将字段名加'',例如：cursor.execute("select * from table1 where table1.'wico num'=?",(part_num,))
+cursor.execute('select * from table1 where 线报=?', ('a',))
 cursor.execute('select * from table1')
 #同一个cursor执行代码，后一个会覆盖前一个
 
