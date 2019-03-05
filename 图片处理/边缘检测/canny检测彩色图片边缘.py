@@ -51,7 +51,8 @@ while(1):
     target_g = cv2.Canny(g, c1, c1*c2)
     target_r = cv2.Canny(r, c1, c1*c2)
     
-    target=cv2.add(target_b,target_g,target_r)
+    target=cv2.add(target_b,target_g)
+    target=cv2.add(target,target_r)
     cv2.imshow('image',target)
 
 
