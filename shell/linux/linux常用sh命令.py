@@ -8,12 +8,23 @@ c1="sh & "
 #查看当前 ls，相对于windows的dir命令
 c2='ls'
 
+#查看当前绝对路径
+#c2='pwd'
+
 #查看隐藏文件
 #c2='ls -a'
+
+#查看sample_data文件夹的内容
+#c2="ls -l ./sample_data"
+
+#查看树形目录结构，需要先安装模块，apt-get install tree -y
+#c2="tree"
 
 #生成隐藏文件夹,文件夹前面加个“.”,表示隐藏文件
 #c2='mkdir .hide'
 
+#下载文件,用-P指定保存目录名
+#c2="wget -P /home/user/test http://cn.wordpress.org/wordpress-3.1-zh_CN.zip"
 
 #显示ip地址
 #c2=r"ifconfig"
@@ -61,8 +72,11 @@ c2='ls'
 #查看当前目录下文件属性
 #c2='ls -lh'
 
-#修改文件属性
+#修改文件权限
 #c2='chmod 777 test.txt'
+
+#修改文件夹包括子目录的权限
+#c2='chmod -R 777 path'
 
 #修改文件权属，
 #c2='chown root test.txt'
@@ -70,7 +84,7 @@ c2='ls'
 #修改文件群组，
 #c2='chgrp root test.txt'
 
+
 c=c1+c2
 
 os.system(c)
-
