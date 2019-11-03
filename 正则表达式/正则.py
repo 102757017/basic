@@ -52,3 +52,7 @@ print(result)
 #匹配3个数字
 result = re.findall(r'[0-9]{3}', temp)
 print(result)
+
+#匹配1到3个数字
+result = re.findall(r'[0-9]{1,3}', temp)
+print(result)
