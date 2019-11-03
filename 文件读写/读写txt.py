@@ -5,9 +5,11 @@ os.chdir(sys.path[0])
 f = open('覆盖了吗.txt','w') # 覆盖模式
 f.write('不会换行') # 不会换行哦
 f.close()
+
 f = open('覆盖了吗.txt','w') # 覆盖模式
 f.write('不会换行') # 不会换行哦
 f.close()
+
 f = open('覆盖了吗.txt','w') # 覆盖模式
 f.write('不会换行') # 不会换行哦
 f.close()

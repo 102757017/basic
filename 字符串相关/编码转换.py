@@ -31,6 +31,7 @@ b='中文'
 b=b.encode('utf-8')
 print("将'中文'转换为utf-8：")
 print(b)
+print(r"\x：是16进制的意思，\d：十进制；\o：八进制；后边跟两位，则表示单字节编码")
 print(chardet.detect(b))
 print("\n")
 

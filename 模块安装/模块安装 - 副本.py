@@ -10,7 +10,7 @@ os.environ["PATH"] =env+";"+ s1
 
 
 
-a="python -m pip install  pyqt5-tools -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host=mirrors.aliyun.com"
+a="python -m pip install  pywinauto -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host=mirrors.aliyun.com"
 #a="python -m pip install --upgrade pyinstaller -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host=mirrors.aliyun.com"
 #a="\""+ sys.prefix + "\python.exe\"" +" -m pip uninstall pydot_ng"
 #生成command命令,指定安装源为阿里云

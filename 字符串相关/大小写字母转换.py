@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 import chardet
 
-a='adfg'
+a='a1dfg'
 print("小写字符转换为大写字符")
 print(a.upper())
 print("\n")

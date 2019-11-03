@@ -57,7 +57,7 @@ def zhuankeba(request):
     from myapp.models import Table1
     now = datetime.datetime.now()
     start=now-timedelta(days=1)
-    start=start.strftime("%m/%d/%Y %H:%M")
+    start=start.strftime("%Y-%m-%d %H:%M")
     postings = Table1.objects.filter(时间__gt=start).order_by('-时间')
     return render_to_response('zkb.html', {'postings': postings})
 
@@ -65,7 +65,7 @@ def jd(request):
     from myapp.models import JDcoupon
     now = datetime.datetime.now()
     start=now-timedelta(days=3)
-    start=start.strftime("%m/%d/%Y %H:%M")
+    start=start.strftime("%Y-%m-%d %H:%M")
     coupons = JDcoupon.objects.filter(时间__gt=start).order_by('-折扣率')
     return render_to_response('jd.html', {'coupons': coupons,'current_date': now})
 
@@ -73,6 +73,14 @@ def jd24(request):
     from myapp.models import JDcoupon
     now = datetime.datetime.now()
     start=now-timedelta(days=1)
-    start=start.strftime("%m/%d/%Y %H:%M")
+    start=start.strftime("%Y-%m-%d %H:%M")
     coupons = JDcoupon.objects.filter(时间__gt=start).order_by('-折扣率')
+    return render_to_response('jd.html', {'coupons': coupons,'current_date': now})
+
+def jd24t(request):
+    from myapp.models import JDcoupon
+    now = datetime.datetime.now()
+    start=now-timedelta(days=1)
+    start=start.strftime("%Y-%m-%d %H:%M")
+    coupons = JDcoupon.objects.filter(时间__gt=start).order_by('-时间')
     return render_to_response('jd.html', {'coupons': coupons,'current_date': now})
