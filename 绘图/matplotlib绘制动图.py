@@ -5,6 +5,8 @@ import numpy as np
 from time import sleep
 from matplotlib.animation import FuncAnimation
 
+
+#matplotlib主要用来绘制静态图，绘制动图刷新率较低
 # 生成画布
 fig=plt.figure()
 
