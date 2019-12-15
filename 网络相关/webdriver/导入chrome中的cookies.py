@@ -1,19 +1,21 @@
 # -*- coding:utf-8 -*-
-import browsercookie
+#import browsercookie
+import browser_cookie3
 import tldextract
 import pprint
 import requests
 
 """
+支持chrome和firefox浏览器的cookies导出，如果同时安装了两个浏览器，会将两者的cookies合并
 统一cookie数据格式:[{},{}]
 """
-def get_chrome_cookie(websize):
+def get_cookie(websize):
     """
     需要将直接获取浏览器的cookie
     :return:dict
     """
     domain = '.{}.{}'.format(tldextract.extract(websize).domain, tldextract.extract(websize).suffix)
-    cookies = browsercookie.chrome()
+    cookies = browser_cookie3.load()
     items = dict()
     for cookie in cookies:
         item = items.get(cookie.domain, [])
@@ -30,12 +32,13 @@ def get_chrome_cookie(websize):
 
 if __name__ == '__main__':
     url = "https://buy.taobao.com"
-    cookies=get_chrome_cookie(url)
+    cookies=get_cookie(url)
     CookieJar = requests.utils.cookiejar_from_dict({c['name']: c['value'] for c in cookies})
     print(type(CookieJar))
     #CookieJar可以直接传入requests中使用，requests.get(url,headers,cookies=CookieJar)
     for item in CookieJar:
         print(item.name + "=" +item.value + ";")
-
+    tb_token=CookieJar.get("_tb_token_")
+    print(tb_token)
 
 
