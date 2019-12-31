@@ -5,6 +5,7 @@ import pprint
 
 url = 'http://httpbin.org/post'
 # 截取封包内的Content-Length参数需要去除，Content-Length如果存在并且有效的话，则必须和消息内容的传输长度完全一致。（经过测试，如果过短则会截断，过长则会导致超时，requests会自动设置该参数
+#Accept-Encoding: gzip, deflate, br;  注意requests不能解压br格式，会显示乱码，需去掉br或改用第三方模块
 headers = {}
 CookieJar = {}
 proxies = {
