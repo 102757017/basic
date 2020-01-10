@@ -2,11 +2,14 @@
 # -*- coding: UTF-8 -*-
 import pygame
 import time
+import os
+import sys
 
-
+os.chdir(os.path.dirname(__file__))
 def play(mp3):
     try:
-        pygame.mixer.init()
+        # frequency为音频的采样率，可以调整语音的播放速度
+        pygame.mixer.init(frequency=8000)
         track = pygame.mixer.music.load(mp3)
         pygame.mixer.music.play()
         time.sleep(1)
