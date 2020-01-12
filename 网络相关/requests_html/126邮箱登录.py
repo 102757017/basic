@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 # 必须先设置环境变量，指定pyppteer的路径
 import os
-os.environ['PYPPETEER_HOME'] = 'D:\Program Files'
+#os.environ['PYPPETEER_HOME'] = 'D:\Program Files'
 import requests
 from requests_html import HTMLSession
 import pprint
@@ -61,7 +61,8 @@ r = HTMLSession(browser_args=['--window-size={},{}'.format(width,heigth),#只有
                               '--disable-infobars'
                               ],
                 headless=False,
-                autoClose=False #脚本完成时自动关闭浏览器进程。默认为True
+                autoClose=False, #脚本完成时自动关闭浏览器进程。默认为True
+                executablePath=r"D:\Program Files\local-chromium\575458\chrome-win32\chrome.exe" # Chromium的路径
                 )
 
 url = 'https://mail.126.com/'
@@ -139,19 +140,31 @@ try:
         #点击登录按钮
         await frames[4].click("#dologin")
 
-        # 异步延时
-        await asyncio.sleep(5)
+
+
+        # 等待元素加载完成
+        await frames[4].waitForSelector('.yidun_tips')
         # 鼠标悬停在验证码上
         await frames[4].hover('.yidun_tips')
 
+        # 异步延时
+        await asyncio.sleep(1)
 
+        # 参数1为css选择器,选择yidun_tips的子节点yidun_tips__answer
+        # 参数2为js的箭头函数，函数内容是获取节点的textContent属性
+        verify = await frames[4].Jeval(".yidun_tips .yidun_tips__answer", 'node => node.textContent')
+        print("verify_code:",verify)
 
-        #await rs.html.page.screenshot({r'H:\学习资料\编程学习\pathon\基础操作\basic\网络相关\requests_html':'1.png'}) # 传入参数用字典path 代表路径 值为你要存放的路径
+        # 打印渲染后的html
+        #pprint.pprint(rs.html.html)
+
+        # 保存网页截图
+        os.chdir(os.path.dirname(__file__))
+        await rs.html.page.screenshot(path='example.png') # 传入参数用字典path 代表路径 值为你要存放的路径
 
     asyncio.get_event_loop().run_until_complete(main())
 
-    # 打印渲染后的html
-    #print(rs.html.html)
+
 
 finally:
     pass
