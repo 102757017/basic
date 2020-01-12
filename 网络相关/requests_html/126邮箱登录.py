@@ -148,7 +148,10 @@ try:
         await frames[4].hover('.yidun_tips')
 
         # 异步延时
-        await asyncio.sleep(1)
+        #await asyncio.sleep(1)
+
+        # 条件等待函数
+        await frames[4].waitForFunction('''document.querySelector(".yidun_tips .yidun_tips__answer").className==="yidun_tips__answer"''')
 
         # 参数1为css选择器,选择yidun_tips的子节点yidun_tips__answer
         # 参数2为js的箭头函数，函数内容是获取节点的textContent属性
