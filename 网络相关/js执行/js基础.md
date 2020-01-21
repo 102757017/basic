@@ -273,3 +273,17 @@ $.getJSON()
 
 $.post(URL,data,callback);
 ```
+
+# 箭头函数
+
+```
+x => x * x
+```
+
+上面的箭头函数相当于：
+
+```
+function (x) {
+    return x * x;
+}
+```
