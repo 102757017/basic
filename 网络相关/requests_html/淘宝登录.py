@@ -71,7 +71,8 @@ class LoginTaoBao:
                                               '--disable-infobars'
                                           ],
                                           'dumpio': True, #chromium浏览器多开页面卡死问题，解决这个问题的方法就是浏览器初始化的时候添加'dumpio':True。
-                                          "executablePath":r"D:\Program Files\local-chromium\575458\chrome-win32\chrome.exe" # Chromium的路径
+                                          "executablePath":r"D:\Program Files\local-chromium\575458\chrome-win32\chrome.exe", # Chromium的路径
+                                          "userDataDir":'./userdata' #设置用户目录,进行cookies的保存，下次打开可以免登录。如果没有设置，每次打开就是一个全新的浏览器
                                           })
         self.page = await browser.newPage()
         # 设置浏览器头部
