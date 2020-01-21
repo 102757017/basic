@@ -1,7 +1,5 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
-
-import 读写txt
 import os
 import sys
 import shutil
@@ -59,7 +57,9 @@ print(path1)
 print('\n')
 
 if os.path.exists(sys.path[0]+os.path.sep+'temp'):
-    shutil.rmtree(sys.path[0]+os.path.sep+'temp')
+    #修改文件夹的名称
+    os.rename(sys.path[0]+os.path.sep+'temp',sys.path[0]+os.path.sep+'temp2')
+    shutil.rmtree(sys.path[0]+os.path.sep+'temp2')
 
 print("在当前文件夹内创建temp目录:")
 path = sys.path[0]+os.path.sep+'temp'
@@ -135,7 +135,24 @@ for root, dirs, files in list_dirs:
         print(os.path.join(root, d))
     for f in files:
         print(os.path.join(root, f))
+print('\n')
 
+print("遍历指定目录下所有的文件和文件夹，返回所有文件夹名词，不包括子目录内的")
+files = os.listdir(sys.path[0])
+for x in files:
+    if os.path.isdir(sys.path[0]+os.path.sep+ x):
+        print(x)
+print('\n')
+
+print("遍历指定目录下所有的文件和文件夹，返回所有文件名称，不包括子目录内的")
+files = os.listdir(sys.path[0])
+for x in files:
+    if os.path.isfile(sys.path[0]+os.path.sep+ x):
+        # 分离文件名与扩展名，仅显示txt后缀的文件
+        if os.path.splitext(x)[1]=='.txt':
+            print(x)
+print('\n')
 
 print("导入自定义模块:")
-sys.path.append('F:\学习资料\编程学习\pathon\文件读写')
+sys.path.append(r'H:\学习资料\编程学习\pathon\基础操作\basic\文件读写')
+import 读写txt
