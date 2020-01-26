@@ -32,18 +32,29 @@ js4='''() =>{ Object.defineProperty(navigator, 'languages', { get: () => ['en-US
 # navigator.plugins会返回一个数组，里面的元素代表浏览器已安装的插件，无头浏览器通常是没有插件的
 js5='''() =>{ Object.defineProperty(navigator, 'plugins', { get: () => [1, 2, 3, 4, 5,6], }); }'''
 
-js6 = """
-                () => {
-                    return {
-                        webdriver: navigator.webdriver,
-                        chrome: navigator.chrome,
-                        permission: Notification.permission,
-                        query:navigator.permissions.query,
-                        languages: navigator.languages,
-                        plugins: navigator.plugins,
-                    }
-                }
-               """
+# document.hidden它显示页面是否为用户当前观看的页面，值为ture或false
+js6='''() =>{ Object.defineProperty(document, "hidden", {get: () => false}); }'''
+
+# document.visibilityStatevisibilityState的值要么是visible (表明页面为浏览器当前激活tab，而且窗口不是最小化状态)，要么是hidden (页面不是当前激活tab页面，或者窗口最小化了。)，或者prerender (页面在重新生成，对用户不可见。).
+js7='''() =>{ Object.defineProperty(document, "visibilityState", {get: () => "visible"}); }'''
+
+# document.webkitHidden属性
+js8='''Object.defineProperty(document, "webkitHidden", {get: () => false});'''
+
+
+js9 = """() => {
+    return {
+        webdriver: navigator.webdriver,
+        chrome: navigator.chrome,
+        permission: Notification.permission,
+        query: navigator.permissions.query,
+        languages: navigator.languages,
+        plugins: navigator.plugins,
+        hidden:document.hidden,
+        webkitHidden:document.webkitHidden,
+        visibilityState:document.visibilityState
+    }
+}"""
 
 
 width=win32api.GetSystemMetrics(win32con.SM_CXSCREEN)   #获得屏幕分辨率X轴
@@ -97,8 +108,9 @@ try:
     # keep_page,默认为False,需要设置为True，否则后面无法使用r.html.page,这个是与浏览器交互的关键,最好关闭已经使用过的页面，如果打开过多页面会造成浏览器崩溃
     # reload 默认为True,如果为False,如果为False,就会从内存中加载内容
     # script，JS 脚本，可选参数，默认为None,str类型，如果有值，返回JS执行脚本的返回值
-    result=rs.html.render(keep_page=True,reload=True,script=js6)
-    print(result)
+    result=rs.html.render(keep_page=True,reload=True,script=js9)
+    print("注入前的属性：")
+    pprint.pprint(result)
 
     # async关键字：定义一个协程函数
     # await关键字只能放在协程函数里，await语法来挂起自身的协程，并等待另一个协程完成直到返回结果
@@ -110,7 +122,7 @@ try:
         # 浏览器窗口很大，内容显示很小，需要设定page.setViewport
         await rs.html.page.setViewport({'width': width, 'height': heigth})
         
-        # page.evaluateOnNewDocument在页面载入前注入js代码
+        # page.evaluateOnNewDocument在页面载入前注入js代码,注入的js不会马上运行，只有在重新打开一个新页面时才会运行
         # js无法跨域，如果检测代码在iframe内部，就在iframe内部再执行了一次注入js
         # 可以在开发者工具中按ctrl+f，先搜一下frame，也可以在console的选择框中确认选中元素所属的iframe
         await rs.html.page.evaluateOnNewDocument(js1)
@@ -118,9 +130,17 @@ try:
         await rs.html.page.evaluateOnNewDocument(js3)
         await rs.html.page.evaluateOnNewDocument(js4)
         await rs.html.page.evaluateOnNewDocument(js5)
+        await rs.html.page.evaluateOnNewDocument(js6)
+        await rs.html.page.evaluateOnNewDocument(js7)
+        await rs.html.page.evaluateOnNewDocument(js8)
 
         # 重新加载页面，使注入的js生效后进行再渲染
-        await rs.html.page.goto('https://mail.126.com/')
+        await asyncio.wait([rs.html.page.waitForNavigation(), rs.html.page.goto('https://mail.126.com/')])
+
+        result=await rs.html.page.evaluate(js9)
+        print("注入后的属性：")
+        pprint.pprint(result)
+
         # 点击使用密码登录
         await rs.html.page.click("#lbNormal")
 
@@ -164,12 +184,14 @@ try:
         # 保存网页截图
         os.chdir(os.path.dirname(__file__))
         await rs.html.page.screenshot(path='example.png') # 传入参数用字典path 代表路径 值为你要存放的路径
+        return verify,"value2"
 
-    asyncio.get_event_loop().run_until_complete(main())
-
+    # 获取协程函数的返回值
+    verify_code=asyncio.get_event_loop().run_until_complete(main())
+    print(verify_code)
 
 
 finally:
     pass
     # 关闭浏览器
-    #r.close()
+    r.close()
