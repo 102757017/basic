@@ -63,6 +63,16 @@ c2='ls'
 #在iptable中允许22号端口:
 #c2='iptables -I INPUT -p tcp --dport 22 -j ACCEPT'
 
+#测试dns解析1
+#c2="nslookup www.baidu.com 114.114.114.114"
+
+#测试dns解析2
+#c2="dig @114.114.114.114 www.baidu.com"
+
+#测试域名是否被dns污染，可以指定一个不存在的dns服务器，理应没有任何返回。但我们却得到了一个返回ip。可见这个域名已经被DNS污染了。
+#测试dns服务器是否存在：telnet 144.223.234.234 53
+#c2="dig @144.223.234.234 www.google.com"
+
 #创建软链接：在target文件夹下创建快捷方式aa，指向/source
 #c2='ln -s /source /target/aa'
 
