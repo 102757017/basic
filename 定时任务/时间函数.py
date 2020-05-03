@@ -10,7 +10,6 @@ print('time.time()',type(now))
 print(now)
 print('\n')
 
-
 now = time.localtime()
 print('time.localtime()',type(now))
 print(now)
@@ -90,3 +89,46 @@ d=timedelta(minutes=2)
 print(d,type(d))
 
 print(datetime.datetime.now()-timedelta(days=2))
+print('\n')
+
+
+print("生成时间序列")
+import pandas as pd
+'''
+频率字符串(freq）： 
+
+别名	Offset类型	描述
+B	BDay	工作日
+C	CDay	定制工作日
+D	Day	日历日
+W	Week	每周
+M	MonthEnd	每月最后一个日历日
+SM	SemiMonthEnd	每月15日和最后一个日历日
+BM	BMonthEnd	每月15日和最后一个工作日
+CBM	CBMonthEnd	定制每月最后一个日历日
+MSS	MonthBegin	每月第一个日历日
+SMS	SemiMonthBegin	每月1日和15日
+BMS	BMonthBegin	每月第一个工作日
+CBMS	CBMonthBegin	定制每月第一个工作日
+Q	QuarterEnd	每季度最后一个日历日
+BQ	BQuarterEnd	每季度最后一个工作日
+QS	QuarterBegin	每季度第一个日历日
+BQS	BQuarterBegin	每季度第一个工作日
+A,Y	YearEnd	每年最后一个日历日
+BA,BY	BYearEnd	每年最后一个工作日
+AS,YS	YearBegin	每年第一个日历日
+BAS,BYS	BYearBegin	每年第一个工作日
+H	Hour	每小时
+BH	BusinessHour	每工作小时
+T,min	Minute	每分钟
+S	Second	每秒
+L,ms	Milli	毫秒
+U,us	Micro	微秒
+N	Nano	纳秒
+'''
+
+df=pd.date_range('2020-4-26',datetime.date.today(),freq='B').strftime("%Y-%m-%d")
+print(df)
+
+df=pd.date_range('2019-1-26',datetime.date.today(),freq='Q').strftime("%Y-%m-%d")
+print(df)
