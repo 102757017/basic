@@ -6,6 +6,7 @@ from PIL import Image
 #a=np.array(im)
 #print(type(a),a.shape,a.dtype)
 
+
 #创建一维数组
 a=np.random.random(5)#创建随机数构成的数组，元素是5个
 print("创建随机数构成的数组，元素是5个",a,'\n')
@@ -22,6 +23,8 @@ print("指定步长为2的等差数列",a,'\n')
 
 a=np.linspace(1,6,10)#指定元素个数为10个的等差数列
 print("指定元素个数为10个的等差数列",a,'\n')
+
+print("向上取整",np.ceil(a),"\n")
 
 a=np.sort(a,axis=0)#对矩阵进行排序
 print("对矩阵进行从小到大的排序，返回新的矩阵",a,'\n')
