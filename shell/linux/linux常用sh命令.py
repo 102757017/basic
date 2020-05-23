@@ -54,7 +54,8 @@ c2='ls'
 #打印在ActivityManager标签里的日志 
 #c2='logcat -s ActivityManager'
 
-#测试端口通不通 telnet ip port,ping命令不能测试端口
+#测试端口通不通 telnet ip port,ping命令不能测试端口,telnet本机端口是不通的
+#telnet协议是基于TCP端口,所以UDP的端口即使是开放的也无回应
 #c2='telnet localhost 8080'
 
 #看一下本机的44444端口状态:
@@ -65,6 +66,7 @@ c2='ls'
 
 #测试dns解析1
 #c2="nslookup www.baidu.com 114.114.114.114"
+#c2="nslookup www.baidu.com 114.114.114.114#53"
 
 #测试dns解析2
 #c2="dig @114.114.114.114 www.baidu.com"

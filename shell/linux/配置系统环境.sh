@@ -6,12 +6,24 @@ cat /proc/version
 #修改root用户密码
 sudo passwd root
 
-#修改DNS
+#修改host
 sudo chmod 777 /etc/hosts
 #echo "91.189.88.162 security.ubuntu.com" >> /etc/hosts
-#修改DNS服务器
+
+#修改DNS服务器为114
 sudo chmod 777 /etc/resolv.conf
 echo "nameserver 114.114.114.114" > /etc/resolv.conf
+
+#修改DNS服务器为dnsmasq解析，dnsmasq默认监听本机的53端口
+sudo chmod 777 /etc/resolv.conf
+echo "nameserver 127.0.0.1" > /etc/resolv.conf
+#dnsmasq先去解析host文件，再去解析/etc/dnsmasq.d/下的* .conf文件，并且这些文件的优先级要高于dnsmasq.conf，我们自定义的resolv.dnsmasq.conf中的DNS也被称为上游DNS，这是最后去查询解析的；
+
+#测试dnsmasq.conf语法是否有错误
+dnsmasq --test
+
+#重载dnsmasq配置文件
+service dnsmasq reload
 
 #查看DNS解析情况
 nslookup www.baidu.com
