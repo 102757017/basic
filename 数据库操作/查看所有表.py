@@ -3,6 +3,7 @@
 import sqlite3
 import time
 import os
+import pprint
 
 os.chdir(os.path.dirname(__file__))
 # 连接到SQLite数据库
@@ -18,6 +19,10 @@ cursor.execute("select name from sqlite_master where type='table' order by name"
 values = cursor.fetchall()
 print(values)
 
+cursor.execute(r"select * from sqlite_master where name = 'table1'")
+values = cursor.fetchall()
+pprint.pprint(values)
+print("\n")
 
 # Cursor使用完成后应该尽快关闭，释放内存:
 cursor.close()
