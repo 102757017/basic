@@ -18,7 +18,7 @@ cursor = conn.cursor()
 #当字段名里面有空格时，需要将字段名用[]括起来
 #例：#cursor.execute("update table1 set [ts num] = '81620-TBA6-A110-21-0001' where [wico num]=?",(part_num,))
 cursor.execute("update table1 set 链接 = 'http://4',权限='10' WHERE 线报 = '吐槽'" )
-
+cursor.execute("update table1 set 链接 = '{}',权限='{}' WHERE 线报 = '吐槽'".format('http://4','10') )
 
 
 values = cursor.fetchall()
