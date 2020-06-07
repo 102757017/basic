@@ -4,7 +4,7 @@ import time
 from datetime import timedelta
 import sched #定时任务模块
 
-
+'''
 now = time.time()#时间戳都以自从1970年1月1日午夜（历元）经过了多长时间来表示。
 print('time.time()',type(now))
 print(now)
@@ -23,42 +23,6 @@ print(now.tm_wday)
 print(now.tm_yday)
 print(now.tm_isdst)
 print('\n')
-
-
-today = datetime.date.today()
-print('datetime.date.today()',type(today))
-print(today)
-print('\n')
-
-now = datetime.datetime.now()
-print('datetime.datetime.now()',type(now))
-print(now)
-print(now.year)
-print(now.month)
-print(now.day)
-print(now.hour)
-print(now.minute)
-print(now.second)
-print(now.microsecond)
-print('\n')
-
-Timer =datetime.datetime(2017,9,12,17,10,00,597383)
-print('datetime.datetime(2017,9,12,17,10,00,597383)',type(Timer))
-print(Timer)
-print('\n')
-
-datetime_struct = datetime.datetime.fromtimestamp(time.time())
-print('时间戳转换为datetime.datetime',type(datetime_struct))
-print(datetime_struct)
-print('\n')
-
-timestamp = datetime.datetime.timestamp(datetime_struct)
-print('datetime.datetime转换为时间戳',type(timestamp))
-print(timestamp)
-print('\n')
-
-
-
 
 
 #将时间戳转换成localtime
@@ -84,6 +48,78 @@ timeStamp=int(time.mktime(timeArray))
 print('time.mktime()将时间数组转换为时间戳\n',timeStamp)
 print('\n')
 
+'''
+
+
+
+
+today = datetime.date.today()
+print('datetime.date.today()',type(today))
+print(today)
+print('\n')
+
+now = datetime.datetime.now()
+print('datetime.datetime.now()',type(now))
+print(now)
+print(now.year)
+print(now.month)
+print(now.day)
+print(now.hour)
+print(now.minute)
+print(now.second)
+print(now.microsecond)
+print('\n')
+
+
+stp=datetime.datetime.now().timestamp()
+print("当前时间戳:",stp)
+print('\n')
+
+Timer =datetime.datetime(2017,9,12,17,10,00,597383)
+print('datetime.datetime(2017,9,12,17,10,00,597383)',type(Timer))
+print(Timer)
+print('\n')
+
+
+datetime_struct = datetime.datetime.fromtimestamp(1591495714.3918839)
+print('时间戳转换为datetime.datetime',type(datetime_struct))
+print(datetime_struct)
+print('\n')
+
+timestamp = datetime.datetime.timestamp(datetime_struct)
+print('datetime.datetime转换为时间戳',type(timestamp))
+print(timestamp)
+print('\n')
+
+
+
+'''
+替换	描述
+%d	一月中的第几天，01-31
+%f	带小数部分的秒，SS.SSS
+%H	小时，00-23
+%j	一年中的第几天，001-366
+%J	儒略日数，DDDD.DDDD
+%m	月，00-12
+%M	分，00-59
+%s	从 1970-01-01 算起的秒数
+%S	秒，00-59
+%w	一周中的第几天，0-6 (0 is Sunday)
+%W	一年中的第几周，01-53
+%Y	年，YYYY
+'''
+#datetime转换成字符串
+Timer = datetime.datetime.strftime(datetime.datetime.now(), "%Y-%m-%d %H:%M:%S")
+print('strftime()将datetime转换为字符串\n',Timer)
+print('\n')
+
+
+dt = "2016-05-05 20:28:54"
+#转换成datetime
+Timer = datetime.datetime.strptime(dt, "%Y-%m-%d %H:%M:%S")
+print('strptime()将字符串"2016-05-05 20:28:54"转换成datetime\n',Timer)
+print('\n')
+
 
 d=timedelta(minutes=2)
 print(d,type(d))
@@ -92,11 +128,15 @@ print(datetime.datetime.now()-timedelta(days=2))
 print('\n')
 
 
+
+
+
+
+
 print("生成时间序列")
 import pandas as pd
 '''
 频率字符串(freq）： 
-
 别名	Offset类型	描述
 B	BDay	工作日
 C	CDay	定制工作日
