@@ -13,37 +13,69 @@ conn = sqlite3.connect('test.db')
 # 创建一个Cursor:
 cursor = conn.cursor()
 
+#计算当前日期,localtime表示使用本地时区
+cursor.execute("SELECT date('now','localtime')")
+values = cursor.fetchall()
+print("当前日期:",values)
+
+#计算当前时间
+cursor.execute("SELECT datetime('now','localtime')")
+values = cursor.fetchall()
+print("当前时间:",values)
+
+
 '''
-%y 两位数的年份表示（00-99）
-%Y 四位数的年份表示（000-9999）
-%m 月份（01-12）
-%d 月内中的一天（0-31）
-%H 24小时制小时数（0-23）
-%I 12小时制小时数（01-12）
-%M 分钟数（00=59）
-%S 秒（00-59）
-%a 本地简化星期名称
-%A 本地完整星期名称
-%b 本地简化的月份名称
-%B 本地完整的月份名称
-%c 本地相应的日期表示和时间表示
-%j 年内的一天（001-366）
-%p 本地A.M.或P.M.的等价符
-%U 一年中的星期数（00-53）星期天为星期的开始
-%w 星期（0-6），星期天为星期的开始
-%W 一年中的星期数（00-53）星期一为星期的开始
-%x 本地相应的日期表示
-%X 本地相应的时间表示
-%Z 当前时区的名称
-%% %号本身
+替换	描述
+%d	一月中的第几天，01-31
+%f	带小数部分的秒，SS.SSS
+%H	小时，00-23
+%j	一年中的第几天，001-366
+%J	儒略日数，DDDD.DDDD
+%m	月，00-12
+%M	分，00-59
+%s	从 1970-01-01 算起的秒数
+%S	秒，00-59
+%w	一周中的第几天，0-6 (0 is Sunday)
+%W	一年中的第几周，01-53
+%Y	年，YYYY
 '''
+#计算当前的 UNIX 时间戳
+cursor.execute("SELECT strftime('%s','now')")
+values = cursor.fetchall()
+print("当前时间戳:",values)
 
 
-#在SQLITE中必须将时间保存为以下标准格式的文本才能进行排序，否则排序会出现异常
-dt=time.strftime("%Y-%m-%d %H:%M")
-cursor.execute("insert into table1 values (?,?,?,?)",(None,'a','a',dt))
+#根据日期获取时间戳
+cursor.execute("SELECT strftime('%s','2020-06-07')")
+values = cursor.fetchall()
+print("6/7时间戳:",values)
 
-# 关闭Cursor:
+
+#返回指定格式的时间
+cursor.execute("SELECT strftime('%Y---%m---%d %H:%M:%S','now','localtime')")
+values = cursor.fetchall()
+print("指定格式的时间:",values)
+
+
+#根据时间戳计算日期
+cursor.execute("SELECT date(1092941466,'unixepoch', 'localtime')")
+values = cursor.fetchall()
+print("时间戳对应的日期:",values)
+
+
+#根据时间戳计算时间
+cursor.execute("SELECT datetime(1092941466, 'unixepoch', 'localtime')")
+values = cursor.fetchall()
+print("时间戳对应的时间:",values)
+
+
+
+#应用
+cursor.execute("select * from table1 where table1.时间<date('now')")
+values = cursor.fetchall()
+print(values)
+
+# Cursor使用完成后应该尽快关闭，释放内存:
 cursor.close()
 
 
