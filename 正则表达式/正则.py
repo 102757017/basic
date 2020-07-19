@@ -45,6 +45,10 @@ print(result)
 result = re.findall(r'[\\]{1}', temp)
 print(result)
 
+#匹配任意字母
+result = re.findall(r'([a-zA-Z]+)', temp)
+print(result)
+
 #匹配连续的数字
 result = re.findall(r'([0-9]+)', temp)
 print(result)
@@ -56,4 +60,8 @@ print(result)
 
 #匹配1到3个数字
 result = re.findall(r'[0-9]{1,3}', temp)
+print(result)
+
+#二选一匹配
+result = re.findall(r'abcdef(ghi|123)', temp)
 print(result)
