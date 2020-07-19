@@ -1,18 +1,61 @@
 # -*- coding: UTF-8 -*-
 import pandas as pd
 import numpy as np
+import pprint
 
 #控制中文标题对齐
 pd.set_option('display.unicode.ambiguous_as_wide', True)
 pd.set_option('display.unicode.east_asian_width', True)
 
+#显示所有列
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', 500)    #设置整体宽度
+pd.set_option('display.max_rows',20)   #设置最大行数
+pd.set_option('display.max_columns', 100) #设置最大列数
+
 #DataFrame创建方法有很多
-#1.传入numpy数组创建,index为索引,columns为列标题
+#1.传入numpy数组创建
+#dataframe中索引的概念与数据库不同，,index为行索引（行标题）,columns为列索引（相当于字段名）
 df=pd.DataFrame(np.arange(16).reshape((4,4)),index=['a','b','c','d'],columns=['one','two','three','four'])
 print(df)
 print("shape：",df.shape)
 print("行数：",df.index.size)
 print("列数：",df.columns.size)
+print("\n")
+
+#按行变量dataframe
+for row in df.iterrows():
+   print(row[1]["one"], row[1]["two"])
+print("\n")
+
+
+
+print("切片前2行")
+print(df.iloc[0:2])
+print("\n")
+
+print("切片one,two列")
+print(df[["one","two"]])
+print("\n")
+
+print("shift函数将dataframe整体向下平移i个单元格创建一个新的dataframe,原dataframe自身不会产生变化，由此缺少的值用NaN填补")
+df2=df.shift(1)
+print(df2,"\n")
+
+print("将one列转换为索引")
+df2=df.set_index(['one'])
+print(df2,"\n")
+
+print("将one列,two均转换为索引")
+df2=df.set_index(['one',"two"])
+print(df2,"\n")
+
+print("将索引转换为列")
+df['index'] = df.index
+print(df,"\n")
+
+print("dataframe转换为numpy")
+print(df.values)
 print("\n")
 
 #2.用传入等长列表组成的字典来创建
@@ -71,8 +114,8 @@ print("将dataframe整体向上平移1个单元格")
 print(a,"\n")
 
 
-a=df.sort_values(by="beijing" , ascending=False)
 print("将dataframe排序")
+a=df.sort_values(by="beijing" , ascending=False)
 print(a,"\n")
 
 #传入嵌套字典（字典的值也是字典）创建DataFrame
@@ -95,9 +138,54 @@ print("将两个表按列进行合并")
 df3=pd.concat([df, df2],axis=0)
 print(df3,"\n")
 
+print("append等同于concat(axis = 0)")
+df3=df.append(df2)
+print(df3,"\n")
+
 print("多条件过滤数据")
 df4=df3[(df3["beijing"]>102)&(df3["beijing"]<104)]
-print(df4)
+print(df4,"\n")
+
+print('保留>101的数据，其它数据赋值NaN')
+print(df.where(df>101),"\n")
+
+print('保留>101的数据，其它数据赋值50')
+print(df.where(df>101,50),"\n")
+
+print('替换=101的数据')
+print(df.replace(101,'女'),"\n")
+
+print('根据字典替换数据')
+df["shanghai"]=df["shanghai"].map({101:"女",102:"男"})
+print(df,"\n")
+
+print("#移动5个值，进行求平均数（5日均线）")
+data = df=pd.DataFrame(np.arange(16),columns=['data'])
+data['sum'] = data.rolling(5).mean()
+print(data)
+
+#读取excel，可以直接读取本地文件，也可以读取网络链接的文件
+#header=0表示第0行是标题，第一行是数据
+#names:指定自定义的列名
+df=pd.read_excel("http://www.csindex.com.cn/uploads/file/autofile/indicator/000905indicator.xls?t=1588256726",header=0,names=["Date","Index Code","Index Chinese Name(Full)","Index Chinese Name","Index English Name(Full)","Index English Name","P/E1","P/E2","D/P1","D/P2"],encoding = 'utf_8')
+print(df,"\n")
+
+#删除重复的行
+df.drop_duplicates()
+print(df,"\n")
+
+
+#保存到csv文件
+df.to_csv("stock.csv",encoding='utf_8')
+
+#保存到excel文件
+df.to_excel("stock.xls",encoding='utf_8')
+
+#读取csv文件，使用自定义的列名
+df=pd.read_csv("stock.xls",header=0,encoding='utf_8')
+print(df,"\n")
+
+
 
 #将数据以压缩格式存储
 h5 = pd.HDFStore("Preprocessing",'w', complevel=4, complib='blosc')
