@@ -3,6 +3,7 @@
 import sqlite3
 import time
 import os
+import pprint
 
 os.chdir(os.path.dirname(__file__))
 # 连接到SQLite数据库
@@ -14,13 +15,19 @@ conn = sqlite3.connect('test.db')
 cursor = conn.cursor()
 
 
-#where后面的多个条件用AND和OR连接运算，where前面的字段用逗号连接 
-cursor.execute('select * from table1 where [线报]=? and 权限=?', ('快去撸毛','10'))
+#where后面的多个条件用AND和OR连接运算，where前面的字段用逗号连接
+#如果字段名内有空格，将字段名加[]
+cursor.execute("select * from table1 where [线报]='{}' and 权限='{}'".format('快去撸毛','30'))
 
-#如果参数只有一个元素，'a'后面一定需要加逗号，否则会报错(a会被转换为list)
-#如果字段名内有空格，将字段名加'',例如：cursor.execute("select * from table1 where table1.'wico num'=?",(part_num,))
-cursor.execute('select * from table1 where 线报=?', ('快去抢卷',)
-cursor.execute("select * from table1 where 线报='{}'".format('快去撸毛'))
+'''
+模糊搜索
+通配符	                        描述
+%	                        替代一个或多个字符
+_	                        仅替代一个字符
+[charlist]	                字符列中的任何单一字符
+[^charlist]或者[!charlist]	不在字符列中的任何单一字符
+'''
+cursor.execute("select * from table1 where [线报] like '{}'".format("快去%"))
 #同一个cursor执行代码，后一个会覆盖前一个
 
 
@@ -40,7 +47,7 @@ fetch完所有的数据之后，这个cursor将不再有使用价值了，即不
 values = cursor.fetchall()
 print(values)
 print(type(values))
-print(len(values))
+pprint.pprint(len(values))
 
 # Cursor使用完成后应该尽快关闭，释放内存:
 cursor.close()
