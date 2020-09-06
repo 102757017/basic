@@ -167,7 +167,7 @@ print(data)
 #读取excel，可以直接读取本地文件，也可以读取网络链接的文件
 #header=0表示第0行是标题，第一行是数据
 #names:指定自定义的列名
-df=pd.read_excel("http://www.csindex.com.cn/uploads/file/autofile/indicator/000905indicator.xls?t=1588256726",header=0,names=["Date","Index Code","Index Chinese Name(Full)","Index Chinese Name","Index English Name(Full)","Index English Name","P/E1","P/E2","D/P1","D/P2"],encoding = 'utf_8')
+df=pd.read_excel("http://www.csindex.com.cn/uploads/file/autofile/indicator/000905indicator.xls?t=1588256726",header=0,names=["Date","Index Code","Index Chinese Name(Full)","Index Chinese Name","Index English Name(Full)","Index English Name","P/E1","P/E2","D/P1","D/P2"])
 print(df,"\n")
 
 #删除重复的行
@@ -181,8 +181,9 @@ df.to_csv("stock.csv",encoding='utf_8')
 #保存到excel文件
 df.to_excel("stock.xls",encoding='utf_8')
 
+
 #读取csv文件，使用自定义的列名
-df=pd.read_csv("stock.xls",header=0,encoding='utf_8')
+df=pd.read_csv("stock.csv",header=0,encoding="utf-8")
 print(df,"\n")
 
 

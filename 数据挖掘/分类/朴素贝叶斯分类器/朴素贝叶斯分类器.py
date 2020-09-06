@@ -1,4 +1,8 @@
 # -*- coding: UTF-8 -*-
+import os
+import sys
+
+os.chdir(sys.path[0])
 
 #数据读取模块genfromtxt；返回来一个给定形状和类型的用0填充的数组zeros
 from numpy import genfromtxt, zeros
@@ -10,7 +14,7 @@ from pylab import plot, show
 from sklearn.naive_bayes import GaussianNB
 
 #把样本分为训练集和测试集进行交叉验证
-from sklearn import cross_validation
+from sklearn import model_selection
 
 #用混淆矩阵评价测试结果
 from sklearn.metrics import confusion_matrix
@@ -19,7 +23,7 @@ from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
 
 #多次将数据分为不同的训练集和测试集，最终分类器评估选取多次预测的平均值。
-from sklearn.cross_validation import cross_val_score
+from sklearn.model_selection import cross_val_score
 
 #算平均数
 from numpy import mean
@@ -65,7 +69,7 @@ print("\n")
 classifier = GaussianNB()
 
 
-train,test,t_train,t_test = cross_validation.train_test_split(data, t,test_size=0.4, random_state=0)
+train,test,t_train,t_test = model_selection.train_test_split(data, t,test_size=0.4, random_state=0)
 print("训练集数据矩阵",train.shape)
 print("测试集数据矩阵",test.shape)
 print("训练集结果矩阵",t_train.shape)
