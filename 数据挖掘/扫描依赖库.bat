@@ -1,2 +1,2 @@
-pipreqs ./ --encoding=utf-8
+pigar
 pause
