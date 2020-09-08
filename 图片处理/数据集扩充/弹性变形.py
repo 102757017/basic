@@ -4,8 +4,10 @@ import numpy as np
 import cv2
 import matplotlib.pyplot as plt
 import Augmentor
+import os
+import sys
 
-
+os.chdir(sys.path[0])
 img = cv2.imdecode(np.fromfile("a.png", dtype=np.uint8), 1)
 #Augmentor一次可以处理n个图片，此例只有一张图片，所以需要转换shape
 img=img.reshape(1,img.shape[0],img.shape[1],img.shape[2])
