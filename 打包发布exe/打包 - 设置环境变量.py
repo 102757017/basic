@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 import os
 import sys
-import subprocess
+from subprocess import run
 import pprint
 
 
@@ -22,8 +22,8 @@ a="pyinstaller hello.py"
 #生成command命令
 print("command命令是：",a)
 
-os.system(a)
-#pipe = subprocess.Popen(a, shell=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE, universal_newlines=True).stdout
-#print(pipe.read())
+status = run(a,shell=True ,capture_output=True,text=True )
+print(status.stdout)
+print(status.stderr)
 
 
