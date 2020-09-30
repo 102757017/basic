@@ -20,7 +20,7 @@ gray2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
 
 
 #SIFT
-sift= cv2.xfeatures2d.SIFT_create()
+sift= cv2.SIFT_create()
 #keypoints返回关键点
 keypoints1 = sift.detect(gray1, None)
 keypoints2 = sift.detect(gray2, None)
