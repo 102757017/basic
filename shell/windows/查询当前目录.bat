@@ -4,4 +4,6 @@ echo 当前执行命令行：%0
 echo 当前bat文件路径：%~dp0
 echo 当前bat文件短路径：%~sdp0
 echo 当前bat文件路径下的子目录：%~sdp0子目录
+echo 切换到当前脚步所在的目录
+cd  %~dp0
 pause
