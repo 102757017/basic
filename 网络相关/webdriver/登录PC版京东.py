@@ -6,7 +6,9 @@ try:
     #browser  = webdriver.Remote(desired_capabilities=webdriver.DesiredCapabilities.ANDROID)        
     browser = webdriver.Android(host='localhost', port=8080, desired_capabilities={'browserName': 'android', 'version': '', 'platform': 'ANDROID'})
 except BaseException as e:
-    browser = webdriver.Chrome()
+    options = webdriver.ChromeOptions()
+    options.binary_location = r'D:\Program Files\local-chromium\575458\chrome-win32\chrome.exe'
+    browser = webdriver.Chrome(chrome_options=options)
 
 browser.get('https://passport.jd.com/new/login.aspx?')
 

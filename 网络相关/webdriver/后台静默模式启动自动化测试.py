@@ -5,6 +5,7 @@ from selenium import webdriver
 #启动浏览器的时候不想看的浏览器运行，那就加载浏览器的静默模式，让它在后台偷偷运行。用headless
 option = webdriver.ChromeOptions()
 option.add_argument('headless')
+options.binary_location = r'D:\Program Files\local-chromium\575458\chrome-win32\chrome.exe'
 
 try:
     #browser  = webdriver.Remote(desired_capabilities=webdriver.DesiredCapabilities.ANDROID)        

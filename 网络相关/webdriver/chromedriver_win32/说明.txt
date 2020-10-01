@@ -1,1 +1,2 @@
 将chromedriver复制到python的安装目录
+chromedriver的版本必须与浏览器版本相互匹配
