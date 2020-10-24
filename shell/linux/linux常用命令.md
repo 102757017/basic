@@ -115,6 +115,28 @@ which python3
 
 
 
+#### >命令
+
+将命令的执行结果输出到指定位置，覆盖模式
+
+创建一个空文件
+
+```
+echo ""> new.txt
+```
+
+
+
+#### >>命令
+
+将命令的执行结果输出到指定位置，追加模式
+
+创建一个空文件
+
+```
+echo "">> new.txt
+```
+
 
 
 #### rm命令
@@ -158,6 +180,29 @@ cat /sys/class/leds/lcd-backlight/brightness
 ```
 sed -i s/archive.ubuntu.com/mirrors.aliyun.com/g /etc/apt/sources.list
 sed -i s:raspbian.raspberrypi.org:mirrors.tuna.tsinghua.edu.cn/raspbian:g /etc/apt/sources.list
+```
+
+直接匹配Defaults  env_reset匹配不到，需要使用\s\+匹配连续的空格
+
+```
+sudo sed -i 's/Defaults\s\+env_reset/Defaults !env_reset/g' /etc/sudoers
+```
+
+
+
+在每行的行尾添加字符，"$"代表行尾，比如“TAIL”，命令如下：
+
+$a表示尾行后新增
+
+$i表示尾行前新增
+
+追加多行时在行与行之间才需要添加换行符
+
+```
+echo ""> high.txt
+sed -i '$a 追加1行' high.txt
+sed -i '$a 追加2行，此为第1行\n此为第二行' high.txt
+cat high.txt
 ```
 
 
@@ -222,6 +267,8 @@ chgrp root test.txt
 
 
 
+#### 创建群组、用户
+
 ```
 #创建群组
 groupadd group1
@@ -229,9 +276,39 @@ groupadd group1
 useradd user1 -m -s /bin/bash -d /home/username -g group1
 #创建用户密码
 sudo passwd user1
+
 #切换用户
 su - user1
+#删除用户
+userdel pi
+```
 
+
+
+### 系统设置
+
+#### export命令
+
+#加入环境变量
+
+```
+export PATH="${PATH}:/opt/crosstool/bin"
+```
+
+
+
+#### sudo命令
+
+#以user1的权限运行命令
+
+```
+sudo -u user1 env
+```
+
+#以root的权限运行命令
+
+```
+sudo env
 ```
 
 
