@@ -440,6 +440,37 @@ iptables -I INPUT -p tcp --dport 22 -j ACCEPT
 
 
 
+#### git命令
+
+克隆代码库
+
+```
+git clone https://hub.fastgit.org/jcmvbkbc/crosstool-NG.git
+```
+
+克隆指定分支
+
+```
+git clone -b v2.8.1 https://git.oschina.net/oschina/android-app.git
+```
+
+使用镜像站加速
+
+```
+git config --global url."https://github.com.cnpmjs.org/".insteadOf https://github.com/
+git config --global --unset url.https://github.com/.insteadof
+```
+
+使用 `clone` 指令的时候这些子模块 `submodule` 并不会自动下载，因为他们在另外的地址中存放。你需要 `clone` 完目标项目后，执行
+
+要加速submodule的下载速度，需要将原项目.git/config中使用的 `submodule` 模块的链接地址修改为子模块迁移到gitee中后的地址
+
+```
+git submodule update --init --recursive
+```
+
+
+
 ### Android专用adb命令
 
 #### start命令
