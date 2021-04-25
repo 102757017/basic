@@ -471,6 +471,34 @@ git submodule update --init --recursive
 
 
 
+#### sshpass命令
+
+首先安装工具
+
+```
+sudo apt-get install sshpass
+```
+
+本地执行远程机器的命令
+
+```
+sshpass -p 密码 ssh root@192.168.1.1 ifconfig
+```
+
+从远程主机上拉取文件到本地
+
+```
+sshpass -p 密码 scp root@192.168.1.1:/etc/config/shadowsocksr_back /home/pi/pythonapp/ss_nude/shadowsocksr
+```
+
+上传文件到远程主机
+
+```
+sshpass -p 密码 scp /home/pi/pythonapp/ss_nude/shadowsocksr root@192.168.1.1:/etc/config/shadowsocksr
+```
+
+
+
 ### Android专用adb命令
 
 #### start命令
