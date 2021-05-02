@@ -8,7 +8,7 @@ import graphviz
 import numpy as np
 from scipy import stats
 
-#异常点检测：训练数据中包含离群点，我们需要适配训练数据中的中心部分（密集的部分），忽视异常点
+#离群点检测: 训练数据包含离群点,即远离其它内围点。离群点检测估计器会尝试拟合出训练数据中内围点聚集的区域, 会忽略有偏离的观测值。
 #给系统添加环境变量，修改的环境变量是临时改变的，当程序停止时修改的环境变量失效（系统变量不会改变）
 os.environ["Path"] += os.pathsep + r"G:\Program Files\WinPython-64bit-3.6.1.0Qt5\graphviz\bin"
 
