@@ -10,7 +10,7 @@ font_set = FontProperties(fname=r"c:\windows\fonts\simsun.ttc", size=10)
 # 生成画布
 fig=plt.figure()
 
-#生成子图，将画布分割成1行1列，图像画在从左到右从上到下的第1块
+#生成子图，将画布分割成3行1列，图像画在从左到右从上到下的第1块
 ax1=fig.add_subplot(311)
 #设置子图横坐标范围
 ax1.set_xlim(0, 5)
