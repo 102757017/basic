@@ -16,7 +16,7 @@ ax1=fig.add_subplot(311)
 ax1.set_xlim(0, 5)
 #设置子图纵坐标范围
 ax1.set_ylim(0, 5)
-ax1.plot([1,2,3,4])
+ax1.plot([1,2,3,4],color='red')
 ax1.set_title("sample1")
 
 #生成子图
