@@ -1,11 +1,9 @@
 # -*- coding: UTF-8 -*-
-from sklearn.manifold import TSNE
-from sklearn.datasets import load_iris
 from sklearn.decomposition import PCA
-import matplotlib.pyplot as plt
 import numpy as np
 import datetime
-
+import plotly.graph_objs as go
+from plotly.subplots import make_subplots
 
 f=np.load('mnist.npz')
 x_train = f['x_train']
@@ -23,11 +21,8 @@ print("PCA降维耗时:",t2)
 print("PCA降维后:",X_pca.shape)
 
 
-# 生成画布
-fig = plt.figure()
-#生成子图，将画布分割成1行1列，图像画在从左到右从上到下的第2块
-ax1=fig.add_subplot(111,projection='3d')
-#使用PCA降维绘制3D散点图
-ax1.scatter3D(X_pca[:, 0], X_pca[:, 1],X_pca[:, 2],s=1,c=y_train)
 
-plt.show()
+trace0 = go.Scatter3d(x =X_pca[:, 0], y = X_pca[:, 1], z = X_pca[:, 2],mode = 'markers', marker = dict(size = 1,color = y_train, colorscale = 'Viridis'))
+fig = make_subplots(rows=1,cols=1,subplot_titles=["PCA降维图"],specs=[[{"type": "scene"}]])
+fig.append_trace(trace0, 1, 1) 
+fig.show()
