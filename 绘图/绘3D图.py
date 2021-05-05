@@ -1,7 +1,6 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import axes3d
 import numpy as np
 
 
@@ -15,7 +14,8 @@ fig = plt.figure()
 #生成子图，将画布分割成1行2列，图像画在从左到右从上到下的第1块
 ax1=fig.add_subplot(121,projection='3d')
 #绘制3D散点图
-ax1.scatter3D(x,y,z,'red')
+#s控制点的大小
+ax1.scatter3D(x,y,z,s=1,'red')
 
 #生成子图，将画布分割成1行2列，图像画在从左到右从上到下的第2块
 ax1=fig.add_subplot(122,projection='3d')
