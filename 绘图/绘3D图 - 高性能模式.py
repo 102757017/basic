@@ -4,6 +4,10 @@ import plotly.graph_objs as go
 from plotly.subplots import make_subplots
 import numpy as np
 
+#jupyter需要安装plotly插件才支持显示plotly graph. 
+#安装插件之前需要安装nodejs, 使用命令: mamba install nodejs
+#最后在cmd命令行中输入:jupyter labextension install jupyterlab-plotly
+
 z = np.linspace(0,13,100)
 x = 5*np.sin(z)
 y = 5*np.cos(z)
