@@ -3,7 +3,7 @@ from sklearn.datasets import load_iris
 from sklearn.neighbors import LocalOutlierFactor
 import os
 import numpy as np
-
+import matplotlib.pyplot as plt
 
 #新奇点检测: 训练数据未被离群点污染，我们对新观测值是否为离群点感兴趣。在这个语境下，离群点被认为是新奇点。
 
@@ -15,12 +15,16 @@ print(iris["data"].shape)
 
 #正常点数据
 X_train=iris["data"][:50]
+Y_train=iris["target"][:50]
+
 
 #异常点数据
 iso_data=iris["data"][51:61]
+iso_lable=iris["target"][51:61]
 
 #混合数据
 mix_data = np.r_[X_train,iso_data]
+mix_lable=np.r_[Y_train,iso_lable]
 
 '''
 novelty:进行新奇点检测将其novelty参数设为True,这样的话，fit_predict方法就不可用了，在新的未见过的数据上，你只能使用 predict, decision_function 和 score_samples
@@ -49,3 +53,14 @@ print(clf.predict(mix_data))
 
 #预测数据的异常度：LOF的值越接近1，越可能是正常样本，LOF的值越大于1，则越可能是异常样本
 print(-clf.decision_function(mix_data))
+
+
+# 生成画布
+fig = plt.figure()
+
+#生成子图
+ax = fig.add_subplot(111)
+#无限长的水平线
+ax.axhline(y=1,ls=':',c='green')
+ax.scatter(mix_lable, -clf.decision_function(mix_data),c=mix_lable)
+plt.show()
