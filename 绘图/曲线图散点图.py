@@ -14,7 +14,11 @@ plt.plot([0.5, 2, 3, 4], [1, 4, 5, 10],label="sample2")
 
 
 #绘制散点图
-plt.plot([0,2,3,4], [1,6,9,16], 'ro',label="sample3")
+#为每个点指定不同的颜色
+plt.scatter([0,2,3,4], [1,6,9,16],c=[0,1,2,3],label="sample3")
+#为所有点指定同一个颜色
+plt.scatter([0,1,2,3], [4,4,4,4],color='red',label="sample4")
+
 
 plt.vlines(1,ymin=0, ymax=10,colors = "r", linestyles = "dashed")
 plt.hlines(4, xmin=0, xmax=4, colors = "r", linestyles = "dashed")

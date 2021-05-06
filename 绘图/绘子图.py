@@ -26,7 +26,8 @@ ax2.set_title("sample2")
 
 #生成子图
 ax3=fig.add_subplot(313)
-ax3.plot([0,2,3,4], [1,6,9,16], 'ro')
+ax3.scatter([0,2,3,4], [1,6,9,16],c=[0,1,2,3])
+ax3.scatter([0,1,2,3], [4,4,4,4],color='red')
 ax3.set_title(u"例子3",fontproperties=font_set)
 
 

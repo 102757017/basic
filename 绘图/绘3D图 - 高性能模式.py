@@ -1,6 +1,5 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
-import plotly
 import plotly.graph_objs as go
 from plotly.subplots import make_subplots
 import numpy as np
