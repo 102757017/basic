@@ -4,6 +4,11 @@ from sklearn.neighbors import LocalOutlierFactor
 import os
 import numpy as np
 import matplotlib.pyplot as plt
+from sklearn import metrics
+#解决中文乱码问题
+from matplotlib.font_manager import FontProperties 
+font_set = FontProperties(fname=r"c:\windows\fonts\simsun.ttc", size=10)
+
 
 #新奇点检测: 训练数据未被离群点污染，我们对新观测值是否为离群点感兴趣。在这个语境下，离群点被认为是新奇点。
 
@@ -52,15 +57,28 @@ print(clf.negative_outlier_factor_)
 print(clf.predict(mix_data))
 
 #预测数据的异常度：LOF的值越接近1，越可能是正常样本，LOF的值越大于1，则越可能是异常样本
-print(-clf.decision_function(mix_data))
+y_score=-clf.decision_function(mix_data)
+print(y_score)
 
 
 # 生成画布
 fig = plt.figure()
 
 #生成子图
-ax = fig.add_subplot(111)
-#无限长的水平线
-ax.axhline(y=1,ls=':',c='green')
-ax.scatter(mix_lable, -clf.decision_function(mix_data),c=mix_lable)
+ax1 = fig.add_subplot(121)
+ax1.set_title("标签-异常值显示图",fontproperties=font_set)
+ax1.scatter(mix_lable, -clf.decision_function(mix_data),c=mix_lable)
+ax1.set_xlabel('标签',fontproperties=font_set)
+ax1.set_ylabel('异常度',fontproperties=font_set)
+
+
+ax2 = fig.add_subplot(122)
+fpr,tpr,threshold=metrics.roc_curve(mix_lable,y_score)
+auc = metrics.auc(fpr, tpr)
+print("auc:",auc)
+ax2.set_title("ROC曲线图",fontproperties=font_set)
+ax2.plot(fpr, tpr)
+ax2.set_xlabel('假正率',fontproperties=font_set)
+ax2.set_ylabel('真负率',fontproperties=font_set)
+
 plt.show()
