@@ -15,9 +15,10 @@ plt.plot([0.5, 2, 3, 4], [1, 4, 5, 10],label="sample2")
 
 #绘制散点图
 #为每个点指定不同的颜色
-plt.scatter([0,2,3,4], [1,6,9,16],c=[0,1,2,3],label="sample3")
+#alpha:指定透明度，当有多个点重合时，颜色会变深，适合于大数据的查看
+plt.scatter([0,2,3,4], [1,6,9,16],c=[0,1,2,3],label="sample3",alpha=0.1)
 #为所有点指定同一个颜色
-plt.scatter([0,1,2,3], [4,4,4,4],color='red',label="sample4")
+plt.scatter([0,1,2,3], [4,4,4,4],color='red',label="sample4",alpha=0.1)
 
 
 plt.vlines(1,ymin=0, ymax=10,colors = "r", linestyles = "dashed")
