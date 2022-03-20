@@ -1,0 +1,15 @@
+set(CMAKE_HOST_SYSTEM "Linux-4.19.118-v7l+")
+set(CMAKE_HOST_SYSTEM_NAME "Linux")
+set(CMAKE_HOST_SYSTEM_VERSION "4.19.118-v7l+")
+set(CMAKE_HOST_SYSTEM_PROCESSOR "armv7l")
+
+include("/home/pi/cmake_compile_hello/tool.make")
+
+set(CMAKE_SYSTEM "Windows")
+set(CMAKE_SYSTEM_NAME "Windows")
+set(CMAKE_SYSTEM_VERSION "")
+set(CMAKE_SYSTEM_PROCESSOR "x86")
+
+set(CMAKE_CROSSCOMPILING "TRUE")
+
+set(CMAKE_SYSTEM_LOADED 1)

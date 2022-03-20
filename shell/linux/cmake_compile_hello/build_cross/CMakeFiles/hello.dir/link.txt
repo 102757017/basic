@@ -1,0 +1,3 @@
+/usr/bin/cmake -E remove -f CMakeFiles/hello.dir/objects.a
+/usr/bin/x86_64-w64-mingw32-ar cr CMakeFiles/hello.dir/objects.a @CMakeFiles/hello.dir/objects1.rsp
+/usr/bin/x86_64-w64-mingw32-g++    -Wl,--whole-archive CMakeFiles/hello.dir/objects.a -Wl,--no-whole-archive  -o hello.exe -Wl,--out-implib,libhello.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/hello.dir/linklibs.rsp

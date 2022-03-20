@@ -1,0 +1,3 @@
+/home/pi/cmake_compile_hello/build_GCC/CMakeFiles/rebuild_cache.dir
+/home/pi/cmake_compile_hello/build_GCC/CMakeFiles/hello.dir
+/home/pi/cmake_compile_hello/build_GCC/CMakeFiles/edit_cache.dir

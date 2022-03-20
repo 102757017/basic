@@ -1,0 +1,3 @@
+/home/pi/cmake_compile_hello/build_cross/CMakeFiles/rebuild_cache.dir
+/home/pi/cmake_compile_hello/build_cross/CMakeFiles/hello.dir
+/home/pi/cmake_compile_hello/build_cross/CMakeFiles/edit_cache.dir
