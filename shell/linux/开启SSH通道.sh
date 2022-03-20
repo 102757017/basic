@@ -3,7 +3,8 @@ apt-get install openssh-server
 
 # 2.修改配置文件
 cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
-vim /etc/ssh/sshd_config
+nano /etc/ssh/sshd_config
+
 #=======(修改以下选项内容)=========#
 # Port 23（22端口已被占用）        #
 # (取消注释)ListenAddress 0.0.0.0 #
