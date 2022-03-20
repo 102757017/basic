@@ -1,0 +1,2 @@
+arp -s 192.168.1.176 4C:ED:FB:BD:DA:29
+wakeonlan -i 192.168.1.176 4C:ED:FB:BD:DA:29
