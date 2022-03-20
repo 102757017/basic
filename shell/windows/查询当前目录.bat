@@ -1,3 +1,5 @@
+:echo off 是关闭下面所有命令的显示，bai但会显示自身
+@echo off
 echo 当前盘符：%~d0
 echo 当前路径：%cd%
 echo 当前执行命令行：%0

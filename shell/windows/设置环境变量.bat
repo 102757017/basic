@@ -1,3 +1,6 @@
+:echo off 是关闭下面所有命令的显示，bai但会显示自身
+@echo off
+
 echo 1. 设置临时环境变量(覆盖模式)
 set BAT_HOME=c:\bat
 
