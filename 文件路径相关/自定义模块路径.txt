@@ -8,3 +8,5 @@ import 一级文件夹名.二级文件夹名.XX
 path1=os.path.dirname(__file__)
 sys.path.append(path1)
 import XX
+
+python中import东西的顺序是按照sys.path来，当前目录永远是在第一个，如果存在同名的模块，优先导入排在前面的模块
