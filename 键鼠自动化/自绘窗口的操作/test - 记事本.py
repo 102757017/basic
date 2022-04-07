@@ -21,7 +21,9 @@ import pprint
 
 
 # 对于Windows中自带应用程序，直接执行，对于外部应用应输入完整路径
-app = Application(backend="uia").start('notepad.exe')
+# win10中有32bit的记事本和64bit的记事本，必须用32位的python操纵32位的记事本，用64位的python操纵64位的记事本，否则可能会出一些奇怪的问题（也可能可以运行）
+app = Application(backend="uia").start(r'C:\WINDOWS\SysWOW64\notepad.exe')
+#app = Application(backend="uia").start(r'C:\WINDOWS\System32\notepad.exe')
 #描述Notepad.exe进程中的窗口
 #dlg_spec = app.UntitledNotepad
 #print(dlg_spec)
