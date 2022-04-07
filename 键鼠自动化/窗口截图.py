@@ -40,6 +40,7 @@ def getno(hwnd):
 if __name__=="__main__":
     pipe = subprocess.Popen("test.exe", shell=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE, universal_newlines=True).stdout
     time.sleep(2)
+
     
     #查询句柄
     #第一个参数为父窗口类名，不知道类名时取None,在不同的系统环境下，r12可能变化

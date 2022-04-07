@@ -8,9 +8,13 @@ def processinfo(processName):
     #返回全部进程的list
     pids = psutil.pids()
     for pid in pids:
-        p = psutil.Process(pid)
-        if p.name() == processName:
-            return pid
+        #执行psutil.Process(pid)时，这个pid的进程可能已经结束了，因此必须用try
+        try:
+            p = psutil.Process(pid)
+            if p.name() == processName:
+                return pid
+        except:
+            pass
 
 #使用os.popen是非阻塞的，os.system会阻塞在该行
 os.popen("notepad.exe")        
