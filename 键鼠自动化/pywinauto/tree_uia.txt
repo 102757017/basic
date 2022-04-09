@@ -1,0 +1,227 @@
+Control Identifiers:
+
+Dialog - 'Form1'    (L-8, T-8, R1928, B1048)
+['Dialog', 'Form1Dialog', 'Form1']
+child_window(title="Form1", auto_id="Form1", control_type="Window")
+   | 
+   | Edit - ''    (L82, T299, R158, B320)
+   | ['Edit', 'Edit0', 'Edit1']
+   | child_window(auto_id="textBox2", control_type="Edit")
+   | 
+   | Edit - ''    (L3, T299, R79, B320)
+   | ['Edit2']
+   | child_window(auto_id="textBox1", control_type="Edit")
+   | 
+   | Menu - 'menuStrip1'    (L0, T23, R1920, B48)
+   | ['menuStrip1Menu', 'Menu', 'menuStrip1', 'Menu0', 'Menu1']
+   | child_window(title="menuStrip1", auto_id="menuStrip1", control_type="MenuBar")
+   |    | 
+   |    | MenuItem - 'tem1'    (L6, T25, R55, B46)
+   |    | ['tem1', 'tem1MenuItem', 'MenuItem', 'MenuItem0', 'MenuItem1']
+   |    | child_window(title="tem1", control_type="MenuItem")
+   |    |    | 
+   |    |    | MenuItem - 'item'    (L0, T0, R0, B0)
+   |    |    | ['item', 'MenuItem2', 'itemMenuItem', 'item0', 'item1', 'itemMenuItem0', 'itemMenuItem1']
+   |    |    | child_window(title="item", control_type="MenuItem")
+   |    |    | 
+   |    |    | MenuItem - 'item'    (L0, T0, R0, B0)
+   |    |    | ['item', 'MenuItem2', 'itemMenuItem', 'item0', 'item1', 'itemMenuItem0', 'itemMenuItem1']
+   |    |    | child_window(title="item", control_type="MenuItem")
+   |    |    |    | 
+   |    |    |    | MenuItem - 'item'    (L0, T0, R0, B0)
+   |    |    |    | ['item', 'MenuItem2', 'itemMenuItem', 'item0', 'item1', 'itemMenuItem0', 'itemMenuItem1']
+   |    |    |    | child_window(title="item", control_type="MenuItem")
+   |    | 
+   |    | MenuItem - 'item2'    (L55, T25, R107, B46)
+   |    | ['item22', 'MenuItem15', 'item2MenuItem']
+   |    | child_window(title="item2", control_type="MenuItem")
+   |    | 
+   |    | MenuItem - 'item3'    (L107, T25, R159, B46)
+   |    | ['item32', 'MenuItem16', 'item3MenuItem']
+   |    | child_window(title="item3", control_type="MenuItem")
+   |    | 
+   |    | MenuItem - 'item4'    (L159, T25, R211, B46)
+   |    | ['item42', 'MenuItem17', 'item4MenuItem']
+   |    | child_window(title="item4", control_type="MenuItem")
+   | 
+   | ListBox - ''    (L3, T230, R169, B294)
+   | ['ListBox', 'ListBox0', 'ListBox1']
+   | child_window(auto_id="listBox1", control_type="List")
+   |    | 
+   |    | ScrollBar - '垂直滚动条'    (L150, T232, R167, B292)
+   |    | ['ScrollBar', '垂直滚动条', '垂直滚动条ScrollBar']
+   |    | child_window(title="垂直滚动条", auto_id="NonClientVerticalScrollBar", control_type="ScrollBar")
+   |    |    | 
+   |    |    | Button - '上一行'    (L150, T232, R167, B249)
+   |    |    | ['上一行', '上一行Button', 'Button', 'Button0', 'Button1']
+   |    |    | child_window(title="上一行", auto_id="UpButton", control_type="Button")
+   |    |    | 
+   |    |    | Thumb - '位置'    (L150, T249, R167, B257)
+   |    |    | ['位置Thumb', 'Thumb', '位置']
+   |    |    | child_window(title="位置", auto_id="ScrollbarThumb", control_type="Thumb")
+   |    |    | 
+   |    |    | Button - '向下翻页'    (L150, T257, R167, B275)
+   |    |    | ['向下翻页Button', '向下翻页', 'Button2']
+   |    |    | child_window(title="向下翻页", auto_id="DownPageButton", control_type="Button")
+   |    |    | 
+   |    |    | Button - '下一行'    (L150, T275, R167, B292)
+   |    |    | ['下一行', '下一行Button', 'Button3']
+   |    |    | child_window(title="下一行", auto_id="DownButton", control_type="Button")
+   |    | 
+   |    | ListItem - 'Item 1'    (L5, T232, R150, B244)
+   |    | ['Item 1ListItem', 'ListItem', 'Item 1', 'ListItem0', 'ListItem1']
+   |    | child_window(title="Item 1", control_type="ListItem")
+   |    | 
+   |    | ListItem - 'item (2)'    (L5, T244, R150, B256)
+   |    | ['item (2)', 'ListItem2', 'item (2)ListItem']
+   |    | child_window(title="item (2)", control_type="ListItem")
+   |    | 
+   |    | ListItem - 'Item\t3'    (L5, T256, R150, B268)
+   |    | ['ListItem3', 'Item\\t3ListItem', 'Item\\t3']
+   |    | child_window(title="Item\t3", control_type="ListItem")
+   |    | 
+   |    | ListItem - 'item 4'    (L5, T268, R150, B280)
+   |    | ['ListItem4', 'item 4ListItem', 'item 4']
+   |    | child_window(title="item 4", control_type="ListItem")
+   |    | 
+   |    | ListItem - 'item 5'    (L5, T280, R150, B292)
+   |    | ['ListItem5', 'item 5', 'item 5ListItem']
+   |    | child_window(title="item 5", control_type="ListItem")
+   |    | 
+   |    | ListItem - 'item 6'    (L0, T0, R0, B0)
+   |    | ['item 6ListItem', 'ListItem6', 'item 6']
+   |    | child_window(title="item 6", control_type="ListItem")
+   |    | 
+   |    | ListItem - 'item 7'    (L0, T0, R0, B0)
+   |    | ['item 7', 'ListItem7', 'item 7ListItem']
+   |    | child_window(title="item 7", control_type="ListItem")
+   |    | 
+   |    | ListItem - 'item 8'    (L0, T0, R0, B0)
+   |    | ['item 8ListItem', 'ListItem8', 'item 8']
+   |    | child_window(title="item 8", control_type="ListItem")
+   |    | 
+   |    | ListItem - 'item 9'    (L0, T0, R0, B0)
+   |    | ['ListItem9', 'item 9', 'item 9ListItem']
+   |    | child_window(title="item 9", control_type="ListItem")
+   |    | 
+   |    | ListItem - 'item 10'    (L0, T0, R0, B0)
+   |    | ['ListItem10', 'item 10', 'item 10ListItem']
+   |    | child_window(title="item 10", control_type="ListItem")
+   |    | 
+   |    | ListItem - 'item 11'    (L0, T0, R0, B0)
+   |    | ['ListItem11', 'item 11ListItem', 'item 11']
+   |    | child_window(title="item 11", control_type="ListItem")
+   |    | 
+   |    | ListItem - 'item 12'    (L0, T0, R0, B0)
+   |    | ['ListItem12', 'item 12ListItem', 'item 12']
+   |    | child_window(title="item 12", control_type="ListItem")
+   |    | 
+   |    | ListItem - 'item 13'    (L0, T0, R0, B0)
+   |    | ['ListItem13', 'item 13ListItem', 'item 13']
+   |    | child_window(title="item 13", control_type="ListItem")
+   |    | 
+   |    | ListItem - 'item 14'    (L0, T0, R0, B0)
+   |    | ['item 14ListItem', 'ListItem14', 'item 14']
+   |    | child_window(title="item 14", control_type="ListItem")
+   |    | 
+   |    | ListItem - 'item 15'    (L0, T0, R0, B0)
+   |    | ['item 15ListItem', 'ListItem15', 'item 15']
+   |    | child_window(title="item 15", control_type="ListItem")
+   |    | 
+   |    | ListItem - 'item 16'    (L0, T0, R0, B0)
+   |    | ['ListItem16', 'item 16ListItem', 'item 16']
+   |    | child_window(title="item 16", control_type="ListItem")
+   |    | 
+   |    | ListItem - 'item 17'    (L0, T0, R0, B0)
+   |    | ['ListItem17', 'item 17', 'item 17ListItem']
+   |    | child_window(title="item 17", control_type="ListItem")
+   | 
+   | ComboBox - ''    (L175, T230, R341, B297)
+   | ['ComboBox', 'ComboBoxSimple Two', 'ComboBoxThe Simplest', 'ComboBox0', 'ComboBox1']
+   | child_window(auto_id="comboBoxSimple", control_type="ComboBox")
+   |    | 
+   |    | ListBox - ''    (L175, T250, R341, B290)
+   |    | ['ListBox2']
+   |    | child_window(auto_id="1000", control_type="List")
+   |    |    | 
+   |    |    | ListItem - 'Simple 1'    (L177, T252, R339, B264)
+   |    |    | ['Simple 1ListItem', 'ListItem18', 'Simple 1']
+   |    |    | child_window(title="Simple 1", control_type="ListItem")
+   |    |    | 
+   |    |    | ListItem - 'Simple Two'    (L177, T264, R339, B276)
+   |    |    | ['ListItem19', 'Simple Two', 'Simple TwoListItem']
+   |    |    | child_window(title="Simple Two", control_type="ListItem")
+   |    |    | 
+   |    |    | ListItem - 'The Simplest'    (L177, T276, R339, B288)
+   |    |    | ['ListItem20', 'The Simplest', 'The SimplestListItem']
+   |    |    | child_window(title="The Simplest", control_type="ListItem")
+   |    | 
+   |    | Edit - ''    (L178, T233, R338, B247)
+   |    | ['Edit3']
+   |    | child_window(auto_id="1001", control_type="Edit")
+   | 
+   | ComboBox - ''    (L175, T204, R341, B224)
+   | ['ComboBox2', 'ComboBoxLast Item', 'ComboBoxItem 2']
+   | child_window(auto_id="comboBoxReadOnly", control_type="ComboBox")
+   |    | 
+   |    | Static - ''    (L3, T3, R146, B17)
+   |    | ['Static']
+   |    | 
+   |    | Button - '打开'    (L325, T205, R340, B223)
+   |    | ['打开', '打开Button', 'Button4', '打开0', '打开1', '打开Button0', '打开Button1']
+   |    | child_window(title="打开", control_type="Button")
+   | 
+   | ComboBox - ''    (L3, T204, R169, B224)
+   | ['ComboBox3', 'ComboBoxLetters', 'ComboBoxSpecial symbols']
+   | child_window(auto_id="comboRowType", control_type="ComboBox")
+   |    | 
+   |    | Edit - ''    (L6, T207, R149, B221)
+   |    | ['Edit4']
+   |    | child_window(auto_id="1001", control_type="Edit")
+   |    | 
+   |    | Button - '打开'    (L153, T205, R168, B223)
+   |    | ['打开2', '打开Button2', 'Button5']
+   |    | child_window(title="打开", control_type="Button")
+   | 
+   | Table - 'DataGridView'    (L3, T61, R341, B171)
+   | ['Table', 'DataGridView', 'DataGridViewTable']
+   | child_window(title="DataGridView", auto_id="dataGridView1", control_type="Table")
+   | 
+   | Button - 'RowHeader'    (L261, T176, R341, B197)
+   | ['RowHeaderButton', 'RowHeader', 'Button6']
+   | child_window(title="RowHeader", auto_id="button4", control_type="Button")
+   | 
+   | Button - 'ColHeader'    (L175, T176, R255, B197)
+   | ['ColHeader', 'Button7', 'ColHeaderButton']
+   | child_window(title="ColHeader", auto_id="button3", control_type="Button")
+   | 
+   | Button - 'AddCol'    (L89, T176, R169, B197)
+   | ['AddCol', 'AddColButton', 'Button8']
+   | child_window(title="AddCol", auto_id="button2", control_type="Button")
+   | 
+   | Button - 'AddRow'    (L3, T176, R83, B197)
+   | ['AddRow', 'AddRowButton', 'Button9']
+   | child_window(title="AddRow", auto_id="button1", control_type="Button")
+   | 
+   | TitleBar - ''    (L16, T-5, R1920, B23)
+   | ['TitleBar']
+   |    | 
+   |    | Menu - '系统'    (L0, T0, R22, B22)
+   |    | ['系统Menu', 'Menu2', '系统', '系统0', '系统1']
+   |    | child_window(title="系统", auto_id="MenuBar", control_type="MenuBar")
+   |    |    | 
+   |    |    | MenuItem - '系统'    (L0, T0, R22, B22)
+   |    |    | ['MenuItem18', '系统MenuItem', '系统2']
+   |    |    | child_window(title="系统", control_type="MenuItem")
+   |    | 
+   |    | Button - '最小化'    (L1779, T8, R1826, B22)
+   |    | ['最小化Button', '最小化', 'Button10']
+   |    | child_window(title="最小化", control_type="Button")
+   |    | 
+   |    | Button - '还原'    (L1826, T8, R1872, B22)
+   |    | ['还原Button', '还原', 'Button11']
+   |    | child_window(title="还原", control_type="Button")
+   |    | 
+   |    | Button - '关闭'    (L1872, T8, R1928, B22)
+   |    | ['关闭Button', '关闭', 'Button12']
+   |    | child_window(title="关闭", control_type="Button")

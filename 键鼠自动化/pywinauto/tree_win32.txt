@@ -1,0 +1,77 @@
+Control Identifiers:
+
+WindowsForms10.Window.8.app.0.141b42a_r7_ad1 - 'Form1'    (L-8, T-8, R1928, B1048)
+['Form1', 'Form1WindowsForms10.Window.8.app.0.141b42a_r7_ad1', 'WindowsForms10.Window.8.app.0.141b42a_r7_ad1', 'WindowsForms10.Window.8.app.0.141b42a_r7_ad10', 'WindowsForms10.Window.8.app.0.141b42a_r7_ad11', 'Form1WindowsForms10.Window.8.app.0.141b42a_r7_ad10', 'Form1WindowsForms10.Window.8.app.0.141b42a_r7_ad11']
+child_window(title="Form1", auto_id="Form1", control_type="DataGridView.Form1")
+   | 
+   | Edit - 'ReadOnly'    (L82, T299, R158, B320)
+   | ['Edit', 'AddColEdit', 'Edit0', 'Edit1']
+   | child_window(title="ReadOnly", auto_id="textBox2", control_type="System.Windows.Forms.TextBox")
+   | 
+   | Edit - 'Editable'    (L3, T299, R79, B320)
+   | ['AddRowEdit', 'Edit2', 'AddRowEdit0', 'AddRowEdit1']
+   | child_window(title="Editable", auto_id="textBox1", control_type="System.Windows.Forms.TextBox")
+   | 
+   | WindowsForms10.Window.8.app.0.141b42a_r7_ad1 - 'menuStrip1'    (L0, T23, R1920, B48)
+   | ['menuStrip1WindowsForms10.Window.8.app.0.141b42a_r7_ad1', 'menuStrip1', 'WindowsForms10.Window.8.app.0.141b42a_r7_ad12']
+   | child_window(title="menuStrip1", auto_id="menuStrip1", control_type="System.Windows.Forms.MenuStrip")
+   | 
+   | ListBox - ''    (L3, T230, R169, B294)
+   | ['AddRowListBox', 'ListBox']
+   | child_window(auto_id="listBox1", control_type="System.Windows.Forms.ListBox")
+   | 
+   | ComboBox - 'Simple 1'    (L175, T230, R341, B297)
+   | ['ComboBox', 'ColHeaderComboBox', 'ComboBox0', 'ComboBox1', 'ColHeaderComboBox0', 'ColHeaderComboBox1']
+   | child_window(title="Simple 1", auto_id="comboBoxSimple", control_type="System.Windows.Forms.ComboBox")
+   |    | 
+   |    | ComboLBox - ''    (L175, T250, R341, B290)
+   |    | ['ColHeaderComboLBox', 'ComboLBox']
+   |    | child_window(class_name="ComboLBox")
+   |    | 
+   |    | Edit - 'Simple 1'    (L178, T233, R338, B247)
+   |    | ['ColHeaderEdit', 'Edit3']
+   |    | child_window(title="Simple 1", class_name="Edit")
+   | 
+   | ComboLBox - ''    (L175, T250, R341, B290)
+   | ['ColHeaderComboLBox', 'ComboLBox']
+   | child_window(class_name="ComboLBox")
+   | 
+   | Edit - 'Simple 1'    (L178, T233, R338, B247)
+   | ['ColHeaderEdit', 'Edit3']
+   | child_window(title="Simple 1", class_name="Edit")
+   | 
+   | ComboBox - ''    (L175, T204, R341, B224)
+   | ['ComboBox2', 'ColHeaderComboBox2']
+   | child_window(auto_id="comboBoxReadOnly", control_type="System.Windows.Forms.ComboBox")
+   | 
+   | ComboBox - 'Numbers'    (L3, T204, R169, B224)
+   | ['ComboBox3', 'AddRowComboBox']
+   | child_window(title="Numbers", auto_id="comboRowType", control_type="System.Windows.Forms.ComboBox")
+   |    | 
+   |    | Edit - 'Numbers'    (L6, T207, R149, B221)
+   |    | ['AddRowEdit2', 'Edit4']
+   |    | child_window(title="Numbers", class_name="Edit")
+   | 
+   | Edit - 'Numbers'    (L6, T207, R149, B221)
+   | ['AddRowEdit2', 'Edit4']
+   | child_window(title="Numbers", class_name="Edit")
+   | 
+   | WindowsForms10.Window.8.app.0.141b42a_r7_ad1 - ''    (L3, T61, R341, B171)
+   | ['Form1WindowsForms10.Window.8.app.0.141b42a_r7_ad12', 'WindowsForms10.Window.8.app.0.141b42a_r7_ad13']
+   | child_window(auto_id="dataGridView1", control_type="System.Windows.Forms.DataGridView")
+   | 
+   | Button - 'RowHeader'    (L261, T176, R341, B197)
+   | ['RowHeaderButton', 'RowHeader', 'Button', 'Button0', 'Button1']
+   | child_window(title="RowHeader", auto_id="button4", control_type="System.Windows.Forms.Button")
+   | 
+   | Button - 'ColHeader'    (L175, T176, R255, B197)
+   | ['ColHeader', 'Button2', 'ColHeaderButton']
+   | child_window(title="ColHeader", auto_id="button3", control_type="System.Windows.Forms.Button")
+   | 
+   | Button - 'AddCol'    (L89, T176, R169, B197)
+   | ['AddCol', 'AddColButton', 'Button3']
+   | child_window(title="AddCol", auto_id="button2", control_type="System.Windows.Forms.Button")
+   | 
+   | Button - 'AddRow'    (L3, T176, R83, B197)
+   | ['AddRow', 'AddRowButton', 'Button4']
+   | child_window(title="AddRow", auto_id="button1", control_type="System.Windows.Forms.Button")
