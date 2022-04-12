@@ -32,7 +32,7 @@ pid=processinfo("DataGridView_TestApp.exe")
 #Win32 API窗口设置(backend="win32")，连接要操作程序的PID
 app_win32 = Application(backend="win32").connect(process=pid)
 #也可以使用标题、类型等匹配,title_re和 class_name这两个可以单独使用也可以一块使用，因为有时没有标题文本，也有时一个窗口类名有多个对象
-app_win32 = Application(backend="win32").connect(title_re="Form1")
+#app_win32 = Application(backend="win32").connect(title_re="Form1")
 #连接窗口句柄也可以
 #app = Application().connect(handle=0x010f0c)
 
@@ -72,87 +72,89 @@ dlg_spec_win32.print_control_identifiers(filename="tree_win32.txt")
 #auto_id是py_inspect中的automation_id属性
 #control_type是py_inspect中的control_type属性
 #class_name是py_inspect中的class_name属性。#class_name_re=None, # 正则匹配类名
-cj_uia=dlg_spec_uia.child_window(auto_id="textBox1", control_type="Edit")
-cj_uia.wait("exists",timeout=2)
-cj_uia.print_control_identifiers()
+textBox_uia=dlg_spec_uia.child_window(auto_id="textBox1", control_type="Edit")
+textBox_uia.wait("exists",timeout=2)
+textBox_uia.print_control_identifiers()
 
 
-cj_win32=dlg_spec_win32.child_window(auto_id="textBox1",class_name="WindowsForms10.EDIT.app.0.141b42a_r7_ad1")
-cj_win32.wait("exists",timeout=2)
-cj_win32.print_control_identifiers()
+textBox_win32=dlg_spec_win32.child_window(auto_id="textBox1")
+textBox_win32.wait("exists",timeout=2)
+textBox_win32.print_control_identifiers()
 
 
 #显示此控件的属性及支持的操作
-pprint.pprint(dir(cj_uia.wrapper_object()))
-pprint.pprint(dir(cj_uia.element_info))
-print("title:",cj_uia.element_info.name)
-print("auto_id:",cj_uia.element_info.automation_id)
-print("control_type:",cj_uia.element_info.control_type)
-print("class_name:",cj_uia.element_info.class_name)
+pprint.pprint(dir(textBox_uia.wrapper_object()))
+pprint.pprint(dir(textBox_uia.element_info))
+print("title:",textBox_uia.element_info.name)
+print("auto_id:",textBox_uia.element_info.automation_id)
+print("control_type:",textBox_uia.element_info.control_type)
+print("class_name:",textBox_uia.element_info.class_name)
 
 
 
 #可以省略wrapper_object()
 # 给控件画个红色框便于看出是哪个,支持'red', 'green', 'blue'
-cj_uia.wrapper_object().draw_outline(colour = 'red')
-cj_win32.wrapper_object().draw_outline(colour = 'green')
+textBox_uia.wrapper_object().draw_outline(colour = 'red')
+textBox_win32.wrapper_object().draw_outline(colour = 'green')
 
-cj_uia.wrapper_object().set_edit_text("我是uia")
-#print(cj_uia.exists())
-cj_win32.wrapper_object().set_edit_text("我是win32")
+textBox_uia.wrapper_object().set_edit_text("我是uia")
+#print(textBox_uia.exists())
+textBox_win32.wrapper_object().set_edit_text("我是win32")
 
 #可以省略wrapper_object()
 #uia模式下方法
-print(cj_uia.wrapper_object().legacy_properties().get('Value'))
+print(textBox_uia.wrapper_object().legacy_properties().get('Value'))
 #win32模式下的方法
-print(cj_win32.wrapper_object().text_block())
+print(textBox_win32.wrapper_object().text_block())
 
 
 #显示菜单,这个程序只能用uia后端操纵菜单
-menu=dlg_spec_uia["menu"].items()
-pprint.pprint(menu)
+menu_uia=dlg_spec_uia["menu"].items()
+pprint.pprint(menu_uia)
 #多级菜单的操作方法,可以用索引，也可以用title，这个例子因为有多个title相同，所以用了索引。这个程序只能用uia后端操纵菜单
 dlg_spec_uia.menu_select("tem1->#1->#1")
 
 
-cj3=dlg_spec_uia.child_window(title="AddCol", auto_id="button2", control_type="Button").wrapper_object()
+button_uia=dlg_spec_uia.child_window(title="AddCol", auto_id="button2", control_type="Button").wrapper_object()
 #模拟鼠标点击
-cj3.click_input()
+button_uia.click_input()
 #通过消息进行后台点击,有的程序点击无反应时切换后端进行尝试
-cj3.click()
+button_uia.click()
 
 #win32后端的control_type属性与uia模式下不同
-cj3=dlg_spec_win32.child_window(title="AddCol", auto_id="button2", control_type="System.Windows.Forms.Button").wrapper_object()
+button_win32=dlg_spec_win32.child_window(title="AddCol", auto_id="button2", control_type="System.Windows.Forms.Button").wrapper_object()
+#等待按钮的状态变为可用。uia模式下wait函数很卡，因此最好用win32的后端探测按钮的状态
+a=dlg_spec_win32.child_window(title="AddCol", auto_id="button2", control_type="System.Windows.Forms.Button")
+a.wait("enabled",timeout=20)
 #模拟鼠标双击
-cj3.double_click_input()
+button_win32.double_click_input()
 #通过消息进行后台点击,有的程序点击无反应时切换后端进行尝试
-cj3.click()
+button_win32.click()
 
 
 #win32模式
-ComboBox=dlg_spec_win32.child_window(auto_id="comboRowType", control_type="System.Windows.Forms.ComboBox").wrapper_object()
+ComboBox_win32=dlg_spec_win32.child_window(auto_id="comboRowType", control_type="System.Windows.Forms.ComboBox").wrapper_object()
 #通过消息进行后台点击,有的程序点击无反应时切换后端进行尝试
-ComboBox.select(1)
-ComboBox.select("Numbers")
-print(ComboBox.item_texts())
-print(ComboBox.selected_text())
+ComboBox_win32.select(1)
+ComboBox_win32.select("Numbers")
+print(ComboBox_win32.item_texts())
+print(ComboBox_win32.selected_text())
 
 #uia模式下必须先将combbox先展开才能选择，可以用以下几种方式（不一定都适用）
-ComboBox=dlg_spec_uia.child_window(auto_id="comboRowType", control_type="ComboBox").wrapper_object()
-ComboBox.type_keys("%{DOWN}")
-#ComboBox.expand()
-#ComboBox.click_input()
+ComboBox_uia=dlg_spec_uia.child_window(auto_id="comboRowType", control_type="ComboBox").wrapper_object()
+ComboBox_uia.type_keys("%{DOWN}")
+#ComboBox_uia.expand()
+#ComboBox_uia.click_input()
 
 #然后再选择，可以用以下几种方式（不一定都适用）
-#ComboBox.child_window(title="Letters", control_type="ListItem").click_input()
-ComboBox.select(1)
-#ComboBox.wrapper_object().select("Numbers")
-print(ComboBox.texts())
-print(ComboBox.selected_text())
+#ComboBox_uia.child_window(title="Letters", control_type="ListItem").click_input()
+ComboBox_uia.select(1)
+#ComboBox_uia.wrapper_object().select("Numbers")
+print(ComboBox_uia.texts())
+print(ComboBox_uia.selected_text())
 
 
 mouse.click(button='left', coords=(100,100))
-a=input("")
 
 
 
