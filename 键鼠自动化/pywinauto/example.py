@@ -159,7 +159,19 @@ mouse.click(button='left', coords=(100,100))
 
 
 
+# uia控件转win32控件
+hwnd = dlg_spec_uia.handle
+# 使用win32后端连接到相同的应用程序
+app_win32 = Application(backend="win32").connect(handle=hwnd)
+# 连接到相同的控件
+dlg_win32 = app_win32.window(handle=hwnd)
 
+#移动 缩放 uia窗口
+wrapper=dlg_spec_uia.wrapper_object()
+wrapper.set_focus()
+wrapper.iface_transform.move(0,500)
+wrapper.iface_transform.Resize(300, 300)
 
-
-
+#移动 缩放 win32窗口
+dlg_win32.set_focus()
+dlg_win32.move_window(x=0, y=0,width=100, height=100, repaint=True)
