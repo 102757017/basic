@@ -1,0 +1,14 @@
+log_level = "INFO"
+features = [ "email_notifications", "dashboard_analytics",]
+
+[server]
+host = "localhost"
+port = 8081
+enabled = true
+timeout = 60
+
+[database]
+type = "postgres"
+host = "db.example.com"
+port = 5432
+username = "admin"
