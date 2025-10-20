@@ -168,23 +168,38 @@ def segment_into_arcs(points, max_angle_diff=45):
     return arcs
 
 
-def detect_occluded_circles(image, min_arc_length=0.3, reference_radius=None, radius_tolerance_factor=0.20):
+def detect_occluded_circles(
+    image, 
+    min_arc_length=0.3, 
+    reference_radius=None, 
+    radius_tolerance_factor=0.20,
+    gaussian_ksize=(5, 5),          # 新增参数: 高斯模糊核大小
+    gaussian_sigmaX=0,              # 新增参数: 高斯模糊X方向标准差
+    canny_threshold1=30,            # 新增参数: Canny低阈值
+    canny_threshold2=80             # 新增参数: Canny高阈值
+):
     """
     专门检测被遮挡圆的方法
     min_arc_length: 最小弧长比例 (0.3表示至少需要30%的圆弧)
     reference_radius: (可选) 一个参考半径，用于过滤检测到的圆。
     radius_tolerance_factor: (如果提供了reference_radius) 允许的半径偏差百分比。
                              例如，0.20意味着半径应在 [reference_radius * 0.8, reference_radius * 1.2] 之间。
+    gaussian_ksize: 高斯模糊核大小，例如 (5, 5)
+    gaussian_sigmaX: 高斯模糊X方向标准差，例如 0
+    canny_threshold1: Canny边缘检测低阈值，例如 30
+    canny_threshold2: Canny边缘检测高阈值，例如 80
     """
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     # cv2.imshow("1. 灰度图", gray)           # 注释掉中间调试窗口
     # cv2.waitKey(10)
     
-    blurred = cv2.GaussianBlur(gray, (5, 5), 0)
+    # 使用参数传入的高斯模糊值
+    blurred = cv2.GaussianBlur(gray, gaussian_ksize, gaussian_sigmaX)
     # cv2.imshow("2. 模糊图", blurred)         # 注释掉中间调试窗口
     # cv2.waitKey(10)
     
-    edges = cv2.Canny(blurred, 30, 80) 
+    # 使用参数传入的Canny阈值
+    edges = cv2.Canny(blurred, canny_threshold1, canny_threshold2) 
     # cv2.imshow("3. Canny 边缘", edges)       # 注释掉中间调试窗口
     # cv2.waitKey(10)
 
@@ -292,19 +307,30 @@ if __name__ == '__main__':
     if test_image is None:
         logging.error(f"错误: 无法加载图像 '{image_path}'。请确保文件存在且路径正确。")
     else:
-        # 假设 contour.jpg 中期望检测的圆半径大约是 100 像素
-        # 你需要根据实际图像中圆的大小来调整这些值
+        # 假设 p2.jpg 中期望检测的圆半径大约是 30 像素
         expected_radius = 30 
-        radius_tol = 0.25 # 允许半径在 100 +/- 25% 之间 (即 75 到 125)
+        radius_tol = 0.25 # 允许半径在 30 +/- 25% 之间 (即 22.5 到 37.5)
         min_arc_length_test = 0.3 #圆的完整度
 
+        # 新增高斯模糊和Canny的参数
+        gaussian_ksize_val = (5, 5)
+        gaussian_sigmaX_val = 0
+        canny_thresh1_val = 30
+        canny_thresh2_val = 80
+
         logging.info(f"检测被遮挡的圆 (参考半径: {expected_radius}, 容差: {radius_tol*100:.0f}%) 完整度:{min_arc_length_test}")
+        logging.info(f"高斯模糊参数: ksize={gaussian_ksize_val}, sigmaX={gaussian_sigmaX_val}")
+        logging.info(f"Canny边缘检测参数: threshold1={canny_thresh1_val}, threshold2={canny_thresh2_val}")
         
         detected_circles_result = detect_occluded_circles(
             test_image.copy(), 
-            min_arc_length=min_arc_length_test,
+            min_arc_length=min_arc_length_test,     # 圆的完整度
             reference_radius=expected_radius,       # 传入参考半径
-            radius_tolerance_factor=radius_tol      # 传入半径容差因子
+            radius_tolerance_factor=radius_tol,     # 传入半径容差因子
+            gaussian_ksize=gaussian_ksize_val,      # 传递高斯模糊核大小
+            gaussian_sigmaX=gaussian_sigmaX_val,    # 传递高斯模糊X方向标准差
+            canny_threshold1=canny_thresh1_val,     # 传递Canny低阈值
+            canny_threshold2=canny_thresh2_val      # 传递Canny高阈值
         )
 
         logging.info(f"最终检测到 {len(detected_circles_result)} 个潜在的圆:")
