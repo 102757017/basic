@@ -1,11 +1,8 @@
-# 3.相机标定.py
-
 import cv2
 import numpy as np
 import glob
 import os
 
-# ... (save_calibration_results 和 calibrate_camera_with_charuco 函数的开头部分不变) ...
 def save_calibration_results(camera_matrix, dist_coeffs, filename="calibration_results.npz"):
     """将相机标定结果保存到文件"""
     print(f"正在将标定结果保存到 {filename}...")
@@ -14,16 +11,22 @@ def save_calibration_results(camera_matrix, dist_coeffs, filename="calibration_r
 
 def calibrate_camera_with_charuco(image_folder="calibration_images", squares_x=5, squares_y=7, square_length=0.035, marker_length=0.0175):
     """
-    使用文件夹中的图像对相机进行ChArUco标定
+    使用文件夹中的图像对相机进行ChArUco标定 - 修正版本
     """
-    # (这部分函数代码保持不变)
     dictionary = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_6X6_250)
     board = cv2.aruco.CharucoBoard((squares_x, squares_y), square_length, marker_length, dictionary)
-    params = cv2.aruco.DetectorParameters()
-    detector = cv2.aruco.ArucoDetector(dictionary, params)
+    
+    # 使用CharucoDetector而不是ArucoDetector
+    charuco_params = cv2.aruco.CharucoParameters()
+    detector_params = cv2.aruco.DetectorParameters()
+    refiner_params = cv2.aruco.RefineParameters()
+    detector = cv2.aruco.CharucoDetector(board, charuco_params, detector_params, refiner_params)
 
+    # 存储所有数据
     all_charuco_corners = []
     all_charuco_ids = []
+    all_image_points = []  # 新增：存储图像点
+    all_object_points = [] # 新增：存储对象点
     
     image_files = glob.glob(os.path.join(image_folder, '*.png')) + glob.glob(os.path.join(image_folder, '*.jpg'))
     if not image_files:
@@ -34,6 +37,7 @@ def calibrate_camera_with_charuco(image_folder="calibration_images", squares_x=5
     print(f"使用 {len(image_files)} 张图像进行标定...")
 
     img_size = None
+    valid_count = 0
 
     for fname in image_files:
         img = cv2.imread(fname)
@@ -43,50 +47,58 @@ def calibrate_camera_with_charuco(image_folder="calibration_images", squares_x=5
             
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         if img_size is None:
-            img_size = gray.shape[::-1] # (width, height)
+            img_size = gray.shape[::-1]  # (width, height)
 
-        corners, ids, rejected = detector.detectMarkers(gray)
-
-        if ids is not None and len(ids) > 0:
-            criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 100, 0.0001)
-            for corner in corners:
-                cv2.cornerSubPix(gray, corner, winSize=(3, 3), zeroZone=(-1, -1), criteria=criteria)
+        # 使用CharucoDetector检测板子
+        charuco_corners, charuco_ids, marker_corners, marker_ids = detector.detectBoard(gray)
+        
+        # 如果检测到足够的角点
+        if charuco_corners is not None and len(charuco_corners) >= 4:
+            # 关键修正：匹配图像点和对象点
+            current_object_points = []
+            current_image_points = []
             
-            charuco_retval, charuco_corners, charuco_ids = cv2.aruco.interpolateCornersCharuco(corners, ids, gray, board)
+            # 手动创建对象点（3D坐标）
+            for corner_id in charuco_ids:
+                # 根据ID计算在板子上的3D位置
+                obj_point = board.getChessboardCorners()[corner_id[0]]
+                current_object_points.append(obj_point)
+                current_image_points.append(charuco_corners[charuco_ids.tolist().index(corner_id)])
             
-            if charuco_retval > 4:
-                all_charuco_corners.append(charuco_corners)
-                all_charuco_ids.append(charuco_ids)
+            current_object_points = np.array(current_object_points, dtype=np.float32)
+            current_image_points = np.array(current_image_points, dtype=np.float32)
+            
+            # 存储数据
+            all_charuco_corners.append(charuco_corners)
+            all_charuco_ids.append(charuco_ids)
+            all_object_points.append(current_object_points)
+            all_image_points.append(current_image_points)
+            
+            valid_count += 1
+            print(f"有效图像 {valid_count}: {os.path.basename(fname)} - 检测到 {len(charuco_corners)} 个角点")
 
-    if len(all_charuco_corners) < 1:
+    if valid_count < 1:
         print("错误: 未能在任何图像中检测到足够的ChArUco角点。")
         return None, None, None
 
-    # ==================== 【关键修改】 ====================
-    # 为普通相机设置一个更简单的标定模型，防止过拟合
-    # 我们不使用 CALIB_RATIONAL_MODEL，让它计算一个基本的5系数模型
-    # 这里我们甚至可以传入一个空的 flags=0，但为了明确，我们先这样写
-    calibration_flags = 0 
-    # 如果畸变非常小，可以尝试更强的约束，例如：
-    # calibration_flags = cv2.CALIB_ZERO_TANGENT_DIST # 忽略切向畸变
-    # calibration_flags = cv2.CALIB_FIX_K1 | cv2.CALIB_FIX_K2 | cv2.CALIB_FIX_K3 # 假设完全没有径向畸变
+    print(f"\n成功使用 {valid_count} 张有效图像进行标定")
 
-    ret, camera_matrix, dist_coeffs, rvecs, tvecs = cv2.aruco.calibrateCameraCharuco(
-        all_charuco_corners, 
-        all_charuco_ids, 
-        board, 
+    # 使用标准的calibrateCamera函数，与C++示例一致
+    calibration_flags = 0
+    
+    ret, camera_matrix, dist_coeffs, rvecs, tvecs = cv2.calibrateCamera(
+        all_object_points, 
+        all_image_points, 
         img_size, 
         None, 
         None,
-        flags=calibration_flags  # <--- 在这里添加 flags 参数
+        flags=calibration_flags
     )
-    # =======================================================
 
     return camera_matrix, dist_coeffs, ret
 
-
 # ====================================================================
-# 主程序部分 (保持不变)
+# 主程序部分
 # ====================================================================
 if __name__ == '__main__':
     # 调用标定函数
