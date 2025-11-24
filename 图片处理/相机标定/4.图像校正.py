@@ -6,31 +6,82 @@ import glob
 import os
 
 def load_calibration_results(filename="calibration_results.npz"):
-    """从文件加载相机标定结果"""
+    """
+    从文件加载相机标定结果
+    
+    参数:
+        filename (str): 标定数据文件名，默认"calibration_results.npz"
+    
+    返回:
+        tuple: 包含以下元素的元组:
+            - camera_matrix (numpy.ndarray): 3x3相机内参矩阵
+            - dist_coeffs (numpy.ndarray): 畸变系数向量
+    
+    异常:
+        如果文件不存在，返回 (None, None)
+    """
     try:
+        # 使用numpy加载npz文件（压缩的numpy数据格式）
         data = np.load(filename)
-        camera_matrix = data['camera_matrix']
-        dist_coeffs = data['dist_coeffs']
+        
+        # 从加载的数据中提取相机内参矩阵和畸变系数
+        camera_matrix = data['camera_matrix']  # 内参矩阵 [fx, 0, cx; 0, fy, cy; 0, 0, 1]
+        dist_coeffs = data['dist_coeffs']      # 畸变系数 [k1, k2, p1, p2, k3, ...]
+        
         print(f"成功从 {filename} 加载标定数据。")
         return camera_matrix, dist_coeffs
+        
     except FileNotFoundError:
+        # 处理文件不存在的情况
         print(f"错误: 标定文件 '{filename}' 未找到。请先运行标定程序。")
         return None, None
 
+
 def undistort_image(image, camera_matrix, dist_coeffs):
-    """使用标定参数对图像进行校正"""
+    """
+    使用标定参数对图像进行畸变校正
+    
+    该函数使用相机标定得到的参数，对输入图像进行畸变校正，消除镜头畸变的影响。
+    
+    参数:
+        image (numpy.ndarray): 输入图像（BGR格式）
+        camera_matrix (numpy.ndarray): 3x3相机内参矩阵
+        dist_coeffs (numpy.ndarray): 畸变系数向量
+    
+    返回:
+        tuple: 包含以下元素的元组:
+            - undistorted_img (numpy.ndarray): 校正后的图像
+            - new_camera_matrix (numpy.ndarray): 优化后的新相机矩阵
+    
+    注意:
+        - 校正后的图像可能会有黑边，可以通过裁剪ROI区域去除
+        - alpha参数控制保留像素的范围（0-1之间）
+    """
+    # 获取输入图像的尺寸（高度, 宽度）
     h, w = image.shape[:2]
     
-    # 获取优化后的相机矩阵，alpha=1 表示保留所有像素，可能会有黑边
-    # alpha=0 表示只保留有效像素，会裁剪掉因校正产生的黑边
-    new_camera_matrix, roi = cv2.getOptimalNewCameraMatrix(camera_matrix, dist_coeffs, (w, h), 1, (w, h))
+    # 获取优化后的新相机矩阵和感兴趣区域(校正后图像中没有黑边的有效像素区域)
+    new_camera_matrix, roi = cv2.getOptimalNewCameraMatrix(
+        camera_matrix,      # 原始相机内参矩阵 [fx, 0, cx; 0, fy, cy; 0, 0, 1]
+        dist_coeffs,        # 畸变系数向量 [k1, k2, p1, p2, k3, ...]
+        (w, h),             # 图像原始尺寸（宽度, 高度）
+        1,                  # alpha缩放因子：1=保留所有像素(可能有黑边)，0=只保留有效像素(会裁剪)
+        (w, h)              # 期望的输出图像尺寸（宽度, 高度）
+        )
     
-    # 进行校正
-    undistorted_img = cv2.undistort(image, camera_matrix, dist_coeffs, None, new_camera_matrix)
+    # 使用标定参数对图像进行畸变校正
+    undistorted_img = cv2.undistort(
+        image,              # 输入图像（BGR格式）
+        camera_matrix,      # 原始相机内参矩阵 [fx, 0, cx; 0, fy, cy; 0, 0, 1]
+        dist_coeffs,        # 畸变系数向量 [k1, k2, p1, p2, k3, ...]
+        None,               # 可选的校正变换矩阵（设为None使用默认映射）
+        new_camera_matrix   # 优化后的新相机矩阵（用于控制输出图像的视角和尺度）
+        )
     
-    # (可选) 裁剪图像，去除黑边
-    # x, y, w, h = roi
-    # undistorted_img = undistorted_img[y:y+h, x:x+w]
+    # （可选步骤）裁剪图像，去除校正产生的黑边区域
+    # roi格式: (x, y, width, height) - 有效图像区域的坐标和尺寸
+    # x, y, w_roi, h_roi = roi
+    # undistorted_img = undistorted_img[y:y+h_roi, x:x+w_roi]
     
     return undistorted_img, new_camera_matrix
 

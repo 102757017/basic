@@ -8,18 +8,16 @@ import os
 # ... generate_high_res_charuco 函数与上一个版本相同，保持尺寸调整后的参数 ...
 def generate_high_res_charuco():
     # ChArUco参数
-    squares_x = 5
-    squares_y = 7
-    square_length = 0.035  # 3.5cm
-    marker_length = 0.0175 # 1.75cm
-    margin_cm = 0.5        # 0.5cm
+    squares_x = 5          # X方向方格数量（列数）
+    squares_y = 7          # Y方向方格数量（行数）
+    square_length = 0.035  # 每个方格的实际长度（单位：米，3.5cm）
+    marker_length = 0.0175 # ArUco标记的实际长度（单位：米，1.75cm）
+    margin_cm = 0.5        # 图像边距（单位：厘米，0.5cm）
     
-    dictionary = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_6X6_250)
-    board = cv2.aruco.CharucoBoard(
-        (squares_x, squares_y), square_length, marker_length, dictionary
-    )
+    dictionary = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_6X6_250) #每个小方块里面的黑白图案是6x6比特的二进制网格
+    board = cv2.aruco.CharucoBoard((squares_x, squares_y), square_length, marker_length, dictionary)
     
-    target_dpi = 600 
+    target_dpi = 600       #打印dpi
     physical_width_cm = squares_x * square_length * 100
     physical_height_cm = squares_y * square_length * 100
     total_physical_width_cm = physical_width_cm + 2 * margin_cm
@@ -73,8 +71,7 @@ def print_image_raw(image_path, target_dpi):
         hDC.StartDoc(os.path.basename(image_path))
         hDC.StartPage()
 
-        # === 核心修改：使用 ImageWin.Dib.draw() ===
-        # 这种方法直接将DIB数据流式传输到设备，避免创建巨大的GDI位图对象
+        # 使用 ImageWin.Dib.draw() 这种方法直接将DIB数据流式传输到设备，避免创建巨大的GDI位图对象
 
         # 将PIL图像转换为DIB对象
         dib = ImageWin.Dib(pil_img)

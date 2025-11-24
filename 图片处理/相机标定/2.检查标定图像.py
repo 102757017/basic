@@ -37,12 +37,14 @@ def resize_for_display(image, max_width=1280, max_height=720):
 # ====================================================================
 
 # 初始化参数
-dictionary = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_6X6_250)
-# 注意：这里的物理尺寸应与你的标定板生成脚本中的尺寸一致
-# 例如：square_length=0.035, marker_length=0.0175
-board = cv2.aruco.CharucoBoard(
-    (5, 7), 0.035, 0.0175, dictionary
-)
+dictionary = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_6X6_250) #每个小方块里面的黑白图案是6x6比特的二进制网格
+# 这里的物理尺寸应与你的标定板生成脚本中的尺寸一致
+board = cv2.aruco.CharucoBoard(size=(5, 7),                    # 标定板的网格尺寸 (列数, 行数)
+                               squareLength=0.035,             # 每个方格的实际长度 (单位: 米)
+                               markerLength=0.0175,            # 每个ArUco标记的实际长度 (单位: 米)
+                               dictionary=dictionary           # 使用的ArUco字典
+                               )
+
 detector = cv2.aruco.CharucoDetector(board)
 
 # 存储所有图像的角点和ID
@@ -54,7 +56,7 @@ all_image_size = None
 image_files = glob.glob("calibration_images/*.jpg")
 print(f"找到 {len(image_files)} 张标定图像")
 
-# 【改进1】: 创建一个可调整大小的窗口
+# 创建一个可调整大小的窗口
 window_name = 'Detected Charuco - Press any key to continue'
 cv2.namedWindow(window_name, cv2.WINDOW_NORMAL)
 
@@ -83,10 +85,10 @@ for i, image_file in enumerate(image_files):
         image_copy = image.copy()
         cv2.aruco.drawDetectedCornersCharuco(image_copy, charuco_corners, charuco_ids)
         
-        # 【改进2】: 在显示前缩放图像
+        # 在显示前缩放图像
         display_image = resize_for_display(image_copy, max_width=1280, max_height=720)
         
-        # 【改进3】: 使用缩放后的图像进行显示
+        # 使用缩放后的图像进行显示
         cv2.imshow(window_name, display_image)
         
         # 将等待时间延长，以便有足够的时间查看，按任意键继续
