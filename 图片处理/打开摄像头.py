@@ -2,7 +2,7 @@
 import cv2
 
 
-#参数0表示第一个摄像头
+#参数0表示第一个摄像头，注意cv2.CAP_DSHOW/cv2.CAP_MSMF后端的索引号不是共用的，即使都使用索引0，但是使用不同后端打开的会是不同的摄像头
 cap = cv2.VideoCapture(0)
 
 
