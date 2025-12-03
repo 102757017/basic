@@ -1,4 +1,7 @@
 # -*- coding: UTF-8 -*-
+import os
+#在OpenCV导入之前禁用Media Foundation 后端硬件加速变换，可以改善msmf后端下摄像头初始化速度
+os.environ["OPENCV_VIDEOIO_MSMF_ENABLE_HW_TRANSFORMS"] = "0" 
 import cv2
 import time
 import datetime
