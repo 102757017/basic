@@ -32,7 +32,7 @@ def generate_high_res_charuco():
         borderBits=1 
     )
     
-    output_filename = "charuco_high_res.png"
+    output_filename = f"charuco_dpi{target_dpi}.png"
     cv2.imwrite(output_filename, board_image)
     print(f"生成高分辨率ChArUco板PNG: {output_filename}")
     print(f"图像像素尺寸: {image_total_width_px}x{image_total_height_px} 像素")
@@ -110,7 +110,8 @@ def print_image_raw(image_path, target_dpi):
 if __name__ == "__main__":
     output_png_path, board_target_dpi = generate_high_res_charuco()
     if os.path.exists(output_png_path):
-        print_image_raw(output_png_path, board_target_dpi)
+        #print_image_raw(output_png_path, board_target_dpi)
+        pass
     else:
         print("PNG文件未生成，无法打印。")
 
