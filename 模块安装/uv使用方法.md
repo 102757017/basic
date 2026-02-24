@@ -186,17 +186,20 @@ if "%WORKDIR:~-1%"=="\" set "WORKDIR=%WORKDIR:~0,-1%"
 pushd "%WORKDIR%"
 
 :: 检测虚拟环境：优先 .venv，其次 venv
-set "VENV_PY="
+set "VENV_DIR="
 if exist ".venv\Scripts\python.exe" (
-    set "VENV_PY=.venv\Scripts\python.exe"
+    set "VENV_DIR=.venv"
 ) else if exist "venv\Scripts\python.exe" (
-    set "VENV_PY=venv\Scripts\python.exe"
+    set "VENV_DIR=venv"
 )
 
-if defined VENV_PY (
-    :: 使用虚拟环境的 Python 启动 IDLE
-    echo 使用虚拟环境: %VENV_PY%
-    "%VENV_PY%" -m idlelib.idle "%PYFILE%"
+if defined VENV_DIR (
+    :: 激活虚拟环境（设置 PATH、VIRTUAL_ENV 等环境变量）
+    echo 使用虚拟环境: %VENV_DIR%
+    call "%VENV_DIR%\Scripts\activate.bat"
+
+    :: 启动 IDLE（此时 python 已指向虚拟环境的解释器）
+    python -m idlelib.idle "%PYFILE%"
 ) else (
     :: 未找到虚拟环境，使用系统默认 Python
     echo 未找到虚拟环境，使用全局 Python
