@@ -51,7 +51,12 @@ myapp/
 ```
 
 **依赖管理：**
+
 ```bash
+#Windows 下，硬链接无法跨卷（跨磁盘分区）创建，要使用硬链接需要将缓存目录设置到与项目相同的磁盘分区
+#也可以直接设置 UV_LINK_MODE=copy 环境变量，强制 uv 使用复制模式
+set UV_CACHE_DIR=E:\uv-cache
+
 # 添加依赖（自动更新 pyproject.toml + uv.lock）
 uv add requests
 
