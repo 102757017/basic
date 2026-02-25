@@ -7,9 +7,9 @@ import numpy as np
 os.chdir(os.path.dirname(__file__))
 
  
-img = cv2.imread('contour.png')
+img = cv2.imread('1.bmp')
 #由于opencv不支持读取中文路径，用以下方法代替cv2.imread
-img = cv2.imdecode(np.fromfile('contour.png', dtype=np.uint8), 1)
+img = cv2.imdecode(np.fromfile('1.bmp', dtype=np.uint8), 1)
 
 #图片先转成灰度的
 gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
@@ -20,13 +20,17 @@ gray=cv2.GaussianBlur(gray, (3, 3), 0)
 
 #gray=cv2.Canny(gray,100,300)
 
-
+param1=150
+# 添加调试代码，观察边缘检测效果
+edges = cv2.Canny(gray, param1, param1/2)  # Canny通常用高阈值:低阈值=2:1
+cv2.imshow("Edges", edges)
+cv2.waitKey(0)
 
 #返回np数组,数组元素为圆心坐标和半径
 #dp 识别精度，1.0表示按原图精度
 #minDist为两个圆的圆心最小距离
 #param1为边缘检测时使用Canny算子的高阈值
-circles=cv2.HoughCircles(gray,cv2.HOUGH_GRADIENT,dp=1.5,minDist=10,param1=7,param2=20,minRadius=10,maxRadius=25)
+circles=cv2.HoughCircles(gray,cv2.HOUGH_GRADIENT,dp=1.0,minDist=800,param1=param1,param2=30,minRadius=100,maxRadius=120)
 print(type(circles),circles)
 
 if circles is not None:
