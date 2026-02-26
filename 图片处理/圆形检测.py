@@ -7,9 +7,9 @@ import numpy as np
 os.chdir(os.path.dirname(__file__))
 
  
-img = cv2.imread('1.bmp')
+img = cv2.imread('contour.PNG')
 #由于opencv不支持读取中文路径，用以下方法代替cv2.imread
-img = cv2.imdecode(np.fromfile('1.bmp', dtype=np.uint8), 1)
+img = cv2.imdecode(np.fromfile('contour.PNG', dtype=np.uint8), 1)
 
 #图片先转成灰度的
 gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
@@ -30,7 +30,9 @@ cv2.waitKey(0)
 #dp 识别精度，1.0表示按原图精度
 #minDist为两个圆的圆心最小距离
 #param1为边缘检测时使用Canny算子的高阈值
-circles=cv2.HoughCircles(gray,cv2.HOUGH_GRADIENT,dp=1.0,minDist=800,param1=param1,param2=30,minRadius=100,maxRadius=120)
+#param2：累加器阈值，就是圆的得分
+circles=cv2.HoughCircles(gray,cv2.HOUGH_GRADIENT,dp=1.5,minDist=10,param1=7,param2=20,minRadius=10,maxRadius=25)
+
 print(type(circles),circles)
 
 if circles is not None:
