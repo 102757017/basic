@@ -60,6 +60,12 @@ set UV_CACHE_DIR=E:\uv-cache
 # 添加依赖（自动更新 pyproject.toml + uv.lock）
 uv add requests
 
+#这个命令会自动在 pyproject.toml 中生成正确的 [[tool.uv.index]] 和 [tool.uv.sources] 配置。
+uv add paddlepaddle==3.0.0.dev20250426 --index paddle-nightly=https://www.paddlepaddle.org.cn/packages/nightly/cpu/
+
+#反向显示依赖树
+uv tree --invert --package opencv-python-headless
+
 # 删除依赖（自动更新 pyproject.toml + uv.lock）
 uv remove requests
 
@@ -160,6 +166,42 @@ uv sync  # 自动创建环境 + 安装所有依赖
 | **适用场景** | **正式项目、团队协作**       | **快速测试、一次性脚本** |
 
 
+
+## 配置文件
+
+```
+[tool.uv]
+# 核心：强制 uv 忽略所有包对 opencv-python-headless 的需求
+exclude-dependencies = ["opencv-python-headless"]
+
+
+# 将 PyPI 设为第一个索引，并作为默认索引
+[[tool.uv.index]]
+name = "pypi"
+url = "https://pypi.org/simple"
+default = true
+explicit = false
+
+# 将 paddle-nightly 设为第二个索引
+[[tool.uv.index]]
+name = "paddle-nightly"
+url = "https://www.paddlepaddle.org.cn/packages/nightly/cpu/"
+
+# 指定 paddlepaddle 的来源
+[tool.uv.sources]
+paddlepaddle = { index = "paddle-nightly" }
+# paddlex 不需要指定来源，它将从默认的 PyPI 索引获取
+
+[tool.uv]
+# 设置全局索引策略，允许跨索引查找最佳匹配
+index-strategy = "unsafe-best-match"
+# 允许使用预编译的 wheel
+compile-bytecode = true
+# 指定当前平台为 Windows AMD64
+required-environments = [
+    "sys_platform == 'win32' and platform_machine == 'AMD64'"
+]
+```
 
 
 
