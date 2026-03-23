@@ -175,10 +175,10 @@ uv sync  # 自动创建环境 + 安装所有依赖
 exclude-dependencies = ["opencv-python-headless"]
 
 
-# 将 PyPI 设为第一个索引，并作为默认索引
+# 将 PyPI 设为第一个索引，并作为默认索引，explicit = true：表示这个索引只用于pyproject.toml 中明确标记的包
 [[tool.uv.index]]
-name = "pypi"
-url = "https://pypi.org/simple"
+name = "tsinghua"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
 default = true
 explicit = false
 
