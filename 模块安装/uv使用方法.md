@@ -186,6 +186,7 @@ explicit = false
 [[tool.uv.index]]
 name = "paddle-nightly"
 url = "https://www.paddlepaddle.org.cn/packages/nightly/cpu/"
+explicit = true  # 设置为 explicit，不会自动搜索
 
 # 指定 paddlepaddle 的来源
 [tool.uv.sources]
