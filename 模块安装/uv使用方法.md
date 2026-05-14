@@ -1,5 +1,7 @@
 
 
+
+
 # uv 包管理指南
 
 ## 全局/脚本模式
@@ -52,12 +54,23 @@ myapp/
 └── main.py          # ⭐ 程序入口文件
 ```
 
+
+
+## 下面的命令可以让uv sync指定指定的环境而不是当前目录中.venv，可以用来配置其使用conda环境
+
+```
+export UV_PROJECT_ENVIRONMENT="/opt/conda"
+```
+
+
+
 **依赖管理：**
 
 ```bash
 #Windows 下，硬链接无法跨卷（跨磁盘分区）创建，要使用硬链接需要将缓存目录设置到与项目相同的磁盘分区
 #也可以直接设置 UV_LINK_MODE=copy 环境变量，强制 uv 使用复制模式
 set UV_CACHE_DIR=E:\uv-cache
+export UV_CACHE_DIR=/path/to/uv-cache
 
 # 添加依赖（自动更新 pyproject.toml + uv.lock）
 uv add requests
@@ -105,13 +118,13 @@ uv shell
 
 ```bash
 # 根据 pyproject.toml/uv.lock 同步虚拟环境，clone的项目可以用它来恢复环境
-uv sync
+uv sync --no-progress
 
 # 同步时包含依赖组group中的包
-uv sync --group mygroup
+uv sync --group mygroup --no-progress
 
 # 同步时包含可选依赖cup中的包
-uv sync --extra cpu
+uv sync --extra cpu --no-progress
 uv pip install your-package[cpu]
 ```
 
@@ -127,12 +140,15 @@ uv sync    # uv sync 会自动检查 pyproject.toml 变化，相当于 uv lock +
 
 ### 导出requirements.txt
 
+导出requirements.txt时会丢失自定义的安装源，不适用有自定义源的项目
+
 ```
 # 从当前项目导出（使用 uv.lock）
-uv export > requirements.txt
+uv export  --no-color > requirements.txt
+uv export --group train --extra cuda  --no-color > requirements.txt
 
 # 导出生产依赖（不含开发依赖）
-uv export --no-dev > requirements.txt
+uv export --no-dev  --no-color > requirements.txt
 ```
 
 ### 核心文件说明
