@@ -1,3 +1,5 @@
+
+
 # uv 包管理指南
 
 ## 全局/脚本模式
@@ -72,14 +74,22 @@ uv remove requests
 # 将 requirements.txt 的依赖添加到项目
 uv add -r requirements.txt
 
-# 添加开发依赖，这些包只在写代码、测试时用，线上运行不需要
+# 添加开发依赖，这些包只在写代码、测试时用，线上运行不需要,[dependency-groups].dev
 uv add --dev pytest ruff
+
+# 添加到依赖组（是为了项目开发人员准备的）：[dependency-groups].mygroup
+uv add pytest ruff --group mygroup
+
+# 添加到可选依赖（是为了包的用户准备的）[project.optional-dependencies].cpu
+# 可以通过pip install your-package[cpu]来安装
+uv add --optional cpu pytest ruff
 
 # 删除开发依赖
 uv remove --dev pytest
 ```
 
 **运行项目：**
+
 ```bash
 # 在虚拟环境中执行命令（自动管理环境）
 uv run python main.py
@@ -92,9 +102,17 @@ uv shell
 ```
 
 **环境同步：**
+
 ```bash
 # 根据 pyproject.toml/uv.lock 同步虚拟环境，clone的项目可以用它来恢复环境
 uv sync
+
+# 同步时包含依赖组group中的包
+uv sync --group mygroup
+
+# 同步时包含可选依赖cup中的包
+uv sync --extra cpu
+uv pip install your-package[cpu]
 ```
 
 ### `pyproject.toml`手动修改后的工作流
