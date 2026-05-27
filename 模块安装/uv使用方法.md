@@ -1,7 +1,3 @@
-
-
-
-
 # uv 包管理指南
 
 ## 全局/脚本模式
@@ -54,23 +50,12 @@ myapp/
 └── main.py          # ⭐ 程序入口文件
 ```
 
-
-
-## 下面的命令可以让uv sync指定指定的环境而不是当前目录中.venv，可以用来配置其使用conda环境
-
-```
-export UV_PROJECT_ENVIRONMENT="/opt/conda"
-```
-
-
-
 **依赖管理：**
 
 ```bash
 #Windows 下，硬链接无法跨卷（跨磁盘分区）创建，要使用硬链接需要将缓存目录设置到与项目相同的磁盘分区
 #也可以直接设置 UV_LINK_MODE=copy 环境变量，强制 uv 使用复制模式
 set UV_CACHE_DIR=E:\uv-cache
-export UV_CACHE_DIR=/path/to/uv-cache
 
 # 添加依赖（自动更新 pyproject.toml + uv.lock）
 uv add requests
@@ -87,22 +72,14 @@ uv remove requests
 # 将 requirements.txt 的依赖添加到项目
 uv add -r requirements.txt
 
-# 添加开发依赖，这些包只在写代码、测试时用，线上运行不需要,[dependency-groups].dev
+# 添加开发依赖，这些包只在写代码、测试时用，线上运行不需要
 uv add --dev pytest ruff
-
-# 添加到依赖组（是为了项目开发人员准备的）：[dependency-groups].mygroup
-uv add pytest ruff --group mygroup
-
-# 添加到可选依赖（是为了包的用户准备的）[project.optional-dependencies].cpu
-# 可以通过pip install your-package[cpu]来安装
-uv add --optional cpu pytest ruff
 
 # 删除开发依赖
 uv remove --dev pytest
 ```
 
 **运行项目：**
-
 ```bash
 # 在虚拟环境中执行命令（自动管理环境）
 uv run python main.py
@@ -115,17 +92,9 @@ uv shell
 ```
 
 **环境同步：**
-
 ```bash
 # 根据 pyproject.toml/uv.lock 同步虚拟环境，clone的项目可以用它来恢复环境
-uv sync --no-progress
-
-# 同步时包含依赖组group中的包
-uv sync --group mygroup --no-progress
-
-# 同步时包含可选依赖cup中的包
-uv sync --extra cpu --no-progress
-uv pip install your-package[cpu]
+uv sync
 ```
 
 ### `pyproject.toml`手动修改后的工作流
@@ -140,15 +109,12 @@ uv sync    # uv sync 会自动检查 pyproject.toml 变化，相当于 uv lock +
 
 ### 导出requirements.txt
 
-导出requirements.txt时会丢失自定义的安装源，不适用有自定义源的项目
-
 ```
 # 从当前项目导出（使用 uv.lock）
-uv export  --no-color > requirements.txt
-uv export --group train --extra cuda  --no-color > requirements.txt
+uv export > requirements.txt
 
 # 导出生产依赖（不含开发依赖）
-uv export --no-dev  --no-color > requirements.txt
+uv export --no-dev > requirements.txt
 ```
 
 ### 核心文件说明
@@ -220,7 +186,6 @@ explicit = false
 [[tool.uv.index]]
 name = "paddle-nightly"
 url = "https://www.paddlepaddle.org.cn/packages/nightly/cpu/"
-explicit = true  # 设置为 explicit，不会自动搜索
 
 # 指定 paddlepaddle 的来源
 [tool.uv.sources]
