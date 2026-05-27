@@ -243,10 +243,6 @@ if __name__ == '__main__':
 
     else:
         print("\n标定失败。")
-        print("可能的原因：")
-        print("1. 未找到标定图像")
-        print("2. 图像中未检测到足够的ChArUco角点")
-        print("3. 图像质量不佳或光照条件不好")
-        print("4. ChArUco板参数设置不正确")
+        print(error_msg)
 
     print("\n程序结束。")
