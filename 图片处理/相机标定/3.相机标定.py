@@ -24,13 +24,21 @@ def save_calibration_results(camera_matrix, dist_coeffs, filename="calibration_r
     print("保存成功！")
 
 
-def calibrate_camera_with_charuco(image_folder="calibration_images", squares_x=5, squares_y=7, 
-                                  square_length=0.035, marker_length=0.0175):
+def calibrate_camera_with_charuco(image_folder="calibration_images",
+                                  image_paths=None,
+                                  squares_x=5,
+                                  squares_y=7, 
+                                  square_length=0.035,
+                                  marker_length=0.0175
+                                  ):
     """
-    使用ChArUco板进行相机标定的主函数
+    使用ChArUco板进行相机标定的主函数（支持直接传入图像数据或文件路径）
     
     参数:
-        image_folder (str): 包含标定图像的文件夹路径，默认"calibration_images"
+        image_folder (str): 包含标定图像的文件夹路径，默认"calibration_images"。
+                            当 image_paths 为 None 时使用此参数。
+        image_paths (list, optional): 图片文件路径的列表，或已读取图像(ndarray)的列表。
+                                      若提供此参数，将忽略 image_folder 参数。
         squares_x (int): ChArUco板X方向(宽度)的方格数量
         squares_y (int): ChArUco板Y方向(高度)的方格数量
         square_length (float): 每个方格的实际物理长度(单位:米)
@@ -41,7 +49,8 @@ def calibrate_camera_with_charuco(image_folder="calibration_images", squares_x=5
             - camera_matrix (numpy.ndarray): 3x3相机内参矩阵
             - dist_coeffs (numpy.ndarray): 畸变系数向量 [k1, k2, p1, p2, k3, ...]
             - reprojection_error (float): 平均重投影误差，用于评估标定质量
-            如果标定失败，返回 (None, None, None)
+            - error_msg (str): 如果标定失败，返回错误信息字符串；成功时返回None
+            如果标定失败，返回 (None, None, None, error_msg)
     """
     
     # ==================== 1. 创建ChArUco板和检测器 ====================
@@ -73,30 +82,40 @@ def calibrate_camera_with_charuco(image_folder="calibration_images", squares_x=5
     
     # ==================== 3. 读取并处理标定图像 ====================
     
-    # 获取文件夹中的所有图像文件
-    image_files = glob.glob(os.path.join(image_folder, '*.png')) + \
-                  glob.glob(os.path.join(image_folder, '*.jpg'))
-    
-    # 检查是否有图像文件
-    if not image_files:
-        print(f"错误: 在文件夹 '{image_folder}' 中未找到图像文件。")
-        return None, None, None
+    # 根据 image_paths 决定图片来源
+    if image_paths is not None and len(image_paths) > 0:
+        # 使用传入的列表（可以是文件路径字符串，也可以是已加载的图像数据）
+        image_items = image_paths
+        print(f"使用传入的 {len(image_items)} 个图片项进行标定...")
+    else:
+        # 回退到文件夹扫描模式：获取文件夹中的所有图像文件
+        image_items = glob.glob(os.path.join(image_folder, '*.png')) + \
+                      glob.glob(os.path.join(image_folder, '*.jpg'))
         
-    print(f"找到 {len(image_files)} 张图像")
-    print(f"使用 {len(image_files)} 张图像进行标定...")
+        # 检查是否有图像文件
+        if not image_items:
+            error_msg = f"错误: 在文件夹 '{image_folder}' 中未找到图像文件。"
+            print(error_msg)
+            return None, None, None, error_msg
+        print(f"从文件夹找到 {len(image_items)} 张图像")
 
     img_size = None      # 存储图像尺寸 (width, height)
     valid_count = 0      # 有效图像计数器
 
-    # 遍历所有图像文件
-    for fname in image_files:
-        # 读取图像
-        img = cv2.imread(fname)
-        if img is None:
-            print(f"警告: 无法读取图像 {fname}，跳过。")
-            continue
-            
-        # 转换为灰度图
+    # 遍历所有图像项
+    for item in image_items:
+        # 判断 item 类型：字符串 -> 文件路径，需读取；否则假定为图像数据（numpy数组）
+        if isinstance(item, str):
+            # 从文件路径读取图像
+            img = cv2.imread(item)
+            if img is None:
+                print(f"警告: 无法读取图像 {item}，跳过。")
+                continue
+        else:
+            # 直接使用传入的图像数据（numpy数组格式）
+            img = item
+
+        # 转换为灰度图（ChArUco检测需要灰度图像）
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         
         # 如果是第一张有效图像，记录图像尺寸
@@ -126,13 +145,19 @@ def calibrate_camera_with_charuco(image_folder="calibration_images", squares_x=5
             all_image_points.append(charuco_corners.reshape(-1, 2))       # 2D图像坐标
             
             valid_count += 1
-            print(f"有效图像 {valid_count}: {os.path.basename(fname)} - 检测到 {len(charuco_corners)} 个角点")
+            # 提供反馈信息（如果是路径，显示文件名；否则显示序号）
+            if isinstance(item, str):
+                name = os.path.basename(item)
+            else:
+                name = f"内存图像 #{valid_count}"
+            print(f"有效图像 {valid_count}: {name} - 检测到 {len(charuco_corners)} 个角点")
 
     # ==================== 4. 检查是否有足够多的有效图像 ====================
     
     if valid_count < 1:
-        print("错误: 未能在任何图像中检测到足够的ChArUco角点。")
-        return None, None, None
+        error_msg = "错误: 未能在任何图像中检测到足够的ChArUco角点。"
+        print(error_msg)
+        return None, None, None, error_msg
 
     print(f"\n成功使用 {valid_count} 张有效图像进行标定")
 
@@ -161,14 +186,42 @@ def calibrate_camera_with_charuco(image_folder="calibration_images", squares_x=5
         flags=calibration_flags  # 标定标志位
     )
 
-    # 返回标定结果: 内参矩阵, 畸变系数, 重投影误差
-    return camera_matrix, dist_coeffs, ret
-
+    # 返回标定结果: 内参矩阵, 畸变系数, 重投影误差, 错误信息(None表示成功)
+    return camera_matrix, dist_coeffs, ret, None
 
 
 if __name__ == '__main__':
+    # ============================
+    # 用法1：从文件夹自动扫描（原有方式）
+    # ============================
+    # camera_matrix, dist_coeffs, error = calibrate_camera_with_charuco(
+    #     image_folder="calibration_images"
+    # )
+    
+    # ============================
+    # 用法2：传入图片文件路径列表
+    # ============================
+    # path_list = [
+    #     "C:/calibration_images/snap_1.png",
+    #     "C:/calibration_images/snap_2.png",
+    #     "C:/calibration_images/snap_3.png"
+    # ]
+    # camera_matrix, dist_coeffs, error = calibrate_camera_with_charuco(
+    #     image_paths=path_list
+    # )
+    
+    # ============================
+    # 用法3：传入已加载的内存图像列表（例如从传感器采集后直接标定）
+    # ============================
+    # 假设 self.samples 是一个包含 image_data 字段的列表
+    # img_list = [sample["image_data"] for sample in self.samples]
+    # camera_matrix, dist_coeffs, error = calibrate_camera_with_charuco(
+    #     image_paths=img_list
+    # )
+
+    
     # 调用标定函数
-    camera_matrix, dist_coeffs, error = calibrate_camera_with_charuco(image_folder="calibration_images")
+    camera_matrix, dist_coeffs, error, error_msg = calibrate_camera_with_charuco(image_folder="calibration_images")
 
     # 检查标定是否成功
     if camera_matrix is not None:
