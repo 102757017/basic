@@ -175,7 +175,7 @@ def main():
 
     gray = cv2.cvtColor(src, cv2.COLOR_BGR2GRAY)
     
-    cv2.namedWindow(window_name)
+    cv2.namedWindow(window_name, cv2.WINDOW_NORMAL)
     
     cv2.createTrackbar('Sigma', window_name, int(params['Sigma']*10), 50, on_sigma)
     cv2.createTrackbar('GradientThr', window_name, params['GradientThreshold'], 100, on_gradient)
