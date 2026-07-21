@@ -74,7 +74,7 @@ class EllipseDetectorApp:
         self.var_grad = tk.IntVar(value=24)
         self.var_min_path = tk.IntVar(value=60)
         self.var_line_err = tk.DoubleVar(value=1.0)
-        self.var_nfa = tk.IntVar(value=1)
+        self.var_nfa = tk.IntVar(value=0)
         self.var_pf = tk.IntVar(value=1)
 
         self.init_ui()
@@ -229,7 +229,7 @@ if __name__ == '__main__':
     try:
         fn = sys.argv[1]
     except IndexError:
-        fn = '4.jpg'
+        fn = 'p1.jpg'
 
     # 创建 Tkinter 主事件循环
     root = tk.Tk()
