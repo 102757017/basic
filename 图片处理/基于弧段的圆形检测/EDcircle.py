@@ -11,7 +11,7 @@ def main():
     try:
         fn = sys.argv[1]
     except IndexError:
-        fn = 'p2.jpg'
+        fn = '1.jpg'
 
     # 读取图像
     src = cv.imread(cv.samples.findFile(fn))
@@ -34,9 +34,9 @@ def main():
     
     EDParams = cv.ximgproc_EdgeDrawing_Params()
     # 这些参数影响所有边缘检测
-    EDParams.MinPathLength = 60     # 所有弧段都必须满足 MinPathLength 要求，如果有任何一个弧段长度 < MinPathLength，该弧段会被丢弃
-    EDParams.PFmode = True           # 设置为True可能提高检测精度但会降低速度    
-    EDParams.NFAValidation = True    # 设置为False可能检测到更多特征但可能有更多误检
+    EDParams.MinPathLength = 20     # 所有弧段都必须满足 MinPathLength 要求，如果有任何一个弧段长度 < MinPathLength，该弧段会被丢弃
+    EDParams.PFmode = False          # 设置为True可能提高检测精度但会降低速度    
+    EDParams.NFAValidation = False   # 设置为False可能检测到更多特征但可能有更多误检
 
 
     # 这个参数只影响直线检测,不影响圆形检测！
