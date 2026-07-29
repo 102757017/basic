@@ -10,33 +10,69 @@ from PIL import Image, ImageTk
 # ================= 核心检测函数 =================
 def detect_ellipses(image, sigma=1.0, gradient_threshold=20, min_path_length=60, 
                     line_fit_error_threshold=1.0, nfa_validation=True, pf_mode=True):
+    """
+    封装好的椭圆检测函数 (基于 OpenCV EdgeDrawing 算法)
+    
+    参数说明:
+    :param image: numpy.ndarray, 输入的单通道灰度图像。
+    :param sigma: float, 高斯滤波的平滑标准差。在提取边缘前用于平滑图像，值越大抗噪能力越强，但也可能丢失细节。
+    :param gradient_threshold: int, 梯度阈值。只有图像中梯度大于该值的像素才会被保留作为边缘的候选点。
+    :param min_path_length: int, 最小连续边缘段(Path)的长度。低于该长度的碎小边缘段会被丢弃，调大可过滤噪点生成的短边。
+    :param line_fit_error_threshold: float, 拟合误差阈值。在将边缘段拟合为弧线/椭圆时，允许的最大几何误差。
+    :param nfa_validation: bool, 是否启用 NFA (Number of False Alarms) 验证机制。开启后可通过内部统计学方法滤除大量虚假椭圆。
+    :param pf_mode: bool, 是否启用 Parameter-Free (无参数) 模式。开启后部分内部判断阈值会自动计算，通常能提高泛化能力。
+    
+    返回说明:
+    :return: list of tuples, 包含所有检测到的椭圆数据列表。
+             每个元素格式为: (cx, cy, a, b, angle, is_circle)
+             - cx, cy: 椭圆中心坐标 (int)
+             - a, b: 椭圆的半长轴和半短轴 (int)
+             - angle: 椭圆的旋转角度 (float, 度)
+             - is_circle: 布尔值，标识它是否为一个标准圆形 (bool)
+    """
     ed = cv2.ximgproc.createEdgeDrawing()
     ed_params = cv2.ximgproc_EdgeDrawing_Params()
     
     ed_params.Sigma = sigma
-    ed_params.GradientThresholdValue = int(gradient_threshold)
-    ed_params.MinPathLength = int(min_path_length)
+    ed_params.GradientThresholdValue = gradient_threshold
+    ed_params.MinPathLength = min_path_length
     ed_params.LineFitErrorThreshold = line_fit_error_threshold
-    ed_params.NFAValidation = bool(nfa_validation)
-    ed_params.PFmode = bool(pf_mode)
-    ed_params.MinLineLength = 0  
+    ed_params.NFAValidation = nfa_validation
+    ed_params.PFmode = pf_mode
+    ed_params.MinLineLength = 0  # 设置为0以彻底禁用直线检测输出
     
     ed.setParams(ed_params)
     
+    # ================================================================
+    # 【极其关键】：使用 image.copy()
+    # 阻断 OpenCV 底层 C++ 直接在原图上进行 in-place 高斯模糊，防止原图被污染
+    # ================================================================
     ed.detectEdges(image.copy())
     ellipses = ed.detectEllipses()
     
     results = []
     if ellipses is not None:
-        for i in range(len(ellipses)):
-            cx = int(ellipses[i][0][0])
-            cy = int(ellipses[i][0][1])
-            a = int(ellipses[i][0][2]) + int(ellipses[i][0][3])
-            b = int(ellipses[i][0][2]) + int(ellipses[i][0][4])
-            angle = ellipses[i][0][5]
-            is_circle = (ellipses[i][0][2] == 0) 
-            
-            results.append((cx, cy, a, b, angle, is_circle))
+        # 兼容 OpenCV 4.x (N, 1, 6) 和 OpenCV 5.x (N, 6) 两种返回格式
+        if ellipses.ndim == 3:
+            # OpenCV 4.x: shape is (N, 1, 6)
+            for i in range(len(ellipses)):
+                cx = int(ellipses[i][0][0])
+                cy = int(ellipses[i][0][1])
+                a = int(ellipses[i][0][2]) + int(ellipses[i][0][3])
+                b = int(ellipses[i][0][2]) + int(ellipses[i][0][4])
+                angle = ellipses[i][0][5]
+                is_circle = (ellipses[i][0][2] == 0)
+                results.append((cx, cy, a, b, angle, is_circle))
+        else:
+            # OpenCV 5.x: shape is (N, 6)
+            for i in range(len(ellipses)):
+                cx = int(ellipses[i][0])
+                cy = int(ellipses[i][1])
+                a = int(ellipses[i][2]) + int(ellipses[i][3])
+                b = int(ellipses[i][2]) + int(ellipses[i][4])
+                angle = ellipses[i][5]
+                is_circle = (ellipses[i][2] == 0)
+                results.append((cx, cy, a, b, angle, is_circle))
             
     return results
 
