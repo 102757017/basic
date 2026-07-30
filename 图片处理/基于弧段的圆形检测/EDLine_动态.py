@@ -65,10 +65,8 @@ def detect_lines(image, sigma=1.0, gradient_threshold=20, min_path_length=50,
     if lines is not None:
         for i in range(len(lines)):
             # 取出直线段的两个端点坐标
-            if lines.ndim == 3:   #opencv4
-                x1, y1, x2, y2 = lines[i][0]
-            elif lines.ndim == 2: #opencv5
-                x1, y1, x2, y2 = lines[i]
+            
+            x1, y1, x2, y2 = lines[i][0]
             results.append((int(x1), int(y1), int(x2), int(y2)))
             
     return results
