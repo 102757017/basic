@@ -134,7 +134,9 @@ if __name__ == '__main__':
         # 可视化：绘制坐标轴和检测到的 ChArUco 角点
         img_out = draw_axis(img.copy(), mtx, dist, rvec, tvec, length=SQUARE_LENGTH * 2)
         if corners is not None:
-            cv2.aruco.drawDetectedCornersCharuco(img_out, corners, ids, (0,255,0))
+            #针对 OpenCV 5 的形状兼容性处理：将 (N, 2) 转换为 (N, 1, 2)
+            draw_corners = corners.reshape(-1, 1, 2) if len(corners.shape) == 2 else corners
+            cv2.aruco.drawDetectedCornersCharuco(img_out, draw_corners, ids, (0,255,0))
         
         # 显示结果
         cv2.imshow("ChArUco Pose Estimation", img_out)

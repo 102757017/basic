@@ -83,7 +83,11 @@ for i, image_file in enumerate(image_files):
         
         # 在图像上绘制检测结果（可选，用于可视化）
         image_copy = image.copy()
-        cv2.aruco.drawDetectedCornersCharuco(image_copy, charuco_corners, charuco_ids)
+
+        #针对 OpenCV 5 的形状兼容性处理：将 (N, 2) 转换为 (N, 1, 2)
+        draw_corners = charuco_corners.reshape(-1, 1, 2) if len(charuco_corners.shape) == 2 else charuco_corners
+        
+        cv2.aruco.drawDetectedCornersCharuco(image_copy, draw_corners, charuco_ids)
         
         # 在显示前缩放图像
         display_image = resize_for_display(image_copy, max_width=1280, max_height=720)
