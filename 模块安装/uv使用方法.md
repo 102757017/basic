@@ -247,7 +247,7 @@ glumpy =["setuptools", "numpy", "cython", "wheel"]
 index-strategy = "unsafe-best-match"
 # 允许使用预编译的 wheel
 compile-bytecode = true
-# 防止 CPU 和 CUDA 同时安装
+# uv的锁文件是通用解析，除非显式声明 extras 互斥，否则一次解析会同时启用所有 extras，导致依赖冲突
 conflicts = [[ { extra = "cpu" }, { extra = "cuda" } ]]
 
 #覆盖版本
@@ -259,8 +259,9 @@ override-dependencies = [
 #强制忽略所有包对 opencv-python-headless 的需求，exclude-dependencies 的优先级比override-dependencies更高
 exclude-dependencies = ["opencv-python-headless","opencv-python"]
 
-# 指定当前平台为 Windows AMD64
-required-environments = [
+# sys_platform：win32/linux/darwin
+# platform_machine：AMD64/x86_64/aarch64   AMD64等同x86_64
+environments = [
     "sys_platform == 'win32' and platform_machine == 'AMD64'"
 ]
 
