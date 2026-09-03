@@ -63,6 +63,14 @@ uv add requests
 #这个命令会自动在 pyproject.toml 中生成正确的 [[tool.uv.index]] 和 [tool.uv.sources] 配置。
 uv add paddlepaddle==3.0.0.dev20250426 --index paddle-nightly=https://www.paddlepaddle.org.cn/packages/nightly/cpu/
 
+# 将包添加到其它组，无法使用pip install package[extra]安装
+uv add --group <组名称> <package>
+# 将包添加到dev组
+uv add --dev <package>
+
+# 添加可选依赖，可以使用pip install package[extra]安装
+uv add --optional <extra名称> <package>
+
 #反向显示依赖树
 uv tree --invert --package opencv-python-headless
 
@@ -93,8 +101,16 @@ uv shell
 
 **环境同步：**
 ```bash
-# 根据 pyproject.toml/uv.lock 同步虚拟环境，clone的项目可以用它来恢复环境
+# 根据 pyproject.toml/uv.lock 同步虚拟环境，clone的项目可以用它来恢复环境，默认只会安装 dev 组
 uv sync
+
+# 安装特定 extra
+uv sync --extra network
+
+# 安装所有 extra
+uv sync --all-extras
+
+uv sync --group test
 ```
 
 ### `pyproject.toml`手动修改后的工作流
@@ -170,9 +186,20 @@ uv sync  # 自动创建环境 + 安装所有依赖
 ## 配置文件
 
 ```
-[tool.uv]
-# 核心：强制 uv 忽略所有包对 opencv-python-headless 的需求
-exclude-dependencies = ["opencv-python-headless"]
+# 定义安装模式
+[project.optional-dependencies]
+cpu =[
+    "torch>=2.1.2",
+]
+cuda128 =[
+    "torch>=2.1.2",
+]
+
+#--group 无法使用pip install package[extra]安装
+[dependency-groups]
+dev = [
+    "pillow>=12.1.1",
+]
 
 
 # 将 PyPI 设为第一个索引，并作为默认索引，explicit = true：表示这个索引只用于pyproject.toml 中明确标记的包
@@ -182,25 +209,64 @@ url = "https://pypi.tuna.tsinghua.edu.cn/simple"
 default = true
 explicit = false
 
-# 将 paddle-nightly 设为第二个索引
+# 将 paddle-cuda 设为第二个索引
 [[tool.uv.index]]
-name = "paddle-nightly"
-url = "https://www.paddlepaddle.org.cn/packages/nightly/cpu/"
+name = "paddle-cuda"
+url = "https://www.paddlepaddle.org.cn/packages/stable/cu118/"  
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cuda128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
 
 # 指定 paddlepaddle 的来源
 [tool.uv.sources]
-paddlepaddle = { index = "paddle-nightly" }
+paddlepaddle = { index = "paddle-cuda" }
+torch =[
+    { index = "pytorch-cpu", extra = "cpu" },
+    { index = "pytorch-cuda128", extra = "cuda128" }
+]
+
 # paddlex 不需要指定来源，它将从默认的 PyPI 索引获取
+# 可编辑模式安装本地项目
+paddleclas = { path = "../PaddleClas", editable = true }
+
+#在构建阶段给特定包“注射”额外构建依赖
+[tool.uv.extra-build-dependencies]
+glumpy =["setuptools", "numpy", "cython", "wheel"]
 
 [tool.uv]
 # 设置全局索引策略，允许跨索引查找最佳匹配
 index-strategy = "unsafe-best-match"
 # 允许使用预编译的 wheel
 compile-bytecode = true
+# 防止 CPU 和 CUDA 同时安装
+conflicts = [[ { extra = "cpu" }, { extra = "cuda" } ]]
+
+#覆盖版本
+override-dependencies = [
+    "opencv-python==4.6.0.66",
+    "numpy==1.26.4",              # 强制 numpy 版本为 1.26.4
+]
+
+#强制忽略所有包对 opencv-python-headless 的需求，exclude-dependencies 的优先级比override-dependencies更高
+exclude-dependencies = ["opencv-python-headless","opencv-python"]
+
 # 指定当前平台为 Windows AMD64
 required-environments = [
     "sys_platform == 'win32' and platform_machine == 'AMD64'"
 ]
+
+
+[tool.setuptools]
+packages = []  # 强制关闭自动扫描，什么都不打包，只装依赖
 ```
 
 
