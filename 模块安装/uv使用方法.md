@@ -126,7 +126,7 @@ uv sync    # uv sync 会自动检查 pyproject.toml 变化，相当于 uv lock +
 ### 导出requirements.txt
 
 ```
-# 从当前项目导出（使用 uv.lock）
+# 从当前项目导出（使用 uv.lock），支持--extra --dev，不支持--group
 uv export --no-hashes > requirements.txt
 
 # 导出生产依赖（不含开发依赖）
